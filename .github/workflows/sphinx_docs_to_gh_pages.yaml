@@ -59,11 +59,12 @@ jobs:
       - name: Test import module
         shell: bash -l {0}
         run: |
+          set -euo pipefail
           echo "::group::Importing module from home directory"
+          trap 'echo "::endgroup::"' EXIT
           cd
           pwd
-          echo 'import elastnetmt; print("Version of the package: {}".format(elastnetmt.__version__))' | python
-          echo "::endgroup::"
+          python -c 'import elastnetmt; print("Version of the package: {}".format(elastnetmt.__version__))'
 
       - name: Running the Sphinx to gh-pages Action
         uses: uibcdf/action-sphinx-docs-to-gh-pages@v2.1.0
