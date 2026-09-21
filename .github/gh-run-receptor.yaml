@@ -5,13 +5,10 @@ workflows:
     profile: ci
   - match:
       path: .github/workflows/build_and_upload_conda_packages.yaml
-    profile: conda
-    settings:
-      expected_platforms:
-        - linux-64
-        - osx-64
-        - osx-arm64
-        - win-64
+    profile: release
+  - match:
+      path: .github/workflows/molsyssuite-policy.yml
+    profile: ci
   - match:
       path: .github/workflows/molsysviewer_contract.yaml
     profile: ci
