@@ -2,7 +2,7 @@ name: Build and upload conda packages
 
 on:
   release:
-    types: ['released', 'prereleased']
+    types: ['released']
 
   workflow_dispatch:
 
@@ -65,4 +65,3 @@ jobs:
           platform_osx-arm64: true
           platform_win-64: true
           token: ${{ secrets.ANACONDA_UIBCDF_TOKEN }} # Replace with the right name of your secret
-
