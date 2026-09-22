@@ -105,3 +105,14 @@ file = "elastnetmt/_version.py"
 
 #[tool.flit.external-data]
 #directory = "data"
+
+[tool.ruff]
+extend-exclude = [
+    "ACKREDIT_GUIDE.md",
+    "ARGDIGEST_GUIDE.md",
+    "DEPDIGEST_GUIDE.md",
+    "GH_RUN_RECEPTOR_GUIDE.md",
+    "MOLSYSSUITE_GUIDE.md",
+    "PYUNITWIZARD_GUIDE.md",
+    "SMONITOR_GUIDE.md",
+]
