@@ -1,17 +1,47 @@
+# Python 3.13 dependencies follow MolSysMT test_env.yaml at uibcdf/molsysmt@3bcfaf4.
+# MolSysMT and suite-only Python packages are installed from pinned sources below.
 channels:
 - uibcdf
 - conda-forge
+- ambermd
 dependencies:
 - python
 - pip
-- setuptools >=61.0
-- versioningit ~=2.0
-- molsysmt
-- pyunitwizard
-- matplotlib
+- setuptools >=68.0
+- versioningit>=3.0
+- h5py
+- numpy
+- pandas
+- networkx
 - tqdm
+- matplotlib
+- openmm
+- pdbfixer
+- ambertools
+- openff-toolkit-base >=0.17.1
+- openff-units >=0.3.0
+- mdtraj
+- mdanalysis
+- rdkit
+- parmed
+- biopython
+- ipywidgets
+- py-mmcif >=1.1.1
+- plotly
+- anywidget
+- aiohttp
 - scikit-learn
+- beartype
+- packaging >=23
+- pint
+- pydantic
+- pyyaml
+- scipy
+- traitlets >=5
+- nglview
 - pytest
+- pytest-receptor=0.6.0
 - pytest-cov
-- pytest-xdist
 - codecov
+- pytest-xdist
+- ruff=0.16.5
