@@ -54,20 +54,13 @@ test = [
 # Ref:
 # https://mypy.readthedocs.io/en/stable/installed_packages.html?highlight=zip#using-installed-packages-with-mypy-pep-561
 zip-safe = false
-# Let setuptools discover the package in the current directory,
-# but be explicit about non-Python files.
-# See also:
-#   https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#setuptools-specific-configuration
-# Note that behavior is currently evolving with respect to how to interpret the
-# "data" and "tests" subdirectories. As of setuptools 63, both are automatically
-# included if namespaces is true (default), even if the package is named explicitly
-# (instead of using 'find'). With 'find', the 'tests' subpackage is discovered
-# recursively because of its __init__.py file, but the data subdirectory is excluded
-# with include-package-data = false and namespaces = false.
+# Include private namespace packages used by installed imports.
+# Restrict discovery to the two distribution roots to omit tests and data.
 include-package-data = false
 [tool.setuptools.packages.find]
-namespaces = false
+namespaces = true
 where = ["."]
+include = ["elastnetmt*", "molsysviewer_elastnetmt*"]
 
 # Ref https://setuptools.pypa.io/en/latest/userguide/datafiles.html#package-data
 [tool.pytest.ini_options]
