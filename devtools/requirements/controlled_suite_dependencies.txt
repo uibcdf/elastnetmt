@@ -3,4 +3,4 @@ git+https://github.com/uibcdf/smonitor@4b5e5c5a46e3c8a4dc46461ce72937f9a7dfbdae
 git+https://github.com/uibcdf/depdigest@1086dcddbcf8ef856a1ce99f33f3973322cf933c
 git+https://github.com/uibcdf/pyunitwizard@c7a9ff03725828d49eebbc91146bc057d8c4b2bc
 git+https://github.com/uibcdf/argdigest@c604ce387fe60558ceb51a3016892e7a10686504
-git+https://github.com/uibcdf/lindelint@31371e4e7933fbe8496889ab6830a8e2fb1eccd9
+git+https://github.com/uibcdf/lindelint@3825c741ee08d2cb0b6c2398337f368a6875dd96
