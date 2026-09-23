@@ -6,7 +6,12 @@ import numpy as np
 
 from elastnetmt.model.elastic_network_model import ElasticNetworkModel
 
-from ..runtime import ensure_runtime, record_event, set_overlay_visibility, update_overlay_parameters
+from ..runtime import (
+    ensure_runtime,
+    record_event,
+    set_overlay_visibility,
+    update_overlay_parameters,
+)
 
 
 def build_contact_atom_pairs(model: ElasticNetworkModel) -> list[tuple[int, int]]:
@@ -15,7 +20,10 @@ def build_contact_atom_pairs(model: ElasticNetworkModel) -> list[tuple[int, int]
 
     rows, cols = np.where(np.triu(model.contacts, k=1))
     atom_indices = np.asarray(model.atom_indices, dtype=int)
-    return [(int(atom_indices[row]), int(atom_indices[col])) for row, col in zip(rows, cols, strict=False)]
+    return [
+        (int(atom_indices[row]), int(atom_indices[col]))
+        for row, col in zip(rows, cols, strict=False)
+    ]
 
 
 def get_or_build_contact_model(
@@ -31,7 +39,9 @@ def get_or_build_contact_model(
     if molecular_system is None:
         molecular_system = getattr(view, "molecular_system", None)
     if molecular_system is None:
-        raise ValueError("A molecular system must be loaded in the view before rendering ElastNetMT contacts.")
+        raise ValueError(
+            "A molecular system must be loaded in the view before rendering ElastNetMT contacts."
+        )
 
     selection = selection or runtime.selection
     cutoff = cutoff or runtime.cutoff

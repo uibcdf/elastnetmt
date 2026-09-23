@@ -60,15 +60,17 @@ def setup_logging(
     if capture_warnings:
         # Simplify the warning text so it contains only "Category: message"
         if simplify_warning_format:
+
             def _simple_formatwarning(message, category, filename, lineno, line=None):
                 return f"{category.__name__}: {message}\n"
+
             warnings.formatwarning = _simple_formatwarning
 
         logging.captureWarnings(True)
 
         pyw = logging.getLogger("py.warnings")
         pyw.setLevel(lvl)
-        pyw.handlers.clear()       # avoid duplicate handlers
+        pyw.handlers.clear()  # avoid duplicate handlers
         pyw.addHandler(stream_handler)
         pyw.propagate = False
 

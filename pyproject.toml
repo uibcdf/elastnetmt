@@ -107,7 +107,12 @@ file = "elastnetmt/_version.py"
 #directory = "data"
 
 [tool.ruff]
+target-version = "py311"
 extend-exclude = [
+    "devguide",
+    "docs",
+    "sandbox",
+    "elastnetmt/model/old_anm.py", # Unreferenced Python 2 legacy; tracked by uibcdf/elastnetmt#12.
     "ACKREDIT_GUIDE.md",
     "ARGDIGEST_GUIDE.md",
     "DEPDIGEST_GUIDE.md",
@@ -116,3 +121,6 @@ extend-exclude = [
     "PYUNITWIZARD_GUIDE.md",
     "SMONITOR_GUIDE.md",
 ]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

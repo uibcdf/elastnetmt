@@ -36,7 +36,9 @@ def record_event(view: Any, event: str, **payload: Any) -> ElastNetMTAddonRuntim
     return runtime
 
 
-def set_overlay_visibility(runtime: ElastNetMTAddonRuntime, overlay_tag: str, visible: bool) -> None:
+def set_overlay_visibility(
+    runtime: ElastNetMTAddonRuntime, overlay_tag: str, visible: bool
+) -> None:
     if visible:
         if overlay_tag not in runtime.visible_overlays:
             runtime.visible_overlays.append(overlay_tag)
@@ -44,5 +46,7 @@ def set_overlay_visibility(runtime: ElastNetMTAddonRuntime, overlay_tag: str, vi
         runtime.visible_overlays.remove(overlay_tag)
 
 
-def update_overlay_parameters(runtime: ElastNetMTAddonRuntime, overlay_tag: str, **parameters: Any) -> None:
+def update_overlay_parameters(
+    runtime: ElastNetMTAddonRuntime, overlay_tag: str, **parameters: Any
+) -> None:
     runtime.overlay_parameters[overlay_tag] = dict(parameters)

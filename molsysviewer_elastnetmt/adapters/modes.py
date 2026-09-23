@@ -4,10 +4,15 @@ from typing import Any
 
 import numpy as np
 
-from elastnetmt.model.anisotropic_network_model import AnisotropicNetworkModel
 from elastnetmt import pyunitwizard as puw
+from elastnetmt.model.anisotropic_network_model import AnisotropicNetworkModel
 
-from ..runtime import ensure_runtime, record_event, set_overlay_visibility, update_overlay_parameters
+from ..runtime import (
+    ensure_runtime,
+    record_event,
+    set_overlay_visibility,
+    update_overlay_parameters,
+)
 
 
 def get_or_build_anm_model(
@@ -23,7 +28,9 @@ def get_or_build_anm_model(
     if molecular_system is None:
         molecular_system = getattr(view, "molecular_system", None)
     if molecular_system is None:
-        raise ValueError("A molecular system must be loaded in the view before rendering ElastNetMT modes.")
+        raise ValueError(
+            "A molecular system must be loaded in the view before rendering ElastNetMT modes."
+        )
 
     selection = selection or runtime.selection
     cutoff = cutoff or runtime.cutoff
@@ -49,10 +56,14 @@ def get_or_build_anm_model(
     return model
 
 
-def build_mode_vectors(model: AnisotropicNetworkModel, mode_index: int = 0) -> np.ndarray:
+def build_mode_vectors(
+    model: AnisotropicNetworkModel, mode_index: int = 0
+) -> np.ndarray:
     modes = model.get_modes()
     if mode_index < 0 or mode_index >= modes.shape[0]:
-        raise IndexError(f"mode_index {mode_index} out of range for {modes.shape[0]} ANM modes.")
+        raise IndexError(
+            f"mode_index {mode_index} out of range for {modes.shape[0]} ANM modes."
+        )
     return np.asarray(modes[mode_index], dtype=float)
 
 
@@ -108,5 +119,11 @@ def render_mode_vectors(
         structure_index=int(structure_index),
         n_vectors=int(vectors.shape[0]),
     )
-    record_event(view, "render_mode_vectors", tag=tag, mode_index=int(mode_index), n_vectors=int(vectors.shape[0]))
+    record_event(
+        view,
+        "render_mode_vectors",
+        tag=tag,
+        mode_index=int(mode_index),
+        n_vectors=int(vectors.shape[0]),
+    )
     return layer, model, vectors

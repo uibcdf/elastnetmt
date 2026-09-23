@@ -18,7 +18,10 @@ def test_molsysviewer_elastnetmt_module_exposes_valid_addon_contract():
     assert [item.id for item in module.addon.workspaces] == ["elastnetmt"]
     assert [item.id for item in module.addon.panels] == ["model", "modes", "figures"]
     model_panel = next(p for p in module.addon.panels if p.id == "model")
-    assert model_panel.widget_class == "molsysviewer_elastnetmt.panels.model.ElastNetMTModelPanel"
+    assert (
+        model_panel.widget_class
+        == "molsysviewer_elastnetmt.panels.model.ElastNetMTModelPanel"
+    )
     assert [item.id for item in module.addon.context_actions] == [
         "show-contact-network",
         "show-mode-vectors",
@@ -62,7 +65,9 @@ def test_molsysviewer_elastnetmt_lifecycle_initializes_runtime_and_tracks_action
     )
     assert "elastnetmt:contacts" in runtime.visible_overlays
     assert runtime.last_context_action["action_id"] == "show-contact-network"
-    assert any(message.get("op") == "add_network_links" for message in view._message_history)
+    assert any(
+        message.get("op") == "add_network_links" for message in view._shape_history
+    )
 
     module.on_context_action(
         view,
@@ -70,7 +75,10 @@ def test_molsysviewer_elastnetmt_lifecycle_initializes_runtime_and_tracks_action
         {"addon": "elastnetmt", "addon_action_id": "show-mode-vectors"},
     )
     assert "elastnetmt:mode:0" in runtime.visible_overlays
-    assert any(message.get("op") == "add_displacement_vectors" for message in view._message_history)
+    assert any(
+        message.get("op") == "add_displacement_vectors"
+        for message in view._shape_history
+    )
     assert runtime.event_log[-1]["event"] == "context_action"
 
     module.on_disable(view)
@@ -80,23 +88,27 @@ def test_molsysviewer_elastnetmt_lifecycle_initializes_runtime_and_tracks_action
 
 def test_molsysviewer_elastnetmt_contact_adapter_builds_atom_pairs_and_renders_links():
     pytest.importorskip("molsysviewer")
-    adapter_module = importlib.import_module("molsysviewer_elastnetmt.adapters.contacts")
+    adapter_module = importlib.import_module(
+        "molsysviewer_elastnetmt.adapters.contacts"
+    )
     molsysviewer_module = importlib.import_module("molsysviewer")
 
     molecular_system = msm.convert("pdb_id:1tcd", to_form="molsysmt.MolSys")
     view = molsysviewer_module.MolSysView(debug_js=True)
     view.load(molecular_system)
 
-    layer, model = adapter_module.render_contact_network(view, molecular_system=molecular_system)
+    layer, model = adapter_module.render_contact_network(
+        view, molecular_system=molecular_system
+    )
     atom_pairs = adapter_module.build_contact_atom_pairs(model)
 
     assert layer.tag == "elastnetmt:contacts"
     assert model.n_nodes > 0
     assert len(atom_pairs) > 0
     assert all(len(pair) == 2 for pair in atom_pairs)
-    assert view._message_history[-1]["op"] == "add_network_links"
-    assert view._message_history[-1]["options"]["tag"] == "elastnetmt:contacts"
-    assert len(view._message_history[-1]["options"]["atom_pairs"]) == len(atom_pairs)
+    assert view._shape_history[-1]["op"] == "add_network_links"
+    assert view._shape_history[-1]["options"]["tag"] == "elastnetmt:contacts"
+    assert len(view._shape_history[-1]["options"]["atom_pairs"]) == len(atom_pairs)
 
 
 def test_molsysviewer_elastnetmt_mode_adapter_builds_vectors_and_renders_displacements():
@@ -108,15 +120,17 @@ def test_molsysviewer_elastnetmt_mode_adapter_builds_vectors_and_renders_displac
     view = molsysviewer_module.MolSysView(debug_js=True)
     view.load(molecular_system)
 
-    layer, model, vectors = adapter_module.render_mode_vectors(view, molecular_system=molecular_system, mode_index=0)
+    layer, model, vectors = adapter_module.render_mode_vectors(
+        view, molecular_system=molecular_system, mode_index=0
+    )
 
     assert layer.tag == "elastnetmt:mode:0"
     assert model.n_nodes > 0
     assert vectors.shape == (model.n_nodes, 3)
-    assert view._message_history[-1]["op"] == "add_displacement_vectors"
-    assert view._message_history[-1]["options"]["tag"] == "elastnetmt:mode:0"
-    assert len(view._message_history[-1]["options"]["atom_indices"]) == model.n_nodes
-    assert len(view._message_history[-1]["options"]["vectors"]) == model.n_nodes
+    assert view._shape_history[-1]["op"] == "add_displacement_vectors"
+    assert view._shape_history[-1]["options"]["tag"] == "elastnetmt:mode:0"
+    assert len(view._shape_history[-1]["options"]["atom_indices"]) == model.n_nodes
+    assert len(view._shape_history[-1]["options"]["vectors"]) == model.n_nodes
 
 
 def test_molsysviewer_elastnetmt_mode_adapter_respects_active_mode_and_reuses_cached_model():
@@ -133,8 +147,12 @@ def test_molsysviewer_elastnetmt_mode_adapter_respects_active_mode_and_reuses_ca
     runtime = view._elastnetmt_addon_runtime
     runtime.active_mode_index = 1
 
-    layer1, model1, vectors1 = adapter_module.render_mode_vectors(view, molecular_system=molecular_system)
-    layer2, model2, vectors2 = adapter_module.render_mode_vectors(view, molecular_system=molecular_system, mode_index=2)
+    layer1, model1, vectors1 = adapter_module.render_mode_vectors(
+        view, molecular_system=molecular_system
+    )
+    layer2, model2, vectors2 = adapter_module.render_mode_vectors(
+        view, molecular_system=molecular_system, mode_index=2
+    )
 
     assert layer1.tag == "elastnetmt:mode:1"
     assert layer2.tag == "elastnetmt:mode:2"
@@ -146,17 +164,21 @@ def test_molsysviewer_elastnetmt_mode_adapter_respects_active_mode_and_reuses_ca
 
 def test_molsysviewer_elastnetmt_anisotropy_adapter_builds_ellipsoids():
     pytest.importorskip("molsysviewer")
-    adapter_module = importlib.import_module("molsysviewer_elastnetmt.adapters.anisotropy")
+    adapter_module = importlib.import_module(
+        "molsysviewer_elastnetmt.adapters.anisotropy"
+    )
     molsysviewer_module = importlib.import_module("molsysviewer")
 
     molecular_system = msm.convert("pdb_id:1tcd", to_form="molsysmt.MolSys")
     view = molsysviewer_module.MolSysView(debug_js=True)
     view.load(molecular_system)
 
-    layer, model, eigenvalues, eigenvectors = adapter_module.render_anisotropy_ellipsoids(
-        view,
-        molecular_system=molecular_system,
-        mode_count=10,
+    layer, model, eigenvalues, eigenvectors = (
+        adapter_module.render_anisotropy_ellipsoids(
+            view,
+            molecular_system=molecular_system,
+            mode_count=10,
+        )
     )
 
     assert layer.tag == "elastnetmt:anisotropy"
@@ -166,9 +188,9 @@ def test_molsysviewer_elastnetmt_anisotropy_adapter_builds_ellipsoids():
     assert len(eigenvalues[0]) == 3
     assert len(eigenvectors[0]) == 3
     assert len(eigenvectors[0][0]) == 3
-    assert view._message_history[-1]["op"] == "add_anisotropy_ellipsoids"
-    assert view._message_history[-1]["options"]["tag"] == "elastnetmt:anisotropy"
-    assert len(view._message_history[-1]["options"]["eigenvalues"]) == model.n_nodes
+    assert view._shape_history[-1]["op"] == "add_anisotropy_ellipsoids"
+    assert view._shape_history[-1]["options"]["tag"] == "elastnetmt:anisotropy"
+    assert len(view._shape_history[-1]["options"]["eigenvalues"]) == model.n_nodes
 
 
 def test_molsysviewer_elastnetmt_workbench_and_export_helpers_report_reproducible_state():
@@ -183,9 +205,21 @@ def test_molsysviewer_elastnetmt_workbench_and_export_helpers_report_reproducibl
     view.load(molecular_system)
     module.on_enable(view)
 
-    module.on_context_action(view, "show-contact-network", {"addon": "elastnetmt", "addon_action_id": "show-contact-network"})
-    module.on_context_action(view, "show-mode-vectors", {"addon": "elastnetmt", "addon_action_id": "show-mode-vectors"})
-    module.on_context_action(view, "show-anisotropy-ellipsoids", {"addon": "elastnetmt", "addon_action_id": "show-anisotropy-ellipsoids"})
+    module.on_context_action(
+        view,
+        "show-contact-network",
+        {"addon": "elastnetmt", "addon_action_id": "show-contact-network"},
+    )
+    module.on_context_action(
+        view,
+        "show-mode-vectors",
+        {"addon": "elastnetmt", "addon_action_id": "show-mode-vectors"},
+    )
+    module.on_context_action(
+        view,
+        "show-anisotropy-ellipsoids",
+        {"addon": "elastnetmt", "addon_action_id": "show-anisotropy-ellipsoids"},
+    )
 
     modes_section = workbench_module.get_modes_section(view)
     overlays_section = workbench_module.get_network_overlays_section(view)
@@ -199,7 +233,12 @@ def test_molsysviewer_elastnetmt_workbench_and_export_helpers_report_reproducibl
     assert export_payload["title"] == "ElastNetMT Figure Export"
     assert export_payload["figure_recipe"]["active_mode_index"] == 0
     assert "elastnetmt:contacts" in export_payload["figure_recipe"]["visible_overlays"]
-    assert export_payload["figure_recipe"]["overlay_parameters"]["elastnetmt:anisotropy"]["kind"] == "anisotropy-ellipsoids"
+    assert (
+        export_payload["figure_recipe"]["overlay_parameters"]["elastnetmt:anisotropy"][
+            "kind"
+        ]
+        == "anisotropy-ellipsoids"
+    )
 
 
 def test_molsysviewer_elastnetmt_demo_bundle_builds_complete_mvp_state():
@@ -216,14 +255,31 @@ def test_molsysviewer_elastnetmt_demo_bundle_builds_complete_mvp_state():
     )
 
     view = bundle["view"]
-    assert "elastnetmt:contacts" in bundle["network_overlays_section"]["snapshot"]["visible_overlays"]
-    assert "elastnetmt:mode:1" in bundle["network_overlays_section"]["snapshot"]["visible_overlays"]
-    assert "elastnetmt:anisotropy" in bundle["network_overlays_section"]["snapshot"]["visible_overlays"]
+    assert (
+        "elastnetmt:contacts"
+        in bundle["network_overlays_section"]["snapshot"]["visible_overlays"]
+    )
+    assert (
+        "elastnetmt:mode:1"
+        in bundle["network_overlays_section"]["snapshot"]["visible_overlays"]
+    )
+    assert (
+        "elastnetmt:anisotropy"
+        in bundle["network_overlays_section"]["snapshot"]["visible_overlays"]
+    )
     assert bundle["modes_section"]["item_title"] == "Mode 1"
     assert bundle["export_payload"]["figure_recipe"]["active_mode_index"] == 1
-    assert any(message.get("op") == "add_network_links" for message in view._message_history)
-    assert any(message.get("op") == "add_displacement_vectors" for message in view._message_history)
-    assert any(message.get("op") == "add_anisotropy_ellipsoids" for message in view._message_history)
+    assert any(
+        message.get("op") == "add_network_links" for message in view._shape_history
+    )
+    assert any(
+        message.get("op") == "add_displacement_vectors"
+        for message in view._shape_history
+    )
+    assert any(
+        message.get("op") == "add_anisotropy_ellipsoids"
+        for message in view._shape_history
+    )
 
 
 def test_elastnetmt_model_panel_widget_class_is_resolvable_via_view_addons_manager():
@@ -315,11 +371,14 @@ def test_elastnetmt_model_panel_compute_action_builds_model_and_reports_n_nodes(
 
 
 def test_elastnetmt_modes_panel_widget_class_is_registered():
-    molsysviewer = pytest.importorskip("molsysviewer")
+    pytest.importorskip("molsysviewer")
     module = importlib.import_module("molsysviewer_elastnetmt")
 
     modes_panel = next(p for p in module.addon.panels if p.id == "modes")
-    assert modes_panel.widget_class == "molsysviewer_elastnetmt.panels.modes.ElastNetMTModesPanel"
+    assert (
+        modes_panel.widget_class
+        == "molsysviewer_elastnetmt.panels.modes.ElastNetMTModesPanel"
+    )
 
 
 def test_elastnetmt_modes_panel_on_mount_pushes_initial_state():
@@ -392,15 +451,20 @@ def test_elastnetmt_modes_panel_show_vectors_action_renders_and_reports_n_vector
     runtime = view._elastnetmt_addon_runtime
     assert runtime.active_mode_index == 1
     assert any(e["event"] == "panel_show_mode_vectors" for e in runtime.event_log)
-    assert any(msg.get("op") == "add_displacement_vectors" for msg in view._message_history)
+    assert any(
+        msg.get("op") == "add_displacement_vectors" for msg in view._shape_history
+    )
 
 
 def test_elastnetmt_figures_panel_widget_class_is_registered():
-    molsysviewer = pytest.importorskip("molsysviewer")
+    pytest.importorskip("molsysviewer")
     module = importlib.import_module("molsysviewer_elastnetmt")
 
     figures_panel = next(p for p in module.addon.panels if p.id == "figures")
-    assert figures_panel.widget_class == "molsysviewer_elastnetmt.panels.figures.ElastNetMTFiguresPanel"
+    assert (
+        figures_panel.widget_class
+        == "molsysviewer_elastnetmt.panels.figures.ElastNetMTFiguresPanel"
+    )
 
 
 def test_elastnetmt_figures_panel_on_mount_pushes_initial_state():

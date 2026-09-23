@@ -6,7 +6,6 @@ from molsysviewer import AddonPanelWidget
 
 from ..runtime import ensure_runtime, record_event
 
-
 _ESM = """
 export function render({ model, el }) {
   let state = {
@@ -201,15 +200,25 @@ class ElastNetMTModesPanel(AddonPanelWidget):
             self.push_state({**self._build_state(runtime, view), "status": "rendering"})
             try:
                 n_vectors = self._run_show_vectors(view, runtime, idx)
-                record_event(view, "panel_show_mode_vectors", mode_index=idx, n_vectors=n_vectors)
+                record_event(
+                    view, "panel_show_mode_vectors", mode_index=idx, n_vectors=n_vectors
+                )
                 self.push_state({**self._build_state(runtime, view), "status": "done"})
             except Exception as exc:
-                self.push_state({**self._build_state(runtime, view), "status": "error", "error": str(exc)})
+                self.push_state(
+                    {
+                        **self._build_state(runtime, view),
+                        "status": "error",
+                        "error": str(exc),
+                    }
+                )
 
     def _run_show_vectors(self, view: Any, runtime: Any, mode_index: int) -> int:
         from ..adapters.modes import render_mode_vectors
 
-        molsys = getattr(view, "_molsys", None) or getattr(view, "molecular_system", None)
+        molsys = getattr(view, "_molsys", None) or getattr(
+            view, "molecular_system", None
+        )
         if molsys is None:
             raise RuntimeError("No molecular system loaded in the viewer.")
 

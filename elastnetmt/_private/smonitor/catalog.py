@@ -30,20 +30,20 @@ CODES = {
         "title": "Negative Eigenvalues",
         "user_message": "Detected negative eigenvalues in ANM (min: {min_ev:.2e}).",
         "user_hint": "The input structure is not at a local minimum. Minimize the structure before ENM analysis.",
-    }
+    },
 }
 
 SIGNALS = {
     "elastnetmt.model.selection": {
         "description": "Details about the atoms selected for the network nodes.",
-        "level": "DEBUG"
+        "level": "DEBUG",
     },
     "elastnetmt.model.make_model": {
         "description": "Emitted during the construction of the ENM model.",
-        "level": "INFO"
+        "level": "INFO",
     },
     "elastnetmt.model.spectral_stats": {
         "description": "Physical properties of the calculated spectrum.",
-        "level": "DEBUG"
-    }
+        "level": "DEBUG",
+    },
 }

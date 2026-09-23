@@ -1,15 +1,18 @@
-from .user_elastnetmt_warning import UserElastNetMTWarning
+import warnings
+from typing import Type
+
 from .elastnetmt_deprecation_warning import ElastNetMTDeprecationWarning
 from .no_experimental_b_factors_warning import NoExperimentalBFactorsWarning
+from .user_elastnetmt_warning import UserElastNetMTWarning
 
-from typing import Iterable, Type
-import warnings
+__all__ = [
+    "UserElastNetMTWarning",
+    "ElastNetMTDeprecationWarning",
+    "NoExperimentalBFactorsWarning",
+    "warn",
+    "warn_once",
+]
 
-__all__ = ['UserElastNetMTWarning',
-           'ElastNetMTDeprecationWarning',
-           'NoExperimentalBFactorsWarning',
-           'warn',
-           'warn_once']
 
 def warn(
     message_or_warning: str | Warning,
@@ -20,10 +23,13 @@ def warn(
     if isinstance(message_or_warning, Warning):
         warnings.warn(message_or_warning, stacklevel=stacklevel)
     else:
-        warnings.warn(message_or_warning, category or UserElastNetMTWarning, stacklevel=stacklevel)
+        warnings.warn(
+            message_or_warning, category or UserElastNetMTWarning, stacklevel=stacklevel
+        )
 
 
 __WARNED_ONCE_CACHE__: set[tuple[Type[Warning], str]] = set()
+
 
 def warn_once(
     message_or_warning: str | Warning,
@@ -41,6 +47,3 @@ def warn_once(
         return
     __WARNED_ONCE_CACHE__.add(key)
     warnings.warn(message_or_warning, cat, stacklevel=stacklevel)
-
-
-

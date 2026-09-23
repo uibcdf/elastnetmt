@@ -11,3 +11,10 @@ external tools must be used here.
   reporting.
 - `MOLSYSSUITE_GUIDE.md` — Required suite-governance guide; this synchronized copy must
   not be edited locally.
+
+## MolSysSuite coordination
+
+Route shared Python, CI, Ruff, release, and integration policy through
+`uibcdf/molsyssuite` and the inherited MOLI baseline; keep ElastNetMT product
+work and local issues in this repository. The root `MOLSYSSUITE_GUIDE.md` is a
+synchronized read-only copy.

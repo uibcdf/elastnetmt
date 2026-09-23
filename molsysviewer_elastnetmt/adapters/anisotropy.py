@@ -5,10 +5,13 @@ from typing import Any
 import molsysmt as msm
 import numpy as np
 
-from elastnetmt import pyunitwizard as puw
-
+from ..runtime import (
+    ensure_runtime,
+    record_event,
+    set_overlay_visibility,
+    update_overlay_parameters,
+)
 from .modes import get_or_build_anm_model
-from ..runtime import ensure_runtime, record_event, set_overlay_visibility, update_overlay_parameters
 
 
 def get_node_coordinates(model) -> Any:
@@ -72,7 +75,9 @@ def render_anisotropy_ellipsoids(
         syntax=syntax,
     )
     centers = get_node_coordinates(model)
-    eigenvalues, eigenvectors = build_local_anisotropy_eigendecomposition(model, mode_count=mode_count)
+    eigenvalues, eigenvectors = build_local_anisotropy_eigendecomposition(
+        model, mode_count=mode_count
+    )
     layer = view.shapes.add_anisotropy_ellipsoids(
         centers=centers,
         eigenvalues=eigenvalues,
@@ -96,5 +101,11 @@ def render_anisotropy_ellipsoids(
         structure_index=int(structure_index),
         n_nodes=int(model.n_nodes),
     )
-    record_event(view, "render_anisotropy_ellipsoids", tag=tag, mode_count=int(mode_count), n_nodes=model.n_nodes)
+    record_event(
+        view,
+        "render_anisotropy_ellipsoids",
+        tag=tag,
+        mode_count=int(mode_count),
+        n_nodes=model.n_nodes,
+    )
     return layer, model, eigenvalues, eigenvectors

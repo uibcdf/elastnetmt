@@ -3,19 +3,31 @@ from __future__ import annotations
 from molsysviewer import (
     AddonContextActionSpec,
     AddonExportHelperSpec,
-    AddonShapeProviderSpec,
     AddonLifecycleSpec,
     AddonPanelSpec,
-    AddonSpec,
     AddonSectionSpec,
+    AddonShapeProviderSpec,
+    AddonSpec,
     AddonWorkspaceSpec,
 )
 
-from .adapters import render_anisotropy_ellipsoids, render_contact_network, render_mode_vectors
-from .runtime import ensure_runtime, record_event, set_overlay_visibility
-from .export import build_figure_export_payload
-from .workbench import get_modes_section, get_network_overlays_section, get_runtime_snapshot
-
+from .adapters import (
+    render_anisotropy_ellipsoids,
+    render_contact_network,
+    render_mode_vectors,
+)
+from .export import build_figure_export_payload as build_figure_export_payload
+from .runtime import ensure_runtime, record_event
+from .runtime import set_overlay_visibility as set_overlay_visibility
+from .workbench import (
+    get_modes_section as get_modes_section,
+)
+from .workbench import (
+    get_network_overlays_section as get_network_overlays_section,
+)
+from .workbench import (
+    get_runtime_snapshot as get_runtime_snapshot,
+)
 
 addon = AddonSpec(
     name="elastnetmt",

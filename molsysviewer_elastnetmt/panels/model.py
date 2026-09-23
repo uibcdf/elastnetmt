@@ -6,7 +6,6 @@ from molsysviewer import AddonPanelWidget
 
 from ..runtime import ensure_runtime, record_event
 
-
 _ESM = """
 export function render({ model, el }) {
   let state = {
@@ -191,16 +190,27 @@ class ElastNetMTModelPanel(AddonPanelWidget):
             self.push_state({**self._build_state(runtime), "status": "computing"})
             try:
                 n_nodes = self._run_compute(view, runtime)
-                record_event(view, "panel_compute", model_kind=runtime.model_kind, n_nodes=n_nodes)
-                self.push_state({**self._build_state(runtime), "status": "done", "n_nodes": n_nodes})
+                record_event(
+                    view,
+                    "panel_compute",
+                    model_kind=runtime.model_kind,
+                    n_nodes=n_nodes,
+                )
+                self.push_state(
+                    {**self._build_state(runtime), "status": "done", "n_nodes": n_nodes}
+                )
             except Exception as exc:
-                self.push_state({**self._build_state(runtime), "status": "error", "error": str(exc)})
+                self.push_state(
+                    {**self._build_state(runtime), "status": "error", "error": str(exc)}
+                )
 
     def _run_compute(self, view: Any, runtime: Any) -> int:
         from ..adapters.contacts import get_or_build_contact_model
         from ..adapters.modes import get_or_build_anm_model
 
-        molsys = getattr(view, "_molsys", None) or getattr(view, "molecular_system", None)
+        molsys = getattr(view, "_molsys", None) or getattr(
+            view, "molecular_system", None
+        )
         if molsys is None:
             raise RuntimeError("No molecular system loaded in the viewer.")
 

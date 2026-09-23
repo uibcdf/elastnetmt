@@ -31,7 +31,9 @@ def get_network_overlays_section(view: Any) -> dict[str, Any]:
     return {
         "key": "elastnetmt:network-overlays",
         "title": "Network Overlays",
-        "item_title": ", ".join(runtime.visible_overlays) if runtime.visible_overlays else "No overlays active",
+        "item_title": ", ".join(runtime.visible_overlays)
+        if runtime.visible_overlays
+        else "No overlays active",
         "item_subtitle": f"{len(runtime.visible_overlays)} active overlay(s)",
         "snapshot": get_runtime_snapshot(view),
     }

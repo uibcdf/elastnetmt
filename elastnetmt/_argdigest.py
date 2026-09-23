@@ -24,5 +24,5 @@ ARGUMENT_DIGESTERS = {
         "kind": "std",
         "rules": ["is_int"],
         "default": 0,
-    }
+    },
 }

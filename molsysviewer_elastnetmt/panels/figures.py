@@ -6,7 +6,6 @@ from molsysviewer import AddonPanelWidget
 
 from ..runtime import ensure_runtime, record_event
 
-
 _PRESETS = [
     {"id": "structure_network", "label": "Structure + Network"},
     {"id": "structure_mode", "label": "Structure + Mode Vectors"},
@@ -239,10 +238,14 @@ class ElastNetMTFiguresPanel(AddonPanelWidget):
             self.push_state({**self._build_state(runtime), "status": "exporting"})
             try:
                 result = self._run_export(view, runtime, preset, fmt)
-                record_event(view, "panel_export_figure", preset=preset, format=fmt, **result)
+                record_event(
+                    view, "panel_export_figure", preset=preset, format=fmt, **result
+                )
                 self.push_state({**self._build_state(runtime), "status": "done"})
             except Exception as exc:
-                self.push_state({**self._build_state(runtime), "status": "error", "error": str(exc)})
+                self.push_state(
+                    {**self._build_state(runtime), "status": "error", "error": str(exc)}
+                )
 
     def _run_export(self, view: Any, runtime: Any, preset: str, fmt: str) -> dict:
         from ..export import build_figure_export_payload
