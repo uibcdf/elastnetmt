@@ -11,7 +11,7 @@ dependencies:
 - matplotlib
 - tqdm
 - scikit-learn
-- lindelint
+# Lindelint is installed from pinned source in controlled_suite_dependencies.txt.
 - pytest
 - pytest-cov
 - pytest-xdist
