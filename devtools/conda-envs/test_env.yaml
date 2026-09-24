@@ -11,7 +11,7 @@ dependencies:
 - matplotlib
 - tqdm
 - scikit-learn
-# Lindelint is installed from pinned source in controlled_suite_dependencies.txt.
+# Lindelint uses pinned source until uibcdf/lindelint#7 has a compatible Conda build.
 - pytest
 - pytest-cov
 - pytest-xdist
