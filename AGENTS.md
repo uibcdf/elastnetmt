@@ -15,6 +15,6 @@ external tools must be used here.
 ## MolSysSuite coordination
 
 Route shared Python, CI, Ruff, release, and integration policy through
-`uibcdf/molsyssuite` and the inherited MOLI baseline; keep ElastNetMT product
+`uibcdf/molsyssuite`; keep ElastNetMT product
 work and local issues in this repository. The root `MOLSYSSUITE_GUIDE.md` is a
 synchronized read-only copy.
