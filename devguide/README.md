@@ -31,3 +31,4 @@ pip install --no-deps --editable .
 - [Units and Conventions](units_and_conventions.md): Physical quantities and force constants.
 - [Visualization Protocols](visualization_protocols.md): Rendering springs and normal modes.
 - [Testing Strategy](testing_strategy.md): Tiers of verification (Smoke, Physical, Regression).
+- [Pending proposals](pending_proposals/README.md): Open issue-backed proposals.
