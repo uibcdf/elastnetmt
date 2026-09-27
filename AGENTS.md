@@ -18,3 +18,9 @@ Route shared Python, CI, Ruff, release, and integration policy through
 `uibcdf/molsyssuite`; keep ElastNetMT product
 work and local issues in this repository. The root `MOLSYSSUITE_GUIDE.md` is a
 synchronized read-only copy.
+
+For bugs and proposals, open the local GitHub issue before adding a report.
+Follow `devguide/reporting_protocol.md`, use `devguide/templates/report.md`,
+and run `python devtools/devguide_index.py --check` plus
+`python -m unittest discover -s tests -p test_reporting_protocol.py` before
+committing. The pending queues and permanent archive have generated indexes.

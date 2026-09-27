@@ -32,3 +32,7 @@ pip install --no-deps --editable .
 - [Visualization Protocols](visualization_protocols.md): Rendering springs and normal modes.
 - [Testing Strategy](testing_strategy.md): Tiers of verification (Smoke, Physical, Regression).
 - [Pending proposals](pending_proposals/README.md): Open issue-backed proposals.
+- [Pending bugs](pending_bugs/README.md): Open issue-backed defects.
+- [Archive](archive/README.md): Permanent resolved report records.
+- [Reporting protocol](reporting_protocol.md): Local paths, template, index, and
+  offline checks under the [MolSysSuite reporting protocol](https://github.com/uibcdf/molsyssuite/blob/main/devguide/reporting_protocol.md).
