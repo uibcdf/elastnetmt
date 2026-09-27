@@ -1,12 +1,12 @@
 ---
 summary: Adopt the MolSysSuite issue-backed reporting lifecycle locally.
 issue: uibcdf/elastnetmt#16
-status: active
+status: resolved
 opened: 2026-09-27
-closed:
+closed: 2026-09-27
 verification: inspected
 area: [governance, reporting]
-guard:
+guard: tests/test_reporting_protocol.py::TestReportingProtocol::test_existing_reports_have_valid_metadata_and_generated_indexes
 normative:
 blocked_by: []
 supersedes: []
@@ -51,3 +51,14 @@ identity, false closure and unresolvable pytest selectors. Generated indexes
 are current. The governance job passes on the published commit independently
 of the scientific matrix. Close the local issue with the durable guard and
 archived report path.
+
+## Resolution
+
+Commit `9ecc8f0` added the bug queue, permanent archive, report template,
+offline validator, generated indexes and independent governance job. The
+guard checks the issue-backed reports and current generated indexes; the
+additional negative tests reject false closure and unresolvable selectors.
+Local reporting tests and Ruff checks passed. Hosted CI run `36357880305`
+passed its independent Reporting governance job, and MolSysSuite policy run
+`36357880758` passed. Scientific and add-on jobs are separate from this
+reporting outcome.
