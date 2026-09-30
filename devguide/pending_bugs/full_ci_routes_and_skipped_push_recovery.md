@@ -160,3 +160,23 @@ is skipped. The standard-library backlog tests remain in scientific tests.
 Repeat complete CI on the corrected source to verify collection is restored,
 and retain the failed first manual run as regression evidence. This local
 correction adds no common tool dependency to scientific environments.
+
+## Corrected independent execution
+
+At collection correction 71f1179, governance/debt probe
+[36776675464](https://github.com/uibcdf/elastnetmt/actions/runs/36776675464)
+passed and retained seven skipped commits since a47c067; the failed first
+manual matrix did not become a watermark. Corrected suite policy
+[36776680458](https://github.com/uibcdf/elastnetmt/actions/runs/36776680458)
+passed. Repeated complete manual CI
+[36776671299](https://github.com/uibcdf/elastnetmt/actions/runs/36776671299)
+was dispatched at 71f1179 to verify restored collection; its actual scientific
+outcome remains pending at this record capture.
+
+The route guard now also requires scientific testpaths=["tests"], excludes
+administrative paths from the full scientific command and requires the YAML
+guard explicitly in independent governance. These assertions protect the
+collection regression without adding PyYAML to older science environments.
+This final administrative guard/record update stays outside scientific
+collection. Its skipped commit remains due; execution outcomes are recorded
+in the owning issue and central review without further component iteration.

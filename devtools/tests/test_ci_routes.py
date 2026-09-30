@@ -1,5 +1,6 @@
 """Complete PR coverage and conditional recovery retain component test selection."""
 
+import tomllib
 from pathlib import Path
 
 import yaml
@@ -63,3 +64,21 @@ def test_contributor_routes_and_complete_supported_matrix():
     assert "paths" not in addon["on"]["pull_request"]
     assert "paths-ignore" not in addon["on"]["pull_request"]
     assert "continue-on-error" not in addon["jobs"]["contract"]
+
+    # The YAML dependency belongs only to the explicit administrative route.
+    pytest_config = tomllib.loads((ROOT / "pyproject.toml").read_text())["tool"][
+        "pytest"
+    ]["ini_options"]
+    assert pytest_config["testpaths"] == ["tests"]
+    assert "devtools/tests" not in command
+    assert "test_ci_routes.py" not in command
+    governance = workflow["jobs"]["governance"]["steps"]
+    admin_command = next(
+        step["run"]
+        for step in governance
+        if step.get("name") == "Test CI recovery and contributor routes"
+    )
+    assert "devtools/tests/test_ci_routes.py" in admin_command
+    assert "tests/test_ci_routes.py" not in admin_command.replace(
+        "devtools/tests/test_ci_routes.py", ""
+    )
