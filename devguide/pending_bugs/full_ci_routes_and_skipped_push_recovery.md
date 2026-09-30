@@ -1,7 +1,7 @@
 ---
 summary: Complete contributor full-CI routes and skipped-push recovery.
 issue: uibcdf/elastnetmt#17
-status: active
+status: partial
 opened: 2026-09-30
 closed:
 severity: medium
@@ -114,3 +114,29 @@ component conformance passes. The route regression failed before the recovery
 input existed and passed after implementation. The component scientific
 pytest command, minor-specific MolSysMT sources, source revision file, Conda
 environments and specialized contract workflow are unchanged.
+
+## Hosted governance and first backlog evidence
+
+Source c68f662 was published through the authorized internal skip-CI route.
+GitHub reported bypass of the explicit PR rule and all nine required checks.
+Protection API confirms strict status checks, zero mandatory approvals,
+administrator exemption and no force/deletion. Existing isandom maintain
+access is unchanged; only the administrators have the direct-push bypass.
+
+Probe [36775315293](https://github.com/uibcdf/elastnetmt/actions/runs/36775315293)
+passed actual reporting/index and CI-governance steps plus the detector.
+It recognized the older executed full a47c067 watermark and found five
+pending skipped commits, including the guide distribution and implementation.
+Heavy jobs were omitted. Successful administrative execution did not clear
+these skips, and the newer failed scientific matrices were not anchors.
+Suite policy (including Ruff)
+[36775320115](https://github.com/uibcdf/elastnetmt/actions/runs/36775320115)
+passed at the same source. Specialized add-on contract
+[36775325575](https://github.com/uibcdf/elastnetmt/actions/runs/36775325575)
+was dispatched; its actual result remains to be recorded.
+
+The issue and review stay partial. Complete manual execution and a subsequent
+probe will verify debt on the published record revision; their evidence belongs
+in the owning issue and central adoption record. Actual daily execution,
+hosted external PR and installed-artifact/platform claims remain unreviewed.
+Scientific failures cannot become a cleared debt through governance success.
