@@ -1,21 +1,25 @@
 name: CI
 
 on:
-  # GitHub has started calling new repo's first branch "main" https://github.com/github/renaming
-  # Existing codes likely still have "master" as the primary branch
-  # Both are tracked here to keep legacy and new codes working
   push:
-    branches:
-      - "main"
+    branches: [main]
   pull_request:
-    branches:
-      - "main"
+    branches: [main]
   schedule:
-    # Nightly tests run on master by default:
-    #   Scheduled workflows run on the latest commit on the default or base branch.
-    #   (from https://help.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule)
     - cron: "0 9 * * MON"
+    - cron: "19 2 * * *"
+      timezone: "America/Mexico_City"
   workflow_dispatch:
+    inputs:
+      probe_backlog:
+        description: Check skipped-commit debt without running the matrix
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+  actions: read
 
 jobs:
   governance:
@@ -30,8 +34,36 @@ jobs:
       run: |
         python devtools/devguide_index.py --check
         python -m unittest discover -s tests -p test_reporting_protocol.py
+    - name: Install CI-governance test tools
+      run: python -m pip install "pytest>=8" "pytest-receptor==1.0.0" "PyYAML>=6"
+    - name: Test CI recovery and contributor routes
+      run: python -m pytest --receptor=ci tests/test_ci_backlog.py tests/test_ci_routes.py
+
+  nightly-decision:
+    name: Check skipped-commit backlog
+    if: >-
+      (github.event_name == 'schedule' && github.event.schedule == '19 2 * * *')
+      || (github.event_name == 'workflow_dispatch' && inputs.probe_backlog == true)
+    runs-on: ubuntu-latest
+    outputs:
+      run_full: ${{ steps.decide.outputs.run_full }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Decide whether to run the full matrix
+        id: decide
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python devtools/ci_backlog.py
 
   test:
+    needs: nightly-decision
+    if: >-
+      always() && inputs.probe_backlog != true
+      && (github.event_name != 'schedule' || github.event.schedule != '19 2 * * *'
+      || needs.nightly-decision.result != 'success'
+      || needs.nightly-decision.outputs.run_full == 'true')
     name: Test on ${{ matrix.cfg.os }}, Python ${{ matrix.cfg.python-version }}
     runs-on: ${{ matrix.cfg.os }}
     strategy:
@@ -41,9 +73,9 @@ jobs:
           - { os: ubuntu-latest, python-version: "3.13", environment-file: "devtools/conda-envs/test_env_py313.yaml"}
           - { os: ubuntu-latest, python-version: "3.11", environment-file: "devtools/conda-envs/test_env.yaml"}
           - { os: ubuntu-latest, python-version: "3.12", environment-file: "devtools/conda-envs/test_env.yaml"}
-          - { os: macos-latest,  python-version: "3.13", environment-file: "devtools/conda-envs/test_env_py313.yaml"}
-          - { os: macos-latest,  python-version: "3.11", environment-file: "devtools/conda-envs/test_env.yaml"}
-          - { os: macos-latest,  python-version: "3.12", environment-file: "devtools/conda-envs/test_env.yaml"}
+          - { os: macos-15,  python-version: "3.13", environment-file: "devtools/conda-envs/test_env_py313.yaml"}
+          - { os: macos-15,  python-version: "3.11", environment-file: "devtools/conda-envs/test_env.yaml"}
+          - { os: macos-15,  python-version: "3.12", environment-file: "devtools/conda-envs/test_env.yaml"}
 
     steps:
     - uses: actions/checkout@v4
@@ -107,6 +139,22 @@ jobs:
         cd
         pwd
         python -c 'import elastnetmt; print("Version of the package: {}".format(elastnetmt.__version__))'
+
+    - name: Verify interpreter and macOS architecture
+      shell: bash -l {0}
+      env:
+        EXPECTED_PYTHON: ${{ matrix.cfg.python-version }}
+      run: |
+        set -euo pipefail
+        python - <<'PYTHON'
+        import os
+        import platform
+        import sys
+        assert f"{sys.version_info.major}.{sys.version_info.minor}" == os.environ["EXPECTED_PYTHON"]
+        if sys.platform == "darwin":
+            assert platform.machine() == "arm64", platform.machine()
+        print("Python", platform.python_version(), "architecture", platform.machine())
+        PYTHON
 
     - name: Run tests
       shell: bash -l {0}

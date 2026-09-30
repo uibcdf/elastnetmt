@@ -22,6 +22,7 @@ class TestReportingProtocol(unittest.TestCase):
             {
                 "uibcdf/elastnetmt#14",
                 "uibcdf/elastnetmt#16",
+                "uibcdf/elastnetmt#17",
             },
         )
         result = subprocess.run(
