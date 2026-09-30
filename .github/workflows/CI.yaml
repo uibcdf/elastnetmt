@@ -37,7 +37,7 @@ jobs:
     - name: Install CI-governance test tools
       run: python -m pip install "pytest>=8" "pytest-receptor==1.0.0" "PyYAML>=6"
     - name: Test CI recovery and contributor routes
-      run: python -m pytest --receptor=ci tests/test_ci_backlog.py tests/test_ci_routes.py
+      run: python -m pytest --receptor=ci tests/test_ci_backlog.py devtools/tests/test_ci_routes.py
 
   nightly-decision:
     name: Check skipped-commit backlog

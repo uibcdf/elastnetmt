@@ -96,7 +96,7 @@ are deferred at the user's direction.
 - Retain the specialized MolSysViewer contract and its own test selection.
 - Observe actual daily recovery and hosted external PR before final adoption.
 - Review installed-artifact/publication-platform claims separately.
-- Retain tests/test_ci_backlog.py and tests/test_ci_routes.py as durable guards.
+- Retain tests/test_ci_backlog.py and devtools/tests/test_ci_routes.py as durable guards.
 
 ## Provenance
 
@@ -140,3 +140,23 @@ probe will verify debt on the published record revision; their evidence belongs
 in the owning issue and central adoption record. Actual daily execution,
 hosted external PR and installed-artifact/platform claims remain unreviewed.
 Scientific failures cannot become a cleared debt through governance success.
+
+## Administrative collection regression and correction
+
+Manual complete CI 36775597556 at 3d2c59b passed both Python 3.13 scientific
+cells and independent governance, but the four older-minor jobs failed during
+collection: the new YAML route guard imported PyYAML, absent from their
+existing scientific environments. This is a local governance implementation
+regression under #17, not the pre-existing LinDelINT scientific failure.
+GH Run Receptor and native collection logs preserve ModuleNotFoundError for
+yaml; do not attribute this run's four failures to the provider.
+
+Move the administrative-only YAML guard to devtools/tests/test_ci_routes.py
+and select it explicitly in independent governance, whose bootstrap already
+installs PyYAML. Existing pytest testpaths=["tests"] keeps the new administrative
+dependency outside scientific collection. The scientific command, environments,
+source pins, existing test modules and their selection remain intact; no test
+is skipped. The standard-library backlog tests remain in scientific tests.
+Repeat complete CI on the corrected source to verify collection is restored,
+and retain the failed first manual run as regression evidence. This local
+correction adds no common tool dependency to scientific environments.
