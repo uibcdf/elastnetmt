@@ -5,7 +5,10 @@
 [![Python 3.11 | 3.12 | 3.13](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-3776AB?logo=python&logoColor=white)](https://github.com/uibcdf/molsyssuite/blob/main/devguide/python_policy.md)
 [![License](https://img.shields.io/github/license/uibcdf/elastnetmt)](https://github.com/uibcdf/elastnetmt/blob/main/LICENSE)
 [![Tests](https://github.com/uibcdf/elastnetmt/actions/workflows/CI.yaml/badge.svg?branch=main)](https://github.com/uibcdf/elastnetmt/actions/workflows/CI.yaml)
+[![Codecov](https://codecov.io/gh/uibcdf/elastnetmt/branch/main/graph/badge.svg)](https://app.codecov.io/gh/uibcdf/elastnetmt)
 [![GitHub release](https://img.shields.io/github/v/release/uibcdf/elastnetmt)](https://github.com/uibcdf/elastnetmt/releases/latest)
+
+Coverage: ElastNetMT Python tests, uploaded from Linux/Python 3.13 on eligible full CI runs; weekly and conditional nightly recovery retain the existing cadence. Other matrix lanes may fail independently. The badge reflects the last uploaded report, which may lag later direct or skip-CI commits; it does not certify a full matrix or scientific correctness.
 
 Elastic Network Models Multi Toolkit (ElastNetMT) is an open source library to work with Elastic Network Models.
 
