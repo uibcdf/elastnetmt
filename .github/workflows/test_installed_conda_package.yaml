@@ -1,0 +1,26 @@
+name: Qualify installed Conda candidate
+run-name: Installed ${{ inputs.filename }} ${{ inputs.sha256 }}
+on:
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Exact staged source candidate SHA
+        required: true
+        type: string
+      filename:
+        description: Exact PACKAGE-VERSION-py_BUILD.tar.bz2 filename
+        required: true
+        type: string
+      sha256:
+        description: SHA-256 of the staged file
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  installed:
+    uses: uibcdf/molsyssuite/.github/workflows/test-installed-noarch-conda.yaml@42e4de425871c125ef058842075c39e50fc6ac64
+    with:
+      candidate_sha: ${{ inputs.candidate_sha }}
+      filename: ${{ inputs.filename }}
+      sha256: ${{ inputs.sha256 }}

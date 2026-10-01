@@ -62,9 +62,9 @@ repairs and complete scientific execution belong to this component's team.
   dependency evidence and classify retained extra recipe requirements.
 - Review each claimed public installation route without inferring it from config.
 - Before a candidate, commit a reviewed actual release plan and immutable build.
-- Implement the component-owned installed scientific gate and its exact-file
-  `installed_gate` descriptor before promotion. Require every claimed cell and
-  resource-use/launcher check; missing descriptor fails closed.
+- Execute the component-owned installed gate for the actual candidate before
+  promotion. The delivered six-cell descriptor retains the complete local suite
+  and resource/launcher checks; missing, skipped or failed evidence fails closed.
 - Confirm publication access only through an authorized maintainer.
 - Register actual candidate/build/installed/public evidence only after execution.
 
@@ -92,3 +92,13 @@ resources, stale embedded versions and native payloads before upload.
 
 The actual `elastnetmt/py.typed` resource was added to package-data; both the
 core root and existing Viewer add-on root are inventoried and present.
+
+## Installed qualification capability, 2026-10-01
+
+The manual installed wrapper and committed six-cell descriptor are now delivered
+through common 42e4de425871c125ef058842075c39e50fc6ac64. No installed scientific gate has been executed.
+The workflow verifies the exact downloaded/installed Conda file and resources,
+requires ordinary public dependency provenance and runs the whole local test
+selection outside source, with import checks inside the pytest interpreter.
+It neither uploads nor adds a scientific suite to internal pushes. The real
+release plan and actual scientific/installed evidence remain future prerequisites.

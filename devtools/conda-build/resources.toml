@@ -7,5 +7,15 @@ required_paths = [
   "site-packages/molsysviewer_elastnetmt/__init__.py",
 ]
 
-# Add installed_gate only with the reviewed component-owned installed workflow.
-# See the shared guide for title, complete cell/step descriptor and exact-file identity.
+[installed_gate]
+workflow = ".github/workflows/test_installed_conda_package.yaml"
+platforms = ["linux-64", "osx-arm64"]
+python_versions = ["3.11", "3.12", "3.13"]
+prepare_job = "installed / prepare"
+job_template = "installed / {platform} · Python {python}"
+required_steps = ["Install exact artifact", "Validate installed files", "Run installed tests"]
+
+[installed_tests]
+# Complete local suite selection; source scientific CI remains unchanged.
+paths = ["tests"]
+pytest_args = ["-v"]
