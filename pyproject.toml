@@ -62,7 +62,9 @@ namespaces = true
 where = ["."]
 include = ["elastnetmt*", "molsysviewer_elastnetmt*"]
 
-# Ref https://setuptools.pypa.io/en/latest/userguide/datafiles.html#package-data
+[tool.setuptools.package-data]
+elastnetmt = ["py.typed"]
+
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra -q"

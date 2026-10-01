@@ -1,0 +1,33 @@
+name: Promote qualified exact Conda file
+on:
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Full reviewed source and installed-gate candidate SHA
+        required: true
+        type: string
+      version:
+        description: Canonical version in the staged committed release plan
+        required: true
+        type: string
+      sha256:
+        description: Exact staged file digest tested by the installed gate
+        required: true
+        type: string
+      installed_run_id:
+        description: Existing successful full installed matrix run
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+jobs:
+  promote:
+    uses: uibcdf/molsyssuite/.github/workflows/promote-noarch-conda.yaml@a44e86a4f6a01dcbfe28fde46d886bc5cd4254c2
+    with:
+      candidate_sha: ${{ inputs.candidate_sha }}
+      version: ${{ inputs.version }}
+      sha256: ${{ inputs.sha256 }}
+      installed_run_id: ${{ inputs.installed_run_id }}
+    secrets:
+      ANACONDA_TOKEN: ${{ secrets.ANACONDA_UIBCDF_TOKEN }}

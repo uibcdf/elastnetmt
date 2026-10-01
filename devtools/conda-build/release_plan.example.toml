@@ -1,0 +1,26 @@
+# Example only: review and commit release_plan.toml before selecting a candidate.
+# 0.0.0 does not select a real release or authorize an upload.
+schema = "molsyssuite.conda-plan@1"
+package = "elastnetmt"
+version = "0.0.0"
+build_number = 2
+route = "staged"
+profile = "noarch-python"
+reason = "First noarch migration requires installed qualification; replace for the actual candidate."
+decision_by = "Example only; replace with responsible maintainer and date."
+artifact_subdirs = ["noarch"]
+test_platforms = ["linux-64", "osx-arm64"]
+python_versions = ["3.11", "3.12", "3.13"]
+required_workflows = [".github/workflows/CI.yaml"]
+requires_installed_gate = true
+new_compatibility_surface = true
+coupled_release = false
+dependencies_public = false
+
+[gate_jobs.".github/workflows/CI.yaml"]
+"Test on ubuntu-latest, Python 3.11" = ["Run tests"]
+"Test on ubuntu-latest, Python 3.12" = ["Run tests"]
+"Test on ubuntu-latest, Python 3.13" = ["Run tests"]
+"Test on macos-15, Python 3.11" = ["Run tests"]
+"Test on macos-15, Python 3.12" = ["Run tests"]
+"Test on macos-15, Python 3.13" = ["Run tests"]

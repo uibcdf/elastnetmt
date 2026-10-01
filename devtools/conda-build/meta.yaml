@@ -1,27 +1,35 @@
 package:
   name: elastnetmt
-  version: "{{ environ['GIT_DESCRIBE_TAG'] }}"
+  version: "{{ environ['MOLSYSSUITE_CONDA_VERSION'] }}"
 source:
   path: ../../
 build:
-  number: 1
+  number: {{ environ['MOLSYSSUITE_CONDA_BUILD_NUMBER'] }}
+  string: py_{{ environ['MOLSYSSUITE_CONDA_BUILD_NUMBER'] }}
+  noarch: python
 requirements:
-  build:
-  - python
-  - pip
-  - setuptools >=61.0
-  - versioningit ~=2.0
+  host:
+    - python >=3.11.0,<3.14.0
+    - pip
+    - setuptools >=61.0
+    - versioningit ~=2.0
   run:
-  - python
-  - pip
-  - setuptools >=61.0
-  - versioningit ~=2.0
-  - molsysmt
-  - pyunitwizard
-  - matplotlib
-  - tqdm
-  - scikit-learn
-  - lindelint
+    - python >=3.11.0,<3.14.0
+    - numpy
+    - pyunitwizard
+    - matplotlib
+    - tqdm
+    - scikit-learn
+    - lindelint
+    - molsysmt
+    - smonitor
+    - argdigest
+    - depdigest
+test:
+  imports:
+    - elastnetmt
+  commands:
+    - python -c "import importlib.metadata; assert importlib.metadata.version('elastnetmt') == '{{ environ['MOLSYSSUITE_CONDA_VERSION'] }}'"
 about:
   home: https://uibcdf.org
   license: MIT License

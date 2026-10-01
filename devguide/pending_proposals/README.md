@@ -9,4 +9,8 @@ Queued proposals have an owning GitHub issue. See the
 
 - [`review_python_ecosystem_policy_adoption.md`](review_python_ecosystem_policy_adoption.md) — [#14](https://github.com/uibcdf/elastnetmt/issues/14) — Review ElastNetMT Python ecosystem policy adoption. *(active, measured)*
 
+### Partial (1)
+
+- [`noarch_distribution_adoption.md`](noarch_distribution_adoption.md) — [#18](https://github.com/uibcdf/elastnetmt/issues/18) — Adopt the distribution policy and a guarded single-file noarch publication route. *(partial, measured)*
+
 <!-- /generated -->
