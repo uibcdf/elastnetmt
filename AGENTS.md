@@ -48,8 +48,8 @@ and its local reporting protocol. Shared instruction proposals belong in
 
 ## Required Python support
 
-The required source contract is Python 3.11–3.14; routine development remains
-on 3.13. Qualification and public delivery are tracked in `uibcdf/elastnetmt#19`.
+The required source contract is Python 3.11–3.14; routine development uses
+Python 3.14. Qualification and public delivery are tracked in `uibcdf/elastnetmt#19`.
 Keep metadata, recipe, required CI and recovery evidence aligned. Normal
 installed evidence must not bypass `Requires-Python`; public support claims
 remain tied to the suite's recorded admission.
