@@ -1,7 +1,7 @@
 ---
 summary: Adopt the mandatory four-minor contract and qualify normal installed delivery
 issue: uibcdf/elastnetmt#19
-status: active
+status: partial
 opened: 2026-10-03
 closed:
 verification: inspected
@@ -93,3 +93,17 @@ the existing 3.13 / new 3.14 environment selection. All four 3.13/3.14
 scientific jobs passed; the unchanged 3.11/3.12 lanes failed in
 `tests/integration/test_anm_trajectory.py::test_anm_trajectory_generation`.
 Those scientific results remain visible for the component team.
+
+### Qualification checkpoint — 2026-10-03
+
+Source `062d6347a142476067ffdb86c06c6cfd9478e51a`: [CI run 37106324494](https://github.com/uibcdf/elastnetmt/actions/runs/37106324494).
+Reporting governance passes. All four 3.13/3.14 scientific cells pass; the
+four 3.11/3.12 cells retain the known trajectory-generation failures tracked
+by uibcdf/elastnetmt#14/#17. No failing matrix is accepted as a recovery
+watermark. Public noarch delivery remains under uibcdf/elastnetmt#18.
+
+Main now retains strict PR protection with 11 checks, adding Linux and
+macOS ARM Python 3.14 to the prior checks. Existing administrator bypass for
+internal direct pushes is preserved. Source feasibility is recorded centrally
+as `authorized`, not public `admitted` support; the badge remains unchanged.
+A documentary skipped push must remain visible to nightly recovery.
