@@ -33,12 +33,12 @@ def test_contributor_routes_and_complete_supported_matrix():
     } == {
         (os_name, version)
         for os_name in ("ubuntu-latest", "macos-15")
-        for version in ("3.11", "3.12", "3.13")
+        for version in ("3.11", "3.12", "3.13", "3.14")
     }
     for cell in matrix["strategy"]["matrix"]["cfg"]:
         expected = (
-            "test_env_py313.yaml"
-            if cell["python-version"] == "3.13"
+            f"test_env_py{cell['python-version'].replace('.', '')}.yaml"
+            if cell["python-version"] in {"3.13", "3.14"}
             else "test_env.yaml"
         )
         assert cell["environment-file"] == f"devtools/conda-envs/{expected}"

@@ -83,3 +83,13 @@ retaining test-results publication only from Linux/Python 3.13 after failed test
 as well as successful tests, unless the run is cancelled. Python 3.14 cells
 run the suite without publishing additional test-results uploads. The separate
 coverage report publisher was already correctly scoped to Linux/Python 3.13.
+
+### First hosted results and administrative corrections — 2026-10-03
+
+The first hosted run 37105616453 reproduced one stale administrative
+expectation of the previous three-minor matrix in
+`devtools/tests/test_ci_routes.py`. The guard now covers all four minors and
+the existing 3.13 / new 3.14 environment selection. All four 3.13/3.14
+scientific jobs passed; the unchanged 3.11/3.12 lanes failed in
+`tests/integration/test_anm_trajectory.py::test_anm_trajectory_generation`.
+Those scientific results remain visible for the component team.
