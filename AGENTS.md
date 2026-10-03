@@ -44,3 +44,12 @@ instructions, following
 For work under `devguide/`, also read [devguide/AGENTS.md](devguide/AGENTS.md)
 and its local reporting protocol. Shared instruction proposals belong in
 `uibcdf/molsyssuite`; cross-MOLI contracts belong in `uibcdf/moli`.
+
+
+## Required Python support
+
+The required source contract is Python 3.11–3.14; routine development remains
+on 3.13. Qualification and public delivery are tracked in `uibcdf/elastnetmt#19`.
+Keep metadata, recipe, required CI and recovery evidence aligned. Normal
+installed evidence must not bypass `Requires-Python`; public support claims
+remain tied to the suite's recorded admission.

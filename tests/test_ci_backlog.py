@@ -104,3 +104,9 @@ def test_uncertain_history_runs_full_matrix(tmp_path, monkeypatch, capsys):
     assert ci_backlog.main() == 0
     assert "running full matrix" in capsys.readouterr().out
     assert "run_full=true" in output.read_text(encoding="utf-8")
+
+
+def test_a_previous_three_minor_matrix_cannot_clear_314_debt(monkeypatch):
+    evidence = [job for job in jobs() if "Python 3.14" not in job["name"]]
+    monkeypatch.setattr(ci_backlog, "api_json", lambda *_: {"jobs": evidence})
+    assert not ci_backlog.full_linux_passed("uibcdf/elastnetmt", 1, "token")

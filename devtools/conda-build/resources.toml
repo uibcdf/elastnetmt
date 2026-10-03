@@ -10,7 +10,7 @@ required_paths = [
 [installed_gate]
 workflow = ".github/workflows/test_installed_conda_package.yaml"
 platforms = ["linux-64", "osx-arm64"]
-python_versions = ["3.11", "3.12", "3.13"]
+python_versions = ["3.11", "3.12", "3.13", "3.14"]
 prepare_job = "installed / prepare"
 job_template = "installed / {platform} · Python {python}"
 required_steps = ["Install exact artifact", "Validate installed files", "Run installed tests"]

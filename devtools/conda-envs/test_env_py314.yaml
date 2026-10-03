@@ -1,0 +1,48 @@
+# Python 3.14 qualification uses the same scientific dependency surface as 3.13.
+# Controlled sibling sources are reviewed under uibcdf/elastnetmt#19.
+# MolSysMT and suite-only Python packages are installed from pinned sources below.
+channels:
+- uibcdf
+- conda-forge
+- ambermd
+dependencies:
+- python >=3.14,<3.15
+- pip
+- setuptools >=68.0
+- versioningit>=3.0
+- h5py
+- numpy
+- pandas
+- networkx
+- tqdm
+- matplotlib
+- openmm
+- pdbfixer
+- ambertools
+- openff-toolkit-base >=0.17.1
+- openff-units >=0.3.0
+- mdtraj
+- mdanalysis
+- rdkit
+- parmed
+- biopython
+- ipywidgets
+- py-mmcif >=1.1.1
+- plotly
+- anywidget
+- aiohttp
+- scikit-learn
+- beartype
+- packaging >=23
+- pint
+- pydantic
+- pyyaml
+- scipy
+- traitlets >=5
+- nglview
+- pytest
+- pytest-receptor=1.1.0
+- pytest-cov
+- codecov
+- pytest-xdist
+- ruff=0.16.5

@@ -5,8 +5,9 @@ Queued proposals have an owning GitHub issue. See the
 
 <!-- generated: devguide_index -->
 
-### Active (1)
+### Active (2)
 
+- [`adopt_required_python_314.md`](adopt_required_python_314.md) — [#19](https://github.com/uibcdf/elastnetmt/issues/19) — Adopt the mandatory four-minor contract and qualify normal installed delivery *(active, inspected)*
 - [`review_python_ecosystem_policy_adoption.md`](review_python_ecosystem_policy_adoption.md) — [#14](https://github.com/uibcdf/elastnetmt/issues/14) — Review ElastNetMT Python ecosystem policy adoption. *(active, measured)*
 
 ### Partial (1)
