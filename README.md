@@ -12,6 +12,12 @@ Coverage: ElastNetMT Python tests, uploaded from Linux/Python 3.13 on eligible f
 
 Elastic Network Models Multi Toolkit (ElastNetMT) is an open source library to work with Elastic Network Models.
 
+Distribution status: current source targets Python 3.11–3.14, while public delivery
+and admission remain [uibcdf/elastnetmt#18](https://github.com/uibcdf/elastnetmt/issues/18)
+and [uibcdf/elastnetmt#19](https://github.com/uibcdf/elastnetmt/issues/19).
+The prepared single-file noarch route and historical GitHub release badge do not
+certify a current installed public package. See [installation status](docs/contents/about/installation.md).
+
 ## License
 
 This project is under an MIT License. [A copy of the license text is included in this repository](LICENSE).
@@ -34,4 +40,3 @@ The main project authors and major contributors are:
 
 - Liliana M. Moreno Vargas
 - Diego Prada Gracia
-

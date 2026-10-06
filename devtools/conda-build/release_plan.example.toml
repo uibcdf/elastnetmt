@@ -11,13 +11,14 @@ decision_by = "Example only; replace with responsible maintainer and date."
 artifact_subdirs = ["noarch"]
 test_platforms = ["linux-64", "osx-arm64"]
 python_versions = ["3.11", "3.12", "3.13", "3.14"]
-required_workflows = [".github/workflows/CI.yaml"]
+required_workflows = [".github/workflows/CI.yaml", ".github/workflows/molsyssuite-policy.yml", ".github/workflows/conda_publication_governance.yaml", ".github/workflows/molsysviewer_contract.yaml"]
 requires_installed_gate = true
 new_compatibility_surface = true
 coupled_release = false
 dependencies_public = false
 
 [gate_jobs.".github/workflows/CI.yaml"]
+"Reporting governance" = ["Check reporting records and generated indexes", "Test CI recovery and contributor routes", "Test distribution resources and publication contracts"]
 "Test on ubuntu-latest, Python 3.11" = ["Run tests"]
 "Test on ubuntu-latest, Python 3.12" = ["Run tests"]
 "Test on ubuntu-latest, Python 3.13" = ["Run tests"]
@@ -26,3 +27,12 @@ dependencies_public = false
 "Test on macos-15, Python 3.12" = ["Run tests"]
 "Test on macos-15, Python 3.13" = ["Run tests"]
 "Test on macos-15, Python 3.14" = ["Run tests"]
+
+[gate_jobs.".github/workflows/molsyssuite-policy.yml"]
+"policy / conformance" = ["Check repository conformance", "Check Python lint and imports", "Check Python formatting"]
+
+[gate_jobs.".github/workflows/conda_publication_governance.yaml"]
+"publication / check" = ["Check publication workflow controls", "Check declared noarch recipe and resources without building"]
+
+[gate_jobs.".github/workflows/molsysviewer_contract.yaml"]
+"contract" = ["Install controlled suite and current MolSysViewer", "Verify the add-on contract"]

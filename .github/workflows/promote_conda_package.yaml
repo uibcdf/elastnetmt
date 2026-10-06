@@ -18,14 +18,19 @@ on:
         description: Existing successful full installed matrix run
         required: true
         type: string
+      qualification_sha:
+        description: Optional newer installed-workflow commit; original producer SHA stays unchanged
+        required: false
+        type: string
 permissions:
   contents: read
   actions: read
 jobs:
   promote:
-    uses: uibcdf/molsyssuite/.github/workflows/promote-noarch-conda.yaml@42e4de425871c125ef058842075c39e50fc6ac64
+    uses: uibcdf/molsyssuite/.github/workflows/promote-noarch-conda.yaml@38db709ecc07451ff36ea84573d585f9af6b4df7
     with:
       candidate_sha: ${{ inputs.candidate_sha }}
+      qualification_sha: ${{ inputs.qualification_sha || inputs.candidate_sha }}
       version: ${{ inputs.version }}
       sha256: ${{ inputs.sha256 }}
       installed_run_id: ${{ inputs.installed_run_id }}

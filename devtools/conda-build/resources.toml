@@ -1,10 +1,43 @@
-reason = "Pure Python tracked payload; version module, package roots and every committed runtime data file are required. No installed platform support is inferred."
+reason = "Both pure Python distribution roots: all tracked payload paths, including private diagnostics, add-on resources and the generated/versioned module. Legacy inactive old_anm.py remains owned by uibcdf/elastnetmt#12. No installed support is inferred."
+import_name = "elastnetmt"
 version_file = "site-packages/elastnetmt/_version.py"
 required_paths = [
-  "site-packages/elastnetmt/_version.py",
   "site-packages/elastnetmt/__init__.py",
+  "site-packages/elastnetmt/_argdigest.py",
+  "site-packages/elastnetmt/_depdigest.py",
+  "site-packages/elastnetmt/_private/contacts.py",
+  "site-packages/elastnetmt/_private/smonitor/__init__.py",
+  "site-packages/elastnetmt/_private/smonitor/catalog.py",
+  "site-packages/elastnetmt/_private/smonitor/meta.py",
+  "site-packages/elastnetmt/_private/variables.py",
+  "site-packages/elastnetmt/_private/warnings/__init__.py",
+  "site-packages/elastnetmt/_private/warnings/elastnetmt_deprecation_warning.py",
+  "site-packages/elastnetmt/_private/warnings/no_experimental_b_factors_warning.py",
+  "site-packages/elastnetmt/_private/warnings/user_elastnetmt_warning.py",
+  "site-packages/elastnetmt/_pyunitwizard.py",
+  "site-packages/elastnetmt/_smonitor.py",
+  "site-packages/elastnetmt/_version.py",
+  "site-packages/elastnetmt/config/__init__.py",
+  "site-packages/elastnetmt/config/logging_setup.py",
+  "site-packages/elastnetmt/model/__init__.py",
+  "site-packages/elastnetmt/model/anisotropic_network_model.py",
+  "site-packages/elastnetmt/model/elastic_network_model.py",
+  "site-packages/elastnetmt/model/gaussian_network_model.py",
+  "site-packages/elastnetmt/model/old_anm.py",
   "site-packages/elastnetmt/py.typed",
   "site-packages/molsysviewer_elastnetmt/__init__.py",
+  "site-packages/molsysviewer_elastnetmt/adapters/__init__.py",
+  "site-packages/molsysviewer_elastnetmt/adapters/anisotropy.py",
+  "site-packages/molsysviewer_elastnetmt/adapters/contacts.py",
+  "site-packages/molsysviewer_elastnetmt/adapters/modes.py",
+  "site-packages/molsysviewer_elastnetmt/demo.py",
+  "site-packages/molsysviewer_elastnetmt/export.py",
+  "site-packages/molsysviewer_elastnetmt/panels/__init__.py",
+  "site-packages/molsysviewer_elastnetmt/panels/figures.py",
+  "site-packages/molsysviewer_elastnetmt/panels/model.py",
+  "site-packages/molsysviewer_elastnetmt/panels/modes.py",
+  "site-packages/molsysviewer_elastnetmt/runtime.py",
+  "site-packages/molsysviewer_elastnetmt/workbench.py",
 ]
 
 [installed_gate]
@@ -13,7 +46,7 @@ platforms = ["linux-64", "osx-arm64"]
 python_versions = ["3.11", "3.12", "3.13", "3.14"]
 prepare_job = "installed / prepare"
 job_template = "installed / {platform} · Python {python}"
-required_steps = ["Install exact artifact", "Validate installed files", "Run installed tests"]
+required_steps = ["Install exact artifact", "Validate installed files", "Run installed tests", "Recheck installed provenance after scientific tests"]
 
 [installed_tests]
 # Complete local suite selection; source scientific CI remains unchanged.
