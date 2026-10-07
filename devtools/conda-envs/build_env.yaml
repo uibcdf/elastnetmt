@@ -2,5 +2,6 @@ channels:
 - uibcdf
 - conda-forge
 dependencies:
+- python >=3.11,<3.15
 - anaconda-client
 - conda-build

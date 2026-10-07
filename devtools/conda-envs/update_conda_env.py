@@ -1,31 +1,39 @@
+"""Update the active Conda interpreter without widening its Python contract."""
+
+from __future__ import annotations
+
 import argparse
-import os
-import shutil
-import subprocess as sp
+import subprocess
+import sys
+from pathlib import Path
 
-# Args
-parser = argparse.ArgumentParser(
-    description="Updates the activated conda environment with the packages in a yaml file"
-)
-parser.add_argument("conda_file", help="The file for the created Python environment")
+import yaml
 
-args = parser.parse_args()
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from conda_environment import apply_environment
 
-# Figure out conda path
-if "CONDA_EXE" in os.environ:
-    conda_path = os.environ["CONDA_EXE"]
-else:
-    conda_path = shutil.which("conda")
-if conda_path is None:
-    raise RuntimeError(
-        "Could not find a conda binary in CONDA_EXE variable or in executable search path"
-    )
 
-print("CONDA FILE NAME {}".format(args.conda_file))
-print("CONDA PATH      {}".format(conda_path))
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("conda_file", type=Path)
+    args = parser.parse_args()
+    try:
+        apply_environment(
+            args.conda_file.resolve(),
+            f"{sys.version_info.major}.{sys.version_info.minor}",
+            prefix=Path(sys.prefix),
+        )
+    except (
+        OSError,
+        ValueError,
+        KeyError,
+        yaml.YAMLError,
+        subprocess.SubprocessError,
+    ) as exc:
+        print(f"Environment update: FAIL — {exc}", file=sys.stderr)
+        return 1
+    return 0
 
-# Write to a temp directory which will always be cleaned up
 
-sp.call(
-    "{} env update --file {} --prune".format(conda_path, args.conda_file), shell=True
-)
+if __name__ == "__main__":
+    raise SystemExit(main())

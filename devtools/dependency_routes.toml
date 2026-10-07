@@ -273,7 +273,7 @@ channel_reason = "Preserve existing AmberTools scientific bootstrap"
 
 [[workflows]]
 path = ".github/workflows/CI.yaml"
-sha256 = "a8ee0687060dfd59b08373d6d3834d40f6de5e9cbe08de8469944646321afcc5"
+sha256 = "f635d412f09b3febb56f419d376676ba83d8ced3f45b4ef279456ec088a6c823"
 reason = "Independent governance plus original complete eight-cell science; existing fixed source inputs now checked before tests without modifying their pins"
 
 [[workflows]]

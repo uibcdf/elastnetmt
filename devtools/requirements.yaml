@@ -1,40 +1,29 @@
+# Owner tooling only. pyproject.toml owns runtime/Python; dependency_routes.toml
+# owns the test context's exact fixed-source replacements and public overlays.
 setup:
-  channels: &setup_channels
+  channels: &channels
     - uibcdf
     - conda-forge
-  dependencies: &setup_dependencies
-    - python
+  dependencies: &setup_tools
     - pip
     - setuptools >=61.0
     - versioningit ~=2.0
-
 production:
-  channels: &production_channels
-    - *setup_channels
-  dependencies: &production_dependencies
-    - *setup_dependencies
-    - molsysmt
-    - pyunitwizard
-    - matplotlib
-    - tqdm
-    - scikit-learn
-    - lindelint
-
+  channels: *channels
+  dependencies: *setup_tools
 test:
-  channels: &test_channels
-    - *production_channels
-  dependencies: &test_dependencies
-    - *production_dependencies
+  channels: *channels
+  source_context: ci-3.11
+  dependencies: &test_tools
+    - *setup_tools
     - pytest
     - pytest-cov
     - pytest-xdist
     - codecov
-
 docs:
-  channels: &docs_channels
-    - *production_channels
-  dependencies: &docs_dependencies
-    - *production_dependencies
+  channels: *channels
+  dependencies: &docs_tools
+    - *setup_tools
     - jupyterlab
     - sphinx
     - pydata-sphinx-theme
@@ -46,20 +35,16 @@ docs:
     - sphinx-tabs
     - myst-nb
     - seaborn
-
+    - nbsphinx
 development:
-  channels:
-    - *production_channels
+  channels: *channels
   dependencies:
-    - *production_dependencies
-    - *test_dependencies
-    - *docs_dependencies
+    - *setup_tools
+    - *test_tools
+    - *docs_tools
     - mamba
-
 conda-build:
-  channels:
-    - *production_channels
+  channels: *channels
   dependencies:
     - anaconda-client
     - conda-build
-

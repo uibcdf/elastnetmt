@@ -203,3 +203,40 @@ broadcaster/helper controls, full successful release gates, real plan/access,
 original installed artifact and independent public qualification remain pending.
 Whole adoption and CI/recipe stay partial, access unknown. No package is built,
 staged, replaced, promoted or publicly qualified by these source controls.
+
+## Owner environment-helper checkpoint, 2026-10-07
+
+The legacy broadcaster tried to read/dump the Jinja recipe as YAML and derived
+runtime from an outdated nested list. Its replacement generates six ordinary
+environments only: metadata owns required runtime/Python bounds, owner YAML owns
+tools, and the reviewed default-test context owns fixed-source omissions and the
+public PyUnitWizard overlay. The recipe, release plan, specialized environments
+and both source manifests are byte-preserved. Generation validates all outputs
+before writes and provides a non-mutating drift check. Setup/build Python is now
+bounded by the same supported source range; routine development remains 3.14.
+
+Create/update share an owner-local command operation and call the accepted SDK's
+Python/Conda range proofs through one fixed-origin loader. They reject unsupported
+or mismatched source contexts, duplicate/invalid Python declarations and implicit
+widening of patch/build restrictions; they preserve other selected constraints.
+Commands use argument vectors, strict channel priority, temporary manifests and
+checked exit status. Updates explicitly target the active Conda interpreter's
+prefix; creation requires a name and defaults to 3.14. Imports have no CLI or
+environment side effects. The obsolete Python 3.7 development example is removed.
+
+Fourteen administrative regression tests protect these failure mechanisms, including
+late invalid output before writes, metadata floor propagation, unchanged protected
+inputs, Conda failure cleanup and target selection. Together with seven source-route
+and nine resource/publication tests, all thirty pass locally in the qualified
+Python 3.14 workspace, with lint/format checks. The independent governance job and
+example candidate gate now require the generator/helper checks. Only that
+administrative workflow delta refreshes its reviewed hash; scientific commands,
+source pins, matrix, triggers and recovery remain unchanged. These checks import
+no ElastNetMT science and execute no real Conda create/update.
+
+The existing workspace's seven dependency-closure conflicts remain owned by
+uibcdf/molsyssuite#82; they are not repaired or reclassified by these administrative
+results. Source-free actual production/development/docs checks, macOS source
+preflight completion, full candidate scientific gates, publication credentials and
+real/public artifact qualification remain separate outstanding evidence. This
+checkpoint does not change partial adoption or authorize a release.

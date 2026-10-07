@@ -23,13 +23,14 @@ They will likely be removed in a future version.
 This directory contains the files to setup the Conda environment for testing purposes
 
 * `conda-envs`: directory containing the YAML file(s) which fully describe Conda Environments, their dependencies, and those dependency provenance's
-  * `test_env.yaml`: Simple test environment file with base dependencies. Channels are not specified here and therefore respect global Conda configuration
+  * `test_env.yaml`: Reviewed Python 3.11/3.12 bootstrap with explicit public channels and separate fixed Git replacements. See [environment tool contracts](conda-envs/README.md).
   
 ### Additional Scripts:
 
 This directory contains OS agnostic helper scripts which don't fall in any of the previous categories
 * `scripts`
-  * `create_conda_env.py`: Helper program for spinning up new conda environments based on a starter file with Python Version and Env. Name command-line options
+  * `conda-envs/create_conda_env.py` and `update_conda_env.py`: Checked owner environment operations with shared Python range validation.
+  * `broadcast_requirements.py`: Generate six ordinary environments from metadata and owner tooling; preserve recipe, specialized environments and Git pins.
 
 
 ## How to contribute changes

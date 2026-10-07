@@ -18,7 +18,7 @@ coupled_release = false
 dependencies_public = false
 
 [gate_jobs.".github/workflows/CI.yaml"]
-"Reporting governance" = ["Check reporting records and generated indexes", "Test CI recovery and contributor routes", "Review declared dependency routes", "Test source dependency routes", "Test distribution resources and publication contracts"]
+"Reporting governance" = ["Check reporting records and generated indexes", "Test CI recovery and contributor routes", "Review declared dependency routes", "Test environment generation and helper contracts", "Test source dependency routes", "Test distribution resources and publication contracts"]
 "Test on ubuntu-latest, Python 3.11" = ["Check dependency routes and installed Git context", "Run tests"]
 "Test on ubuntu-latest, Python 3.12" = ["Check dependency routes and installed Git context", "Run tests"]
 "Test on ubuntu-latest, Python 3.13" = ["Check dependency routes and installed Git context", "Run tests"]

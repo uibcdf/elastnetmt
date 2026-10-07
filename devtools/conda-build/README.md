@@ -56,9 +56,12 @@ The public Conda/PyPI APIs returned 404 at the 2026-10-06 review and GitHub's
 historical release has no distribution assets. No current public installation is
 inferred. Fixed Git pins and scientific selection are retained. Runtime-bearing
 environments now declare missing direct requirements and supported Python bounds;
-no scientific API floor was invented. The legacy broadcaster/environment helpers
-remain unreviewed and must not be used to authorize a candidate. Any resulting
-recipe, environment, workflow or source-input drift is rejected by the guards.
+no scientific API floor was invented. The broadcaster now generates only six ordinary environment files from metadata,
+owner tools and reviewed source contexts; it preserves this recipe, specialized
+environments and Git pins. The create/update helpers validate the whole selected
+Python minor and propagate Conda errors. Their [contracts and guards](../conda-envs/README.md)
+protect development inputs; they do not authorize a candidate. Recipe, environment,
+workflow and source-input drift remains covered by the independent guards.
 
 Dependency preflight:
 

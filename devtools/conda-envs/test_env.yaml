@@ -6,14 +6,13 @@ dependencies:
 - pip
 - setuptools >=61.0
 - versioningit ~=2.0
-- molsysmt
-- pyunitwizard
-- matplotlib
-- tqdm
-- scikit-learn
-# Lindelint uses pinned source until uibcdf/lindelint#7 has a compatible Conda build.
 - pytest
 - pytest-cov
 - pytest-xdist
 - codecov
 - numpy
+- pyunitwizard
+- matplotlib
+- tqdm
+- scikit-learn
+- molsysmt

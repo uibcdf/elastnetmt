@@ -6,13 +6,13 @@ dependencies:
 - pip
 - setuptools >=61.0
 - versioningit ~=2.0
-- molsysmt
+- numpy
 - pyunitwizard
 - matplotlib
 - tqdm
 - scikit-learn
 - lindelint
-- numpy
+- molsysmt
 - smonitor
 - argdigest
 - depdigest

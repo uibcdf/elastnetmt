@@ -47,6 +47,10 @@ jobs:
       run: python -m pytest --receptor=ci tests/test_ci_backlog.py devtools/tests/test_ci_routes.py
     - name: Review declared dependency routes
       run: python devtools/check_dependency_routes.py --declared-only
+    - name: Test environment generation and helper contracts
+      run: |
+        python devtools/broadcast_requirements.py --check
+        python -m unittest discover -s devtools/tests -p test_environment_tools.py
     - name: Test source dependency routes
       run: python -m unittest discover -s devtools/tests -p test_source_routes.py
     - name: Test distribution resources and publication contracts
