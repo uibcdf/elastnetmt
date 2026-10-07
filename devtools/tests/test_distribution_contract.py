@@ -16,7 +16,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
-SDK_SHA = "38db709ecc07451ff36ea84573d585f9af6b4df7"
+SDK_SHA = "2d32048457c6d37093ae509f5626d00a5cda121b"
 SUITE = Path(os.environ.get("ELASTNETMT_SUITE_ROOT", ROOT / ".molsyssuite"))
 PLAN = "devtools/conda-build/release_plan.example.toml"
 RESOURCES = "devtools/conda-build/resources.toml"

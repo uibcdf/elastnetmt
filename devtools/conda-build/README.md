@@ -9,7 +9,7 @@ freezes the reviewed version in an ephemeral checkout and inspects metadata,
 embedded version and the committed resource inventory before uploading.
 
 Follow the [shared noarch workflow guide](https://github.com/uibcdf/molsyssuite/blob/main/devguide/noarch_conda_workflow.md).
-All four publication wrappers pin MolSysSuite at `38db709ecc07451ff36ea84573d585f9af6b4df7`.
+All four publication wrappers pin MolSysSuite at `2d32048457c6d37093ae509f5626d00a5cda121b`.
 The existing `ANACONDA_UIBCDF_TOKEN` secret is explicitly mapped; its availability
 and validity have not been confirmed by this migration.
 
@@ -18,8 +18,10 @@ review and commit `release_plan.toml` with a real immutable version/build and
 candidate conditions. The example declares twelve executed jobs: all eight source
 cells, independent governance, policy/lint/format, Conda governance and the existing
 Viewer add-on contract. A green daily probe with omitted science is insufficient.
-The dependency-route audit is still pending the shared VCS/context decision under
-uibcdf/molsyssuite#45; resource declarations alone do not qualify the runtime.
+The dependency-route audit now uses the optional shared @3 Git/context profile
+under uibcdf/molsyssuite#107. Every candidate science job requires its actual
+installed-context step to execute before tests. Resource declarations alone do
+not qualify the runtime.
 
 The first noarch candidate must be staged, then qualified outside the source
 checkout across every claimed OS/Python cell. The component-owned installed wrapper now calls the shared
@@ -52,5 +54,24 @@ ELASTNETMT_SUITE_ROOT=/path/to/reviewed/molsyssuite python -m unittest discover 
 
 The public Conda/PyPI APIs returned 404 at the 2026-10-06 review and GitHub's
 historical release has no distribution assets. No current public installation is
-inferred. Retain the source pins, scientific selection and dependency environments
-until the shared source-route design is accepted and independently qualified.
+inferred. Fixed Git pins and scientific selection are retained. Runtime-bearing
+environments now declare missing direct requirements and supported Python bounds;
+no scientific API floor was invented. The legacy broadcaster/environment helpers
+remain unreviewed and must not be used to authorize a candidate. Any resulting
+recipe, environment, workflow or source-input drift is rejected by the guards.
+
+Dependency preflight:
+
+```bash
+ELASTNETMT_SUITE_ROOT=/path/to/accepted/sdk python devtools/check_dependency_routes.py --declared-only
+# In the actual resolved source interpreter:
+ELASTNETMT_SUITE_ROOT=/path/to/accepted/sdk python devtools/check_dependency_routes.py --context ci-3.14
+```
+
+The inventory covers eighteen routes, thirteen source records, two unchanged
+Git manifests and seven contexts. Source-free production/development/docs
+contexts are declared but their actual installed checks remain pending; a
+declaration-only success never substitutes for installation. Seven owner guards
+exercise source/workflow/overlay drift and false editable provenance. Scientific
+CI keeps its full selection and its component-owned failure debt. The existing
+moving-current Viewer probe is separate from immutable Git qualification.

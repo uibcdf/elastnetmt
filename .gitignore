@@ -118,3 +118,6 @@ record.txt
 
 # In this library
 enmt/_version.py
+
+# Isolated administrative checker dependencies; never source science.
+.molsyssuite-tools/

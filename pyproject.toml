@@ -105,6 +105,7 @@ file = "elastnetmt/_version.py"
 target-version = "py311"
 extend-exclude = [
     ".molsyssuite",
+    ".molsyssuite-tools",
     "devguide",
     "docs",
     "sandbox",

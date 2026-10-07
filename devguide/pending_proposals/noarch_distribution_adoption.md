@@ -8,7 +8,7 @@ verification: measured
 area: [governance, distribution, compatibility]
 guard: devtools/tests/test_distribution_contract.py
 normative: MOLSYSSUITE_GUIDE.md
-blocked_by: [uibcdf/molsyssuite#107]
+blocked_by: []
 supersedes: []
 ---
 
@@ -168,3 +168,38 @@ No first release, real artifact, credentials, installed scientific matrix, promo
 clean public install or complete source-route adoption is claimed. This review
 remains partial. Scientific failures remain with #14/#17/#19 and this component's
 team; MolSysMT/MolSysViewer full scientific suites and active clones are preserved.
+
+## Immutable Git/context adoption — 2026-10-07
+
+Principal maintainer accepted preserving transport and adding the shared general
+profile in uibcdf/molsyssuite#107. Accepted immutable SDK
+`2d32048457c6d37093ae509f5626d00a5cda121b` passes native governance
+37578744225 with 394 central tests; sixty-five focused provider guards and an
+isolated real pip Git provenance probe pass. All wrappers and the independent
+SDK test checkout use this accepted pin; no new Action release is adopted.
+
+`devtools/dependency_routes.toml` inventories eighteen recipe/environment/workflow
+routes, thirteen source records, both unchanged actual Git manifests and seven
+contexts. Existing Python-specific commits and scientific steps, triggers and
+recovery are preserved. Runtime declarations add missing direct requirements and
+supported Python bounds without scientific API floors; actual fixed Git source
+providers stay separate from reviewed Conda bootstrap overlaps. AmberMD remains
+an explicit scientific channel extension in the specialized environments.
+
+`devtools/check_dependency_routes.py` delegates to the accepted shared operation.
+Independent governance reviews declarations and runs seven owner source-route
+negative guards. Before every original source science job, it checks the selected
+actual interpreter, versions and PEP 610 Git repository/commit provenance. Checker
+libraries are installed into `.molsyssuite-tools`, visible only to the checker
+process; they do not replace scientific environment libraries. Candidate plans
+require the executed source preflight step as well as the complete tests.
+
+Local checks pass nine existing archive/publication tests, seven new source-route
+tests, three reporting tests, Ruff over 62 files, format and workflow lint.
+Declaration evidence is not actual installed qualification. Native source-context
+results follow at the pushed owner commit; failed science still belongs to the
+component team. Source-free production/development/docs actual checks, legacy
+broadcaster/helper controls, full successful release gates, real plan/access,
+original installed artifact and independent public qualification remain pending.
+Whole adoption and CI/recipe stay partial, access unknown. No package is built,
+staged, replaced, promoted or publicly qualified by these source controls.

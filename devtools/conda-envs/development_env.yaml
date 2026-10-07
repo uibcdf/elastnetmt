@@ -29,3 +29,7 @@ dependencies:
 - seaborn
 - nbsphinx
 - mamba
+- numpy
+- smonitor
+- argdigest
+- depdigest
