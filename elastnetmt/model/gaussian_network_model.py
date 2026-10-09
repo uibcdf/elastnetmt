@@ -174,7 +174,11 @@ class GaussianNetworkModel(ElasticNetworkModel):
                 self.b_factors_exp, label="Experimental (PDB)", color="red", alpha=0.6
             )
         plt.xlabel("Node Index")
-        plt.ylabel("B-factor ($A^2$)")
+        plt.ylabel(
+            "B-factor ($A^2$)"
+            if self.b_factors_exp is not None
+            else "Uncalibrated fluctuation (dimensionless)"
+        )
         plt.title(title)
         plt.legend()
         return plt.show()

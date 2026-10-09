@@ -47,6 +47,18 @@ def test_best_cutoff_refits_the_selected_network(network_pdb):
     np.testing.assert_allclose(gnm.get_b_factors(), expected.get_b_factors())
 
 
+def test_unfitted_plot_does_not_claim_physical_b_factor_units(network_pdb, monkeypatch):
+    gnm = model(network_pdb)
+    monkeypatch.setattr(plt, "show", lambda: None)
+    try:
+        gnm.show_b_factors(show_experimental=False)
+        assert "dimensionless" in plt.gca().get_ylabel()
+        assert gnm.b_factors_exp is None
+        np.testing.assert_allclose(plt.gca().lines[0].get_ydata(), gnm.get_b_factors())
+    finally:
+        plt.close("all")
+
+
 def test_experimental_b_factors_are_fixed_square_angstrom_values(network_pdb):
     with puw.context(standard_units=["angstroms", "ps", "kJ/mol"]):
         reference = model(network_pdb)

@@ -61,3 +61,13 @@ public prediction whether already fitted or not, cutoff search returns a
 model equivalent to a fresh fit at the selected cutoff, and equivalent
 unit policies give identical square-angstrom predictions. The guard contains
 assertions for each mechanism. Integration and merge remain pending.
+
+## Implementation evidence — 2026-10-09
+
+[PR #22](https://github.com/uibcdf/elastnetmt/pull/22) contains the correction
+and durable guards. The local complete suite passed 71 tests on Python
+3.14.7, including the unfitted plot's dimensionless label; the developer-tool,
+reporting, Ruff and central conformance checks also passed. Hosted workflow
+outcomes and their exact revisions belong in that PR's qualification record.
+The issue remains open until integration; this report does not assert public
+installed delivery or completion of the wider modernization roadmap.
