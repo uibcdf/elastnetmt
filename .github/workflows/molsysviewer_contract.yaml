@@ -37,4 +37,4 @@ jobs:
 
       - name: Verify the add-on contract
         shell: bash -l {0}
-        run: python -m pytest tests/integration/test_molsysviewer_addon.py -q
+        run: python -m pytest --receptor=ci tests/integration/test_molsysviewer_addon.py -q

@@ -1,6 +1,11 @@
 # ElastNetMT Diagnostics Catalog
 
 CODES = {
+    "ENM-E001": {
+        "title": "Invalid Argument",
+        "user_message": "Argument '{argument}' requires {requirement}.",
+        "user_hint": "Consult the operation's documented argument contract.",
+    },
     "ENM-W001": {
         "title": "Isolated Nodes Detected",
         "user_message": "Some nodes in the system have no contacts within the specified cutoff ({cutoff}).",
@@ -34,6 +39,10 @@ CODES = {
 }
 
 SIGNALS = {
+    "elastnetmt.model.trajectory": {
+        "description": "Trajectory amplitude, mode and executed interpolation engine.",
+        "level": "INFO",
+    },
     "elastnetmt.model.selection": {
         "description": "Details about the atoms selected for the network nodes.",
         "level": "DEBUG",

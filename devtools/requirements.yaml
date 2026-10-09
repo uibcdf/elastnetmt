@@ -17,6 +17,8 @@ test:
   dependencies: &test_tools
     - *setup_tools
     - pytest
+    - pytest-receptor=1.2.1
+    - numba
     - pytest-cov
     - pytest-xdist
     - codecov

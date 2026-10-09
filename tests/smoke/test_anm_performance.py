@@ -7,11 +7,11 @@ from elastnetmt import AnisotropicNetworkModel
 
 
 @pytest.mark.smoke
-def test_anm_benchmark_engines():
+def test_anm_benchmark_engines(reference_pdb):
     """
     Compare Vectorized vs Parallel (Numba) engines for ANM.
     """
-    pdb_id = "pdb_id:1tcd"
+    pdb_id = reference_pdb
 
     # 1. Vectorized Engine
     anm_vec = AnisotropicNetworkModel(

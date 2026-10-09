@@ -5,6 +5,7 @@ from argdigest import arg_digest
 from depdigest import dep_digest
 
 from elastnetmt._private.contacts import get_contacts
+from elastnetmt._private.smonitor import emit_catalog
 
 
 class ElasticNetworkModel:
@@ -88,7 +89,7 @@ class ElasticNetworkModel:
         )
 
         if len(isolated_nodes) > 0:
-            smonitor.emit_from_catalog(
+            emit_catalog(
                 "ENM-W001",
                 cutoff=self.cutoff,
                 n_isolated=len(isolated_nodes),
@@ -96,7 +97,7 @@ class ElasticNetworkModel:
             )
 
         if avg_degree < 4.0:
-            smonitor.emit_from_catalog(
+            emit_catalog(
                 "ENM-W005",
                 avg_degree=float(avg_degree),
                 source="elastnetmt.model.ElasticNetworkModel",

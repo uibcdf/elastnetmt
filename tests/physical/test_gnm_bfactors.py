@@ -6,12 +6,12 @@ from elastnetmt import pyunitwizard as puw
 
 
 @pytest.mark.physical
-def test_gnm_bfactors_correlation():
+def test_gnm_bfactors_correlation(reference_pdb):
     """
     Physical validation: GNM B-factors should correlate well with
-    experimental values for T4 Lysozyme (1TCD).
+    experimental values for TcTIM (1TCD).
     """
-    pdb_id = "pdb_id:1tcd"
+    pdb_id = reference_pdb
 
     # 1. Initialize GNM with a standard cutoff
     gnm = GaussianNetworkModel(
@@ -33,11 +33,11 @@ def test_gnm_bfactors_correlation():
 
 
 @pytest.mark.physical
-def test_gnm_best_cutoff_optimization():
+def test_gnm_best_cutoff_optimization(reference_pdb):
     """
     Verify that the cutoff optimization improves correlation.
     """
-    pdb_id = "pdb_id:1tcd"
+    pdb_id = reference_pdb
     gnm = GaussianNetworkModel(pdb_id, selection='atom_name=="CA"')
 
     # Initial fit with default (7A)
@@ -54,11 +54,11 @@ def test_gnm_best_cutoff_optimization():
 
 
 @pytest.mark.physical
-def test_gnm_best_cutoff_accepts_length_variants():
+def test_gnm_best_cutoff_accepts_length_variants(reference_pdb):
     """
     The cutoff optimizer should accept abbreviated strings and typed quantities.
     """
-    pdb_id = "pdb_id:1tcd"
+    pdb_id = reference_pdb
 
     variants = [
         ("6 A", "12 A"),

@@ -1,28 +1,6 @@
-# ArgDigest configuration for ElastNetMT
+"""Discover callable value contracts through ArgDigest's supported registry."""
 
-ARGUMENT_DIGESTERS = {
-    "molecular_system": {
-        "kind": "std",
-        "rules": ["is_not_none"],
-    },
-    "selection": {
-        "kind": "std",
-        "rules": ["is_str"],
-        "default": 'atom_name=="CA"',
-    },
-    "syntax": {
-        "kind": "std",
-        "rules": ["is_str"],
-        "default": "MolSysMT",
-    },
-    "cutoff": {
-        "kind": "quantity",
-        "dimensionality": {"[L]": 1},
-        "default_unit": "angstroms",
-    },
-    "structure_index": {
-        "kind": "std",
-        "rules": ["is_int"],
-        "default": 0,
-    },
-}
+DIGESTION_SOURCE = "elastnetmt._private.arguments"
+DIGESTION_STYLE = "registry"
+STRICTNESS = "error"
+UNKNOWN_ARGUMENT = "error"

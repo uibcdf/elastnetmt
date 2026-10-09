@@ -67,3 +67,27 @@ LinDelInt auto-engine implementation belongs to `uibcdf/lindelint#8`.
 Preserve a user-selected PyUnitWizard policy on import, verify the provider fix
 on the affected trajectory cells, use a published exact Pytest Receptor pin and
 `ci` profile in maintained CI, and record independent adoption evidence.
+
+## Consumer modernization checkpoint — 2026-10-08
+
+The modernization branch preserves an active application unit policy and
+bootstraps the shared nm/kJ baseline only when absent. It registers real
+ArgDigest value callables, translates invalid quantity inputs to owned errors,
+and lazily guards Numba/CuPy through DepDigest. Explicit missing engines and
+transitive initialization failures remain errors. Fresh-process tests verify
+the import boundary; spectral and trajectory tests protect unit invariance.
+
+Trajectory interpolation now exposes `interpolation_engine` with a vectorized
+default. This consumer choice avoids the known provider auto fallback failure
+without altering the provider algorithm. Explicit selections still reach
+LinDelINT unchanged; the automatic provider route remains unqualified and
+uibcdf/lindelint#8 stays open. The removal/review condition is recorded in
+`devguide/units_and_conventions.md`.
+
+Scientific, add-on and governance CI select `--receptor=ci` with published
+pytest-receptor 1.2.1, available on the UIBCDF main channel for Python
+3.11–3.14 and recorded in the central build receipts. Numba is explicit test
+tooling so the parity test exercises the accelerated implementation. Existing
+scientific sibling revision pins and full test collection are preserved.
+GNM calibration is independently owned by #21. This record remains active
+pending hosted evidence and the remaining ecosystem/provider review.

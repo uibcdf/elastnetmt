@@ -6,12 +6,12 @@ from elastnetmt import AnisotropicNetworkModel
 
 
 @pytest.mark.integration
-def test_anm_trajectory_generation():
+def test_anm_trajectory_generation(reference_pdb):
     """
     Verify that ANM can generate a full-atom trajectory using lindelint
     and return a valid MolSysMT object.
     """
-    pdb_id = "pdb_id:1tcd"  # T4 Lysozyme
+    pdb_id = reference_pdb  # TcTIM
 
     # 1. Initialize ANM (only CA nodes)
     anm = AnisotropicNetworkModel(

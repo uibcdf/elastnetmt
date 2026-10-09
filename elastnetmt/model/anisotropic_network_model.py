@@ -8,55 +8,14 @@ from argdigest import arg_digest
 from depdigest import dep_digest
 
 from elastnetmt import pyunitwizard as puw
+from elastnetmt._private.arguments import invalid
+from elastnetmt._private.engines import (
+    build_hessian_parallel,
+    diagonalize_gpu,
+    select_engine,
+)
+from elastnetmt._private.smonitor import emit_catalog
 from elastnetmt.model.elastic_network_model import ElasticNetworkModel
-
-# Numba Kernel for Hessian Construction
-try:
-    from numba import njit, prange
-
-    HAS_NUMBA = True
-except ImportError:
-    HAS_NUMBA = False
-
-if HAS_NUMBA:
-
-    @njit(parallel=True)
-    def _build_hessian_numba(coords, contacts, n_nodes):
-        hessian = np.zeros((3 * n_nodes, 3 * n_nodes), dtype=np.float64)
-        for i in prange(n_nodes):
-            for j in range(n_nodes):
-                if i == j:
-                    continue
-                if contacts[i, j]:
-                    dx = coords[i, 0] - coords[j, 0]
-                    dy = coords[i, 1] - coords[j, 1]
-                    dz = coords[i, 2] - coords[j, 2]
-                    r2 = dx * dx + dy * dy + dz * dz
-                    h00 = -dx * dx / r2
-                    h01 = -dx * dy / r2
-                    h02 = -dx * dz / r2
-                    h11 = -dy * dy / r2
-                    h12 = -dy * dz / r2
-                    h22 = -dz * dz / r2
-                    hessian[3 * i, 3 * j] = h00
-                    hessian[3 * i, 3 * j + 1] = h01
-                    hessian[3 * i, 3 * j + 2] = h02
-                    hessian[3 * i + 1, 3 * j] = h01
-                    hessian[3 * i + 1, 3 * j + 1] = h11
-                    hessian[3 * i + 1, 3 * j + 2] = h12
-                    hessian[3 * i + 2, 3 * j] = h02
-                    hessian[3 * i + 2, 3 * j + 1] = h12
-                    hessian[3 * i + 2, 3 * j + 2] = h22
-                    hessian[3 * i, 3 * i] -= h00
-                    hessian[3 * i, 3 * i + 1] -= h01
-                    hessian[3 * i, 3 * i + 2] -= h02
-                    hessian[3 * i + 1, 3 * i] -= h01
-                    hessian[3 * i + 1, 3 * i + 1] -= h11
-                    hessian[3 * i + 1, 3 * i + 2] -= h12
-                    hessian[3 * i + 2, 3 * i] -= h02
-                    hessian[3 * i + 2, 3 * i + 1] -= h12
-                    hessian[3 * i + 2, 3 * i + 2] -= h22
-        return hessian
 
 
 class AnisotropicNetworkModel(ElasticNetworkModel):
@@ -81,6 +40,7 @@ class AnisotropicNetworkModel(ElasticNetworkModel):
         self.hessian_matrix = None
         self.stiffness = stiffness
         self.engine = engine
+        self.engine_used = None
 
     def _solve(self):
         if self._eigenvalues is not None:
@@ -93,34 +53,24 @@ class AnisotropicNetworkModel(ElasticNetworkModel):
             structure_indices=0,
             coordinates=True,
         )
-        coords = puw.get_value(coordinates[0])
-        engine_to_use = self.engine
-        if engine_to_use == "auto":
-            engine_to_use = "parallel" if HAS_NUMBA else "vectorized"
-        if engine_to_use == "parallel" and HAS_NUMBA:
-            self.hessian_matrix = _build_hessian_numba(
+        coords = puw.get_value(coordinates[0], to_unit="nanometers")
+        engine_to_use = select_engine(self.engine)
+        self.engine_used = engine_to_use
+        if engine_to_use == "parallel":
+            self.hessian_matrix = build_hessian_parallel(
                 coords, self.contacts, self.n_nodes
             )
         else:
             self.hessian_matrix = self._build_hessian_vectorized(coords)
         if engine_to_use == "gpu":
-            try:
-                import cupy as cp
-
-                h_gpu = cp.asarray(self.hessian_matrix)
-                e_gpu, v_gpu = cp.linalg.eigh(h_gpu)
-                self._eigenvalues = cp.asnumpy(e_gpu)
-                self._eigenvectors = cp.asnumpy(v_gpu)
-            except ImportError:
-                self._eigenvalues, self._eigenvectors = la.eigh(self.hessian_matrix)
+            self._eigenvalues, self._eigenvectors = diagonalize_gpu(self.hessian_matrix)
         else:
             self._eigenvalues, self._eigenvectors = la.eigh(self.hessian_matrix)
+
         if self.n_nodes > 2 and np.isclose(self._eigenvalues[6], 0.0, atol=1e-8):
-            smonitor.emit_from_catalog(
-                "ENM-E020", source="elastnetmt.model.AnisotropicNetworkModel"
-            )
+            emit_catalog("ENM-E020", source="elastnetmt.model.AnisotropicNetworkModel")
         if np.any(self._eigenvalues[6:] < -1e-6):
-            smonitor.emit_from_catalog(
+            emit_catalog(
                 "ENM-E030",
                 min_ev=float(np.min(self._eigenvalues)),
                 source="elastnetmt.model.AnisotropicNetworkModel",
@@ -194,33 +144,39 @@ class AnisotropicNetworkModel(ElasticNetworkModel):
         amplitude="6.0 angstroms",
         oscillation_steps=60,
         syntax="MolSysMT",
+        interpolation_engine="vectorized",
     ):
         from lindelint import Interpolator
 
         self._solve()
+        if mode >= len(self._modes):
+            invalid("mode", f"an index smaller than {len(self._modes)}")
         coords_nodes = msm.get(
             self.molecular_system,
             element="atom",
             selection=self.atom_indices,
             coordinates=True,
         )
-        coords_nodes = puw.get_value(coords_nodes[0])
+        coords_nodes = puw.get_value(coords_nodes[0], to_unit="nanometers")
         mode_vec = self._modes[mode]
         target_indices = msm.select(
             self.molecular_system, selection=selection, syntax=syntax
         )
+        if len(target_indices) == 0:
+            invalid("selection", "at least one target atom")
         target_system = msm.extract(self.molecular_system, selection=target_indices)
         coords_target = msm.get(
             target_system, element="atom", selection="all", coordinates=True
         )
-        coords_target_val = puw.get_value(coords_target[0])
-        interp = Interpolator(coords_nodes, mode_vec)
+        coords_target_val = puw.get_value(coords_target[0], to_unit="nanometers")
+        # Deterministic CPU default while lindelint#8 owns automatic fallback.
+        # Explicit alternatives are passed through unchanged to the provider.
+        interp = Interpolator(coords_nodes, mode_vec, engine=interpolation_engine)
         interpolated_mode = interp.do_your_thing(coords_target_val)
         coords_target_nm = puw.get_value(coords_target[0], to_unit="nanometers")
-        interpolated_mode_nm = puw.convert(
-            puw.quantity(interpolated_mode, "angstroms"), to_unit="nanometers"
-        )
-        interpolated_mode_nm = puw.get_value(interpolated_mode_nm)
+        # Eigenvectors are dimensionless: normalize their interpolated direction
+        # and apply the explicit physical amplitude once.
+        interpolated_mode_nm = np.asarray(interpolated_mode, dtype=float)
         amplitude_val = puw.get_value(amplitude, to_unit="nanometers")
         max_mode_norm = np.max(np.linalg.norm(interpolated_mode_nm, axis=1))
         factor = amplitude_val / max_mode_norm if max_mode_norm > 0 else 0.0
@@ -232,4 +188,15 @@ class AnisotropicNetworkModel(ElasticNetworkModel):
         new_coords = puw.quantity(np.array(frames), "nanometers")
         target_system = msm.remove(target_system, structure_indices=0)
         msm.append_structures(target_system, new_coords)
+        smonitor.emit(
+            "INFO",
+            "elastnetmt.model.trajectory",
+            source="elastnetmt.model.AnisotropicNetworkModel",
+            extra={
+                "interpolation_engine": interp.engine_type,
+                "mode": mode,
+                "amplitude_nm": float(amplitude_val),
+                "n_frames": oscillation_steps,
+            },
+        )
         return target_system

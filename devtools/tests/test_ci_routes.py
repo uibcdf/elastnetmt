@@ -44,7 +44,10 @@ def test_contributor_routes_and_complete_supported_matrix():
         assert cell["environment-file"] == f"devtools/conda-envs/{expected}"
     steps = {step.get("name"): step for step in matrix["steps"]}
     command = steps["Run tests"]["run"]
-    assert "pytest -v --cov-config=.coveragerc --cov=elastnetmt" in command
+    assert (
+        "python -m pytest --receptor=ci -v --cov-config=.coveragerc --cov=elastnetmt"
+        in command
+    )
     assert "--noconftest" not in command
     assert "--ignore" not in command and "smoke" not in command
     assert "if" not in steps["Run tests"]
@@ -64,6 +67,12 @@ def test_contributor_routes_and_complete_supported_matrix():
     assert "paths" not in addon["on"]["pull_request"]
     assert "paths-ignore" not in addon["on"]["pull_request"]
     assert "continue-on-error" not in addon["jobs"]["contract"]
+    assert "--receptor=ci" in addon["jobs"]["contract"]["steps"][-1]["run"]
+    for filename in {
+        cell["environment-file"] for cell in matrix["strategy"]["matrix"]["cfg"]
+    }:
+        dependencies = yaml.safe_load((ROOT / filename).read_text())["dependencies"]
+        assert "pytest-receptor=1.2.1" in dependencies
 
     # The YAML dependency belongs only to the explicit administrative route.
     pytest_config = tomllib.loads((ROOT / "pyproject.toml").read_text())["tool"][
