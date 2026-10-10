@@ -180,3 +180,19 @@ collection regression without adding PyYAML to older science environments.
 This final administrative guard/record update stays outside scientific
 collection. Its skipped commit remains due; execution outcomes are recorded
 in the owning issue and central review without further component iteration.
+
+## Local route/resource checkpoint, 2026-10-10 (#26)
+
+The Rust evaluation's supplementary distribution/source-route checks first
+lacked the required local SDK checkout. A task-owned ignored `.molsyssuite`
+checkout was then created from the local sibling at the reviewed immutable
+2d32048457c6d37093ae509f5626d00a5cda121b; the sibling is untouched. The actual
+checks exposed two owner declarations requiring synchronization: the docs
+workflow digest after #25, and the resource list for the newly extracted
+pure-Python matrix_kernels.py. The docs-3.12 Conda route and no-deps root
+installation were re-inspected: neither provider input nor Python version
+changed; strict execution/apidoc/thread options are the execution changes.
+The reviewed workflow digest and complete pure-Python payload inventory were
+updated. All 17 distribution/source/CI-route assertions now pass locally.
+This corrects local declaration drift and does not qualify a public artifact
+or the separate development-only Rust extension.

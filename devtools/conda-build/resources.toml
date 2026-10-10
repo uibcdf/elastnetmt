@@ -9,6 +9,7 @@ required_paths = [
   "site-packages/elastnetmt/_private/b_factors.py",
   "site-packages/elastnetmt/_private/contacts.py",
   "site-packages/elastnetmt/_private/engines.py",
+  "site-packages/elastnetmt/_private/matrix_kernels.py",
   "site-packages/elastnetmt/_private/numba_kernels.py",
   "site-packages/elastnetmt/_private/smonitor/__init__.py",
   "site-packages/elastnetmt/_private/smonitor/catalog.py",

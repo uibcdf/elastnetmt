@@ -303,8 +303,8 @@ reason = "Policy, producer, promotion or exact installed-artifact reader; separa
 
 [[workflows]]
 path = ".github/workflows/sphinx_docs_to_gh_pages.yaml"
-sha256 = "cce7c1693abb8bbd0091734e61db6bac3592393f5fd4d1bab5a1f0e699c5c603"
-reason = "Existing Python 3.12 public dependency documentation route; strict effective channel configuration remains owner-reviewed, installed default bounds invocation pending"
+sha256 = "75593b5b0d25e89b5eb618daf9ac7933ef9e271d2f043a1fd70ca66c28f85045"
+reason = "Re-reviewed under #25/#26: Python 3.12 docs-3.12 public Conda environment and pip --no-deps root install are unchanged. Strict executed Sphinx, apidoc disabled and bounded thread environment alter documentation execution only; installed provider/publication qualification remains separate."
 
 [[workflows]]
 path = ".github/workflows/test_installed_conda_package.yaml"
