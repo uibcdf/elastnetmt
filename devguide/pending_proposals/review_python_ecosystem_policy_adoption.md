@@ -91,3 +91,14 @@ tooling so the parity test exercises the accelerated implementation. Existing
 scientific sibling revision pins and full test collection are preserved.
 GNM calibration is independently owned by #21. This record remains active
 pending hosted evidence and the remaining ecosystem/provider review.
+
+## Integrated consumer checkpoint — 2026-10-10
+
+[PR #22](https://github.com/uibcdf/elastnetmt/pull/22) was merged as
+`83293db9c8b06b401778aa937e28dbe1de04c9c4`. Its qualified source f3e6456
+passed all eight Linux/macOS arm64 Python 3.11–3.14 test jobs, the viewer
+contract, suite policy and publication governance. The PR records the
+exact-source workflow evidence. Local calibration and scientific edge-case
+reports #21/#23 are resolved and archived. This record stays active for the
+remaining ecosystem/provider review; the LinDelINT automatic route and public
+installed delivery are not established by the consumer workaround.

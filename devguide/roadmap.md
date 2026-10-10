@@ -2,7 +2,7 @@
 
 This roadmap outlines the evolution of **ElastNetMT** from its current state to a high-performance, AI-ready dynamics engine for the **MolSysSuite**.
 
-## Modernization priority, reviewed 2026-10-08
+## Modernization priority, reviewed 2026-10-10
 
 Complete the following maintenance sequence before the exploratory features
 below. Source implementation, hosted qualification and public delivery are
@@ -16,8 +16,9 @@ separate milestones.
    plot and cutoff state (#21); preserve application unit policy; activate
    ArgDigest value contracts and lazy DepDigest engine boundaries (#14).
    Protect symmetry, zero modes, rotation/translation invariance and physical
-   trajectory amplitude. PR #22 at 6a3598a passed the eight-cell source matrix,
-   viewer contract, suite policy and distribution governance on 2026-10-09.
+   trajectory amplitude. PR #22 at f3e6456 passed the eight-cell source matrix,
+   viewer contract, suite policy and distribution governance, and was merged
+   into main as 83293db on 2026-10-10. Report #21 is resolved and archived.
 3. **Qualify the consuming routes.** Use one published Pytest Receptor pin in
    full scientific CI and independent governance, exercise Numba parity with
    Numba installed, and inspect all eight source cells plus viewer contract.
@@ -28,9 +29,10 @@ separate milestones.
    experimental B factors, and unavailable physical stiffness. Add mechanism
    tests and convergence/performance measurements before expanding solvers.
    The correction for #23 implements node/spectrum/profile contracts, explicit
-   failures, candidate filtering and state preservation. Its complete hosted
-   qualification is recorded in PR #22 after execution. Performance and larger
-   solver work remain separate follow-up work.
+   failures, candidate filtering and state preservation. It is integrated;
+   report #23 is resolved and archived. Complete hosted qualification is
+   recorded in PR #22. Performance and larger solver work remain separate
+   follow-up work.
 5. **Refresh the complete documentation and add-on review.** The core GNM/ANM
    examples and units are updated in the first implementation. Remaining work
    includes obsolete notebooks/imports, copied API pages, complete public
