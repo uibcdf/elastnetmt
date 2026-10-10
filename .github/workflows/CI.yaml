@@ -22,15 +22,15 @@ permissions:
   actions: read
 
 jobs:
-  native-wheel:
+  native-wheel-linux:
     name: Build ABI3 wheel on ${{ matrix.os }}
     if: inputs.probe_backlog != true
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-15]
-    steps:
+        os: [ubuntu-latest]
+    steps: &native-wheel-steps
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
@@ -58,6 +58,16 @@ jobs:
         path: native-wheelhouse/*.whl
         if-no-files-found: error
 
+  native-wheel-macos:
+    name: Build ABI3 wheel on ${{ matrix.os }}
+    if: inputs.probe_backlog != true
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15]
+    steps: *native-wheel-steps
+
   governance:
     name: Reporting governance
     runs-on: ubuntu-latest
@@ -67,7 +77,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: uibcdf/molsyssuite
-        ref: 2d32048457c6d37093ae509f5626d00a5cda121b
+        ref: c866f0aa85f5fa0aec91973421eb23080daefdcc
         path: .molsyssuite
         persist-credentials: false
     - uses: actions/setup-python@v5
@@ -80,7 +90,7 @@ jobs:
     - name: Install CI-governance test tools
       run: python -m pip install "pytest>=8" "pytest-receptor==1.2.1" "PyYAML>=6" "Jinja2>=3,<4" "packaging>=24"
     - name: Test CI recovery and contributor routes
-      run: python -m pytest --receptor=ci tests/test_ci_backlog.py devtools/tests/test_ci_routes.py devtools/tests/test_native_wheel.py
+      run: python -m pytest --receptor=ci tests/test_ci_backlog.py devtools/tests/test_ci_routes.py devtools/tests/test_native_wheel.py devtools/tests/test_native_build.py
     - name: Review declared dependency routes
       run: python devtools/check_dependency_routes.py --declared-only
     - name: Test environment generation and helper contracts
@@ -110,11 +120,11 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: python devtools/ci_backlog.py
 
-  test:
-    needs: [nightly-decision, native-wheel]
+  test-linux:
+    needs: [nightly-decision, native-wheel-linux]
     if: >-
       always() && inputs.probe_backlog != true
-      && needs.native-wheel.result == 'success'
+      && needs.native-wheel-linux.result == 'success'
       && (github.event_name != 'schedule' || github.event.schedule != '19 2 * * *'
       || needs.nightly-decision.result != 'success'
       || needs.nightly-decision.outputs.run_full == 'true')
@@ -128,12 +138,8 @@ jobs:
           - { os: ubuntu-latest, python-version: "3.14", environment-file: "devtools/conda-envs/test_env_py314.yaml"}
           - { os: ubuntu-latest, python-version: "3.11", environment-file: "devtools/conda-envs/test_env.yaml"}
           - { os: ubuntu-latest, python-version: "3.12", environment-file: "devtools/conda-envs/test_env.yaml"}
-          - { os: macos-15,  python-version: "3.13", environment-file: "devtools/conda-envs/test_env_py313.yaml"}
-          - { os: macos-15,  python-version: "3.14", environment-file: "devtools/conda-envs/test_env_py314.yaml"}
-          - { os: macos-15,  python-version: "3.11", environment-file: "devtools/conda-envs/test_env.yaml"}
-          - { os: macos-15,  python-version: "3.12", environment-file: "devtools/conda-envs/test_env.yaml"}
 
-    steps:
+    steps: &installed-science-steps
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
@@ -183,7 +189,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: uibcdf/molsyssuite
-        ref: 2d32048457c6d37093ae509f5626d00a5cda121b
+        ref: c866f0aa85f5fa0aec91973421eb23080daefdcc
         path: .molsyssuite
         persist-credentials: false
 
@@ -272,3 +278,24 @@ jobs:
       uses: codecov/test-results-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
+
+  test-macos:
+    needs: [nightly-decision, native-wheel-macos]
+    if: >-
+      always() && inputs.probe_backlog != true
+      && needs.native-wheel-macos.result == 'success'
+      && (github.event_name != 'schedule' || github.event.schedule != '19 2 * * *'
+      || needs.nightly-decision.result != 'success'
+      || needs.nightly-decision.outputs.run_full == 'true')
+    name: Test on ${{ matrix.cfg.os }}, Python ${{ matrix.cfg.python-version }}
+    runs-on: ${{ matrix.cfg.os }}
+    strategy:
+      fail-fast: false  # do not cancel all in-progress jobs if any job variation fails
+      matrix:
+        cfg:
+          - { os: macos-15,  python-version: "3.13", environment-file: "devtools/conda-envs/test_env_py313.yaml"}
+          - { os: macos-15,  python-version: "3.14", environment-file: "devtools/conda-envs/test_env_py314.yaml"}
+          - { os: macos-15,  python-version: "3.11", environment-file: "devtools/conda-envs/test_env.yaml"}
+          - { os: macos-15,  python-version: "3.12", environment-file: "devtools/conda-envs/test_env.yaml"}
+
+    steps: *installed-science-steps

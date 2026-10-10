@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SDK_SHA = "2d32048457c6d37093ae509f5626d00a5cda121b"
+SDK_SHA = "c866f0aa85f5fa0aec91973421eb23080daefdcc"
 
 
 def load_module(name: str):

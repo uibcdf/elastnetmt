@@ -1,5 +1,12 @@
 schema = "molsyssuite.dependency-routes@3"
-reason = "Preserve scientific pins and qualify Python-specific no-deps Git contexts; suspend historical noarch publication during native integration under ElastNetMT #18/#26 and MolSysSuite #107/#113"
+reason = "Preserve scientific pins and qualify Python-specific no-deps Git contexts; adopt the qualified native recipe audit under #18/#26 and MolSysSuite #113, retaining suspended historical noarch publication"
+
+[[recipes]]
+path = "devtools/conda-build/meta.yaml"
+kind = "native-abi3-dependencies"
+plan = "devtools/conda-build/release_plan.example.toml"
+abi3_minimum = "3.11"
+reason = "Declared first native ABI3/staged recipe only; no actual candidate is selected and native bytes, installed Conda science and public dependency closure remain separate gates"
 
 [[source_routes]]
 id = "smonitor-base"
@@ -269,8 +276,8 @@ channel_reason = "Preserve existing AmberTools scientific bootstrap"
 
 [[workflows]]
 path = ".github/workflows/CI.yaml"
-sha256 = "05dce75ffe0916672213d0fa4946331275d28be2f3114f18718f82a9be765a8d"
-reason = "Re-reviewed #26: two per-platform cp311 ABI3 wheel builds from sdist; complete eight-cell science now installs identical per-platform bytes and verifies runtime/native hashes outside source before/after tests. Governance also tests native archive guards. Original source pins and supported cells retained."
+sha256 = "33b67cc243bb8e01062434b44553fa14a728f423bbbdcb8329348ccb30d94bf2"
+reason = "Re-reviewed #17/#26: independent Linux/macOS wheel dependencies retain the same eight displayed scientific job names and full installed-byte gates. Shared YAML step anchors preserve identical qualification. Adopt qualified SDK c866f0a; scientific provider pins unchanged."
 
 [[workflows]]
 path = ".github/workflows/build_and_upload_conda_packages.yaml"
@@ -279,7 +286,7 @@ reason = "Policy, producer, promotion or exact installed-artifact reader; separa
 
 [[workflows]]
 path = ".github/workflows/conda_publication_governance.yaml"
-sha256 = "eb54f756f9aa208adbc210b3839bf23be640457ff975f84415d12eb6c6b9cf4d"
+sha256 = "9d9e980cf508138ecf57b63cf97efe3b5fb1112011fe4d90970b9afc3ad1050d"
 reason = "Policy, producer, promotion or exact installed-artifact reader; separate existing candidate/artifact controls retained"
 
 [[workflows]]

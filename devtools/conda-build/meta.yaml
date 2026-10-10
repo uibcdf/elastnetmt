@@ -1,0 +1,47 @@
+package:
+  name: elastnetmt
+  version: "{{ environ['MOLSYSSUITE_CONDA_VERSION'] }}"
+source:
+  path: ../../
+build:
+  number: {{ environ['MOLSYSSUITE_CONDA_BUILD_NUMBER'] }}
+  string: pyabi3h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  python_version_independent: true
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('rust') }}
+  host:
+    - python 3.11.*
+    - python-abi3 3.11.*
+    - pip
+    - setuptools >=68.0
+    - versioningit >=2.0,<3
+    - setuptools-rust >=1.13,<2
+  run:
+    - python >=3.11,<3.15
+    - numpy
+    - pyunitwizard
+    - matplotlib
+    - tqdm
+    - scikit-learn
+    - lindelint
+    - molsysmt
+    - smonitor
+    - argdigest
+    - depdigest
+test:
+  imports:
+    - elastnetmt
+    - elastnetmt._rust
+    - molsysviewer_elastnetmt
+  commands:
+    - python -c "import elastnetmt; import importlib.metadata; assert elastnetmt.__version__ == importlib.metadata.version('elastnetmt') == '{{ environ['MOLSYSSUITE_CONDA_VERSION'] }}'"
+    - python -c "from elastnetmt import _rust; assert _rust.NUM_THREADS == 1"
+about:
+  home: https://uibcdf.org/elastnetmt
+  license: MIT
+  license_file: LICENSE
+  summary: Elastic network models for molecular systems
+  dev_url: https://github.com/uibcdf/elastnetmt
+  doc_url: https://uibcdf.org/elastnetmt

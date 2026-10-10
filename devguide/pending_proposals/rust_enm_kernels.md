@@ -367,3 +367,29 @@ The maintainer selected Git history as the sole retention of the inactive Python
 removed; a brief retirement note remains. Historical distribution fixtures use
 an explicitly synthetic resource placeholder. Runtime source and native artifact
 contracts are unchanged, including rejection of the retired module in wheels.
+
+
+## Native qualification infrastructure follow-up, 2026-10-10
+
+CI now separates each native platform's build dependency, allowing four Linux
+installed cells to proceed while macOS is queued, with both platforms still
+required. Original displayed gate names, full science and before/after wheel
+hash verification remain unchanged. Exact earlier head run 38051189287 still
+lacks macOS qualification; no queue cause or passed matrix is inferred.
+
+The qualified immutable native SDK c866f0aa85f5fa0aec91973421eb23080daefdcc
+is adopted from MolSysSuite #113. The new Conda recipe/build configuration
+passes declared dependency review, and producer guards reject an example
+version, wrong Rust compiler or source/package version disagreement. Locally,
+24 CI/native-boundary tests, 9 source-route tests, 10 distribution tests,
+14 environment-tool tests and 3 reporting tests pass; Ruff and suite conformance
+also pass. These 60 checks contain administrative/fixture evidence. Runtime
+kernels are unchanged, so the previous 218-test installed Linux/Python 3.14
+proof retains its original artifact/source identity. This does not establish
+Conda archives, a passed hosted wheel matrix or public 3.14 admission.
+
+Next required evidence remains both original native Conda files, owned archive
+validation and eight actual installed Conda science cells with qualified public
+or explicitly staged coupled dependencies, followed by immutable promotion
+and independent public verification. See #18's current follow-up and the
+maintained native distribution README. Keep #26/#18/#19 open.

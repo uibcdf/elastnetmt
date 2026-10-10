@@ -34,6 +34,11 @@ class TestSourceRoutes(unittest.TestCase):
                 shutil.copytree(source, target)
             else:
                 shutil.copy2(source, target)
+        for name in ("meta.yaml", "release_plan.example.toml"):
+            shutil.copy2(
+                fixtures.ROOT / "devtools/conda-build" / name,
+                self.root / "devtools/conda-build" / name,
+            )
 
     def audit(self, **kwargs):
         return self.routes.audit(self.root, **kwargs)
@@ -41,11 +46,51 @@ class TestSourceRoutes(unittest.TestCase):
     def test_all_current_routes_thirteen_pins_and_seven_contexts_are_classified(self):
         result = self.audit()
         self.assertEqual(result["schema"], "molsyssuite.dependency-routes@3")
-        self.assertEqual(len(result["routes"]), 17)
+        self.assertEqual(len(result["routes"]), 18)
         self.assertEqual(len(result["source_routes"]), 13)
         self.assertEqual(len(result["contexts"]), 7)
         self.assertEqual(result["qualification"], "declared-only")
         self.assertNotIn("installed_sources", result)
+
+    def test_native_recipe_audit_does_not_claim_native_or_release_qualification(self):
+        route = next(
+            route
+            for route in self.audit()["routes"]
+            if route["kind"] == "native-abi3-dependencies"
+        )
+        self.assertEqual(route["abi3_minimum"], "3.11")
+        self.assertEqual(route["artifact_subdirs"], ["linux-64", "osx-arm64"])
+        self.assertEqual(route["python_versions"], ["3.11", "3.12", "3.13", "3.14"])
+        self.assertEqual(route["qualification"], "declared-only")
+        self.assertFalse(route["native_bytes_verified"])
+        self.assertEqual(
+            set(route["input_sha256"]),
+            {
+                "pyproject.toml",
+                "devtools/conda-build/meta.yaml",
+                "devtools/conda-build/release_plan.example.toml",
+            },
+        )
+        self.assertFalse(
+            (fixtures.ROOT / "devtools/conda-build/release_plan.toml").exists()
+        )
+
+    def test_native_recipe_cannot_hide_python_abi_or_runtime_drift(self):
+        path = self.root / "devtools/conda-build/meta.yaml"
+        original = path.read_text()
+        for old, new in (
+            ("python-abi3 3.11.*", "python-abi3 3.12.*"),
+            ("    - depdigest\n", ""),
+            ("    - python >=3.11,<3.15", "    - python >=3.11"),
+            (
+                "python_version_independent: true",
+                "python_version_independent: true\n  noarch: python",
+            ),
+        ):
+            with self.subTest(new=new):
+                path.write_text(original.replace(old, new))
+                with self.assertRaises(ValueError):
+                    self.audit()
 
     def test_missing_public_runtime_dependency_cannot_hide_behind_source_ci(self):
         path = self.root / "devtools/conda-envs/production_env.yaml"
@@ -106,7 +151,8 @@ class TestSourceRoutes(unittest.TestCase):
         data = fixtures.yaml.safe_load(
             (fixtures.ROOT / ".github/workflows/CI.yaml").read_text()
         )
-        steps = data["jobs"]["test"]["steps"]
+        steps = data["jobs"]["test-linux"]["steps"]
+        self.assertEqual(steps, data["jobs"]["test-macos"]["steps"])
         names = [s.get("name") for s in steps]
         self.assertLess(
             names.index("Check dependency routes and installed Git context"),

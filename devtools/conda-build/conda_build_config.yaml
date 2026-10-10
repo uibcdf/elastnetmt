@@ -1,0 +1,5 @@
+# One ABI3 floor per native platform; this is not an installed test matrix.
+python:
+  - "3.11"
+rust_compiler_version:
+  - "1.98.1"

@@ -259,3 +259,30 @@ is authorized by this transition and no wheel/Conda platform admission is
 inferred from a build. Resume a platform-native staged route only with the
 qualified immutable SDK or reviewed equivalent, a real committed decision and
 exact installed-file gates for Linux/macOS arm64 × Python 3.11–3.14.
+
+## Qualified native SDK adoption, 2026-10-10
+
+The provider has delivered a qualified native declaration audit under
+[MolSysSuite #113](https://github.com/uibcdf/molsyssuite/issues/113#issuecomment-6096156895).
+Adopt immutable implementation `c866f0aa85f5fa0aec91973421eb23080daefdcc`
+in the local SDK loader and active CI/governance callers. This supersedes the
+earlier statement that no qualified native recipe profile was available.
+The three suspended historical noarch callers retain their old immutable pin.
+
+The new `meta.yaml` uses the `native-abi3-dependencies` route and committed
+example plan, with one Python 3.11 ABI3 host and reviewed Rust 1.98.1 build
+configuration. Runtime bounds match current metadata. The build script rejects
+the example `0.0.0` version, compiler drift and source/package version mismatch.
+Native route evidence explicitly remains declared-only, without verified native
+bytes. Negative tests exercise ABI-floor/runtime/noarch drift through the actual
+shared auditor and producer failures through the actual shell script.
+
+No actual release decision or native Conda archive is selected here. Actual
+rendered compiler/run-export resolution, native archive resource/architecture/
+ABI/linkage inspection, two original files and eight complete installed Conda
+cells remain required. Public dependency closure needs public distributions or
+an explicit coupled staged inventory; source Git qualification cannot replace
+it. Remaining producer/installed/promotion adapters follow the provider's
+documented general operations; keep #18/#26/#19 and #113 open for this scope.
+See maintained `devtools/conda-build/README.md` for the preparation command and
+separate qualification boundaries.

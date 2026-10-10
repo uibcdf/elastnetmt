@@ -16,7 +16,8 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
-SDK_SHA = "2d32048457c6d37093ae509f5626d00a5cda121b"
+SDK_SHA = "c866f0aa85f5fa0aec91973421eb23080daefdcc"
+HISTORICAL_SDK_SHA = "2d32048457c6d37093ae509f5626d00a5cda121b"
 SUITE = Path(os.environ.get("ELASTNETMT_SUITE_ROOT", ROOT / ".molsyssuite"))
 PLAN = "devtools/conda-build/release_plan.example.toml"
 RESOURCES = "devtools/conda-build/resources.toml"
@@ -214,7 +215,7 @@ class TestDistributionContract(unittest.TestCase):
         self.assertTrue(set(science["Reporting governance"]) <= admin_steps)
 
     def test_native_source_cannot_use_historical_noarch_publication(self):
-        self.assertFalse((ROOT / "devtools/conda-build/meta.yaml").exists())
+        self.assertTrue((ROOT / "devtools/conda-build/meta.yaml").exists())
         self.assertFalse((ROOT / "devtools/conda-build/resources.toml").exists())
         for name, job in (
             ("build_and_upload_conda_packages.yaml", "publish"),
@@ -249,7 +250,15 @@ class TestDistributionContract(unittest.TestCase):
             )
             self.assertTrue(
                 all(
-                    job["uses"].endswith("@" + SDK_SHA) for job in data["jobs"].values()
+                    job["uses"].endswith(
+                        "@"
+                        + (
+                            SDK_SHA
+                            if filename == "conda_publication_governance.yaml"
+                            else HISTORICAL_SDK_SHA
+                        )
+                    )
+                    for job in data["jobs"].values()
                 )
             )
 

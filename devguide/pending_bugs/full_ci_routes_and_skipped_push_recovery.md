@@ -205,3 +205,20 @@ pass or a green queue. Correction 082b3f0 re-inspects that owner route and
 synchronizes the declared digest; all 17 corresponding local assertions pass.
 The next unskipped pushed head must execute/inspect its applicable hosted
 checks. Do not rerun the unchanged 439d476 bytes as a proposed repair.
+
+## Independent native-platform qualification, 2026-10-10
+
+Exact-head CI `38051189287` at `2d60c955a7b13ddba53e24ff49fb1a6813732029`
+has successful governance and Linux wheel construction, while the macOS wheel
+job remains queued. The single scientific job depended on the entire build
+matrix, so Linux could not qualify its installed wheel until macOS completed.
+The queue's infrastructure cause is not established by this observation.
+
+CI now uses independent Linux/macOS producer and scientific jobs. Each platform
+waits for its own successful build; both retain the four supported minors,
+original displayed gate names, complete science and before/after installed-byte
+checks. YAML anchors share the actual step lists. Daily recovery, weekly full
+execution and probe-only behavior remain protected by
+`devtools/tests/test_ci_routes.py` and `tests/test_ci_backlog.py`.
+This change permits independent progress; it does not clear missing macOS
+evidence or certify a queued job. Inspect the next unskipped exact-head run.

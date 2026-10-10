@@ -21,22 +21,40 @@ def test_contributor_routes_and_complete_supported_matrix():
     schedules = workflow["on"]["schedule"]
     assert {"cron": "0 9 * * MON"} in schedules
     assert {"cron": "19 2 * * *", "timezone": "America/Mexico_City"} in schedules
-    matrix = workflow["jobs"]["test"]
-    assert set(matrix["needs"]) == {"nightly-decision", "native-wheel"}
-    assert "needs.native-wheel.result == 'success'" in matrix["if"]
-    assert "always()" in matrix["if"]
-    assert "needs.nightly-decision.result != 'success'" in matrix["if"]
-    assert "inputs.probe_backlog != true" in matrix["if"]
-    assert "continue-on-error" not in matrix
-    assert {
-        (cell["os"], cell["python-version"])
-        for cell in matrix["strategy"]["matrix"]["cfg"]
-    } == {
+    matrices = [workflow["jobs"][f"test-{platform}"] for platform in ("linux", "macos")]
+    for platform, matrix in zip(("linux", "macos"), matrices, strict=True):
+        build_id = f"native-wheel-{platform}"
+        assert set(matrix["needs"]) == {"nightly-decision", build_id}
+        assert f"needs.{build_id}.result == 'success'" in matrix["if"]
+        assert "always()" in matrix["if"]
+        assert "needs.nightly-decision.result != 'success'" in matrix["if"]
+        assert "inputs.probe_backlog != true" in matrix["if"]
+        assert "continue-on-error" not in matrix
+        build = workflow["jobs"][build_id]
+        assert build["strategy"]["matrix"]["os"] == [
+            "ubuntu-latest" if platform == "linux" else "macos-15"
+        ]
+        assert build["if"] == "inputs.probe_backlog != true"
+        assert "continue-on-error" not in build
+        assert {cell["os"] for cell in matrix["strategy"]["matrix"]["cfg"]} == set(
+            build["strategy"]["matrix"]["os"]
+        )
+    assert matrices[0]["steps"] == matrices[1]["steps"]
+    assert (
+        workflow["jobs"]["native-wheel-linux"]["steps"]
+        == workflow["jobs"]["native-wheel-macos"]["steps"]
+    )
+    cells = [
+        cell for matrix in matrices for cell in matrix["strategy"]["matrix"]["cfg"]
+    ]
+    assert len(cells) == 8
+    matrix = matrices[0]
+    assert {(cell["os"], cell["python-version"]) for cell in cells} == {
         (os_name, version)
         for os_name in ("ubuntu-latest", "macos-15")
         for version in ("3.11", "3.12", "3.13", "3.14")
     }
-    for cell in matrix["strategy"]["matrix"]["cfg"]:
+    for cell in cells:
         expected = (
             f"test_env_py{cell['python-version'].replace('.', '')}.yaml"
             if cell["python-version"] in {"3.13", "3.14"}
@@ -72,9 +90,7 @@ def test_contributor_routes_and_complete_supported_matrix():
     assert "paths-ignore" not in addon["on"]["pull_request"]
     assert "continue-on-error" not in addon["jobs"]["contract"]
     assert "--receptor=ci" in addon["jobs"]["contract"]["steps"][-1]["run"]
-    for filename in {
-        cell["environment-file"] for cell in matrix["strategy"]["matrix"]["cfg"]
-    }:
+    for filename in {cell["environment-file"] for cell in cells}:
         dependencies = yaml.safe_load((ROOT / filename).read_text())["dependencies"]
         assert "pytest-receptor=1.2.1" in dependencies
 
