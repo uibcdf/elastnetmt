@@ -286,3 +286,27 @@ it. Remaining producer/installed/promotion adapters follow the provider's
 documented general operations; keep #18/#26/#19 and #113 open for this scope.
 See maintained `devtools/conda-build/README.md` for the preparation command and
 separate qualification boundaries.
+
+
+## Scientific source-context correction, 2026-10-10
+
+The new independently progressing wheel gate exposed missing Viewer on 3.13
+and 16 cache failures in the old MolSysMT source selected for 3.14. All
+scientific minors now explicitly install the reviewed Viewer source and common
+fixed MolSysMT 8ae160fc93ed5bc815bcc24b37c2875ba735623d. This re-reviews the
+previous unchanged-pin statement: current owner fixes are required for complete
+cache qualification. SDK inventory now covers 14 source records, 7 contexts
+and 18 declared routes; reviewed source/workflow input hashes and actual
+bootstrap overlays are synchronized. Source science remains separate from
+public dependency closure. The native recipe adds Viewer as a test requirement
+for its packaged add-on import, without making it a core runtime declaration.
+
+
+The selected molecular provider requires PyUnitWizard >=0.28.1; its old
+controlled source c7a9ff0 installed version 0.26.0+13 and cannot satisfy that
+contract. Use qualified release source 25a4bc2468da4ef3af2a638c0bf068becf2acfb4
+(PyUnitWizard 0.28.1). That release requires ArgDigest >=0.14.0, so use its
+qualified 0.14.0 source 0fa776af2d271065c60727c28480b20c3ce09aee instead of
+c604ce3 (installed 0.13.0+13). Existing DepDigest 0.11.0+13 and SMonitor
+0.16.0+20 source versions satisfy these selected floors. This is a reviewed
+source bootstrap correction, not a public Conda dependency-closure claim.

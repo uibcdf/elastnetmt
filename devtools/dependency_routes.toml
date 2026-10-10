@@ -33,20 +33,20 @@ id = "pyunitwizard-base"
 name = "pyunitwizard"
 role = "required-runtime"
 url = "https://github.com/uibcdf/pyunitwizard"
-commit = "c7a9ff03725828d49eebbc91146bc057d8c4b2bc"
+commit = "25a4bc2468da4ef3af2a638c0bf068becf2acfb4"
 install = "pip-no-deps-git"
 input = "devtools/requirements/controlled_suite_dependencies.txt"
-reason = "Retain existing exact source input; no pin/version change"
+reason = "Use the qualified 0.28.1 release source to satisfy the selected molecular provider minimum >=0.28.1"
 
 [[source_routes]]
 id = "argdigest-base"
 name = "argdigest"
 role = "required-runtime"
 url = "https://github.com/uibcdf/argdigest"
-commit = "c604ce387fe60558ceb51a3016892e7a10686504"
+commit = "0fa776af2d271065c60727c28480b20c3ce09aee"
 install = "pip-no-deps-git"
 input = "devtools/requirements/controlled_suite_dependencies.txt"
-reason = "Retain existing exact source input; no pin/version change"
+reason = "Use qualified 0.14.0 release source to satisfy the selected PyUnitWizard minimum >=0.14.0"
 
 [[source_routes]]
 id = "lindelint-base"
@@ -57,6 +57,26 @@ commit = "3825c741ee08d2cb0b6c2398337f368a6875dd96"
 install = "pip-no-deps-git"
 input = "devtools/requirements/controlled_suite_dependencies.txt"
 reason = "Retain existing exact source input; no pin/version change"
+
+[[source_routes]]
+id = "molsysviewer-base"
+name = "molsysviewer"
+role = "integration"
+url = "https://github.com/uibcdf/molsysviewer"
+commit = "ec4c71e574d798b7c8675b7e7e983da878ce9889"
+install = "pip-no-deps-git"
+input = "devtools/requirements/controlled_suite_dependencies.txt"
+reason = "Add the already selected 3.14 Viewer contract to all scientific minors so cache/add-on tests actually execute"
+
+[[source_routes]]
+id = "molsysmt-base"
+name = "molsysmt"
+role = "required-runtime"
+url = "https://github.com/uibcdf/molsysmt"
+commit = "8ae160fc93ed5bc815bcc24b37c2875ba735623d"
+install = "pip-no-deps-git"
+input = "devtools/requirements/controlled_suite_dependencies.txt"
+reason = "Adopt public empty-connectivity getters and undefined-metadata comparison fixes exercised by the installed cache suite"
 
 [[source_routes]]
 id = "smonitor-3.14"
@@ -83,20 +103,20 @@ id = "pyunitwizard-3.14"
 name = "pyunitwizard"
 role = "required-runtime"
 url = "https://github.com/uibcdf/pyunitwizard"
-commit = "c7a9ff03725828d49eebbc91146bc057d8c4b2bc"
+commit = "25a4bc2468da4ef3af2a638c0bf068becf2acfb4"
 install = "pip-no-deps-git"
 input = "devtools/requirements/controlled_suite_dependencies_py314.txt"
-reason = "Retain existing exact source input; no pin/version change"
+reason = "Use the qualified 0.28.1 release source to satisfy the selected molecular provider minimum >=0.28.1"
 
 [[source_routes]]
 id = "argdigest-3.14"
 name = "argdigest"
 role = "required-runtime"
 url = "https://github.com/uibcdf/argdigest"
-commit = "c604ce387fe60558ceb51a3016892e7a10686504"
+commit = "0fa776af2d271065c60727c28480b20c3ce09aee"
 install = "pip-no-deps-git"
 input = "devtools/requirements/controlled_suite_dependencies_py314.txt"
-reason = "Retain existing exact source input; no pin/version change"
+reason = "Use qualified 0.14.0 release source to satisfy the selected PyUnitWizard minimum >=0.14.0"
 
 [[source_routes]]
 id = "lindelint-3.14"
@@ -123,56 +143,47 @@ id = "molsysmt-3.14"
 name = "molsysmt"
 role = "required-runtime"
 url = "https://github.com/uibcdf/molsysmt"
-commit = "3eb5afd1de087f775b78d7fa45ad69cca3a02d43"
+commit = "8ae160fc93ed5bc815bcc24b37c2875ba735623d"
 install = "pip-no-deps-git"
 input = "devtools/requirements/controlled_suite_dependencies_py314.txt"
-reason = "Retain existing exact source input; no pin/version change"
-
-[[source_routes]]
-id = "molsysmt-3.13"
-name = "molsysmt"
-role = "required-runtime"
-url = "https://github.com/uibcdf/molsysmt"
-commit = "3bcfaf4d50df6c84ebd14505790ed5221543e5de"
-install = "pip-no-deps-git"
-reason = "Existing Python 3.13 inline CI installation; whole workflow hash binds reviewed invocation"
+reason = "Adopt public empty-connectivity getters and undefined-metadata comparison fixes exercised by the installed cache suite"
 
 [[source_inputs]]
 path = "devtools/requirements/controlled_suite_dependencies.txt"
-sha256 = "e39f375814e76932d215ab1dbf22570e219c7f55cea7b5684321f6b4cc5c54cd"
-reason = "Existing pip --no-deps input bytes preserved"
+sha256 = "979994babf028e0dca9eb5456a21da5caa99e4eec7e6df7a371b15eb77e95863"
+reason = "Re-reviewed after actual cache CI failures: require Viewer in every minor and public MolSysMT empty-connectivity/missing-metadata fixes"
 
 [[source_inputs]]
 path = "devtools/requirements/controlled_suite_dependencies_py314.txt"
-sha256 = "f4c8f6f7e19540262ed7ba8753a9b532363ba636e5188abe028ce2db907b06ba"
-reason = "Existing pip --no-deps input bytes preserved"
+sha256 = "c67c69b8b8bd6b1f044b42afa764ac642347813638e3033c2c367b8654f2d586"
+reason = "Re-reviewed after actual cache CI failures: require Viewer in every minor and public MolSysMT empty-connectivity/missing-metadata fixes"
 
 [[contexts]]
 name = "ci-3.11"
 environment = "devtools/conda-envs/test_env.yaml"
 python_minor = "3.11"
-sources = ["smonitor-base", "depdigest-base", "pyunitwizard-base", "argdigest-base", "lindelint-base"]
-overlays = ["pyunitwizard"]
+sources = ["smonitor-base", "depdigest-base", "pyunitwizard-base", "argdigest-base", "lindelint-base", "molsysviewer-base", "molsysmt-base"]
+overlays = ["pyunitwizard", "molsysmt"]
 overlay_reason = "Retain actual public Conda bootstrap and final fixed Git replacements separately"
-reason = "Exact existing supported source CI selection; pins/tests unchanged"
+reason = "Re-reviewed full source CI: explicit Viewer coverage and a common fixed MolSysMT public topology contract across all supported minors"
 
 [[contexts]]
 name = "ci-3.12"
 environment = "devtools/conda-envs/test_env.yaml"
 python_minor = "3.12"
-sources = ["smonitor-base", "depdigest-base", "pyunitwizard-base", "argdigest-base", "lindelint-base"]
-overlays = ["pyunitwizard"]
+sources = ["smonitor-base", "depdigest-base", "pyunitwizard-base", "argdigest-base", "lindelint-base", "molsysviewer-base", "molsysmt-base"]
+overlays = ["pyunitwizard", "molsysmt"]
 overlay_reason = "Retain actual public Conda bootstrap and final fixed Git replacements separately"
-reason = "Exact existing supported source CI selection; pins/tests unchanged"
+reason = "Re-reviewed full source CI: explicit Viewer coverage and a common fixed MolSysMT public topology contract across all supported minors"
 
 [[contexts]]
 name = "ci-3.13"
 environment = "devtools/conda-envs/test_env_py313.yaml"
 python_minor = "3.13"
-sources = ["smonitor-base", "depdigest-base", "pyunitwizard-base", "argdigest-base", "lindelint-base", "molsysmt-3.13"]
+sources = ["smonitor-base", "depdigest-base", "pyunitwizard-base", "argdigest-base", "lindelint-base", "molsysviewer-base", "molsysmt-base"]
 overlays = []
 overlay_reason = "Retain actual public Conda bootstrap and final fixed Git replacements separately"
-reason = "Exact existing supported source CI selection; pins/tests unchanged"
+reason = "Re-reviewed full source CI: explicit Viewer coverage and a common fixed MolSysMT public topology contract across all supported minors"
 
 [[contexts]]
 name = "ci-3.14"
@@ -181,7 +192,7 @@ python_minor = "3.14"
 sources = ["smonitor-3.14", "depdigest-3.14", "pyunitwizard-3.14", "argdigest-3.14", "lindelint-3.14", "molsysviewer-3.14", "molsysmt-3.14"]
 overlays = []
 overlay_reason = "Retain actual public Conda bootstrap and final fixed Git replacements separately"
-reason = "Exact existing supported source CI selection; pins/tests unchanged"
+reason = "Re-reviewed full source CI: explicit Viewer coverage and a common fixed MolSysMT public topology contract across all supported minors"
 
 [[contexts]]
 name = "production-3.14"
@@ -204,8 +215,8 @@ python_minor = "3.12"
 sources = []
 reason = "Source-free public dependency route; actual installation still needs separate invocation"
 
-# Native Conda preparation is tracked in #18/#26. There is no active recipe
-# until the platform-native SDK/profile and installed gates are qualified.
+# Native Conda declarations are audited against the example plan under #18/#26.
+# Original Conda archives and installed/public qualification remain separate.
 
 [[environments]]
 path = "devtools/conda-envs/build_env.yaml"
@@ -276,8 +287,8 @@ channel_reason = "Preserve existing AmberTools scientific bootstrap"
 
 [[workflows]]
 path = ".github/workflows/CI.yaml"
-sha256 = "33b67cc243bb8e01062434b44553fa14a728f423bbbdcb8329348ccb30d94bf2"
-reason = "Re-reviewed #17/#26: independent Linux/macOS wheel dependencies retain the same eight displayed scientific job names and full installed-byte gates. Shared YAML step anchors preserve identical qualification. Adopt qualified SDK c866f0a; scientific provider pins unchanged."
+sha256 = "a56fca676b7a7eae8f93432f00e9c8fe540ee27a418bd33a5618c20eda16e331"
+reason = "Re-reviewed #17/#26: independent Linux/macOS wheel dependencies retain the same eight displayed scientific job names and full installed-byte gates. Shared YAML step anchors preserve identical qualification. Adopt qualified SDK c866f0a; Scientific provider pins re-reviewed after exact installed CI failures; all minors require Viewer and fixed public MolSysMT connectivity/metadata contracts."
 
 [[workflows]]
 path = ".github/workflows/build_and_upload_conda_packages.yaml"
@@ -296,8 +307,8 @@ reason = "Policy, producer, promotion or exact installed-artifact reader; separa
 
 [[workflows]]
 path = ".github/workflows/molsysviewer_contract.yaml"
-sha256 = "8ee29a7e58d0635c00f2f606ab625305e4b27b4a102a13b3a93cc23d29328f0b"
-reason = "Re-reviewed #26: current Viewer development probe and fixed sibling source pins retained; own editable install now compiles Rust with toolchain 1.98.1. This moving-host development probe is separate from exact installed-byte release qualification."
+sha256 = "052c1c52d8c1fead94870621f03f0231c6d57f16d36d2405952e16d780206653"
+reason = "Re-reviewed #26: current Viewer development probe retained; fixed suite source input now adopts corrected MolSysMT connectivity/metadata contracts; own editable install now compiles Rust with toolchain 1.98.1. This moving-host development probe is separate from exact installed-byte release qualification."
 
 [[workflows]]
 path = ".github/workflows/promote_conda_package.yaml"

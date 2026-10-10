@@ -13,6 +13,11 @@ dependencies:
 - pytest-cov
 - pytest-xdist
 - codecov
+- aiohttp >=3.10
+- anywidget >=0.9.15
+- traitlets >=5
+- packaging >=23
+- py-mmcif >=1.1.1
 - numpy
 - pyunitwizard
 - matplotlib

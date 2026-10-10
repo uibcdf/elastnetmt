@@ -23,6 +23,12 @@ test:
     - pytest-cov
     - pytest-xdist
     - codecov
+    # The full suite exercises the optional Viewer integration on every minor.
+    - aiohttp >=3.10
+    - anywidget >=0.9.15
+    - traitlets >=5
+    - packaging >=23
+    - py-mmcif >=1.1.1
 docs:
   channels: *channels
   dependencies: &docs_tools

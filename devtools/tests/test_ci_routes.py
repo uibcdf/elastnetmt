@@ -79,9 +79,11 @@ def test_contributor_routes_and_complete_supported_matrix():
         in steps["Verify interpreter and macOS architecture"]["run"]
     )
 
-    source_step = steps["Install MolSysMT source for Python 3.13"]
-    assert source_step["if"] == "matrix.cfg.python-version == '3.13'"
-    assert "molsysmt@3bcfaf4d50df6c84ebd14505790ed5221543e5de" in source_step["run"]
+    assert "Install MolSysMT source for Python 3.13" not in steps
+    source_command = steps["Install pinned suite dependencies"]["run"]
+    assert "controlled_suite_dependencies.txt" in source_command
+    assert "controlled_suite_dependencies_py314.txt" in source_command
+    assert "Select the reviewed Rust toolchain for source providers" in steps
     addon = yaml.load(
         (ROOT / ".github/workflows/molsysviewer_contract.yaml").read_text(),
         Loader=yaml.BaseLoader,

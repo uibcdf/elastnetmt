@@ -1,6 +1,8 @@
 # Exact source revisions for suite packages absent or stale in Conda/PyPI.
 git+https://github.com/uibcdf/smonitor@4b5e5c5a46e3c8a4dc46461ce72937f9a7dfbdae
 git+https://github.com/uibcdf/depdigest@1086dcddbcf8ef856a1ce99f33f3973322cf933c
-git+https://github.com/uibcdf/pyunitwizard@c7a9ff03725828d49eebbc91146bc057d8c4b2bc
-git+https://github.com/uibcdf/argdigest@c604ce387fe60558ceb51a3016892e7a10686504
+git+https://github.com/uibcdf/pyunitwizard@25a4bc2468da4ef3af2a638c0bf068becf2acfb4
+git+https://github.com/uibcdf/argdigest@0fa776af2d271065c60727c28480b20c3ce09aee
 git+https://github.com/uibcdf/lindelint@3825c741ee08d2cb0b6c2398337f368a6875dd96
+git+https://github.com/uibcdf/molsysviewer@ec4c71e574d798b7c8675b7e7e983da878ce9889
+git+https://github.com/uibcdf/molsysmt@8ae160fc93ed5bc815bcc24b37c2875ba735623d

@@ -1,4 +1,5 @@
-# Python 3.13 dependencies follow MolSysMT test_env.yaml at uibcdf/molsysmt@3bcfaf4.
+# Scientific bootstrap derived from MolSysMT test_env.yaml at 3bcfaf4.
+# Current fixed molecular/Viewer providers are reviewed in dependency_routes.toml.
 # MolSysMT and suite-only Python packages are installed from pinned sources below.
 channels:
 - uibcdf

@@ -222,3 +222,32 @@ execution and probe-only behavior remain protected by
 `devtools/tests/test_ci_routes.py` and `tests/test_ci_backlog.py`.
 This change permits independent progress; it does not clear missing macOS
 evidence or certify a queued job. Inspect the next unskipped exact-head run.
+
+
+## Executed installed-science failures and correction, 2026-10-10
+
+The independent Linux route exposed two failures in c7d85a2's exact-head
+CI 38053683540, which was still queued for macOS. Job 114217852957
+(Python 3.13) fails collection because MolSysViewer was absent, and job
+114217853029 (Python 3.14) executes all 218 tests with 16 failures/202 passes:
+cache reuse triggers a ValueError in the old MolSysMT empty-connectivity
+query. Passing governance/build jobs did not establish scientific success.
+
+The Python 3.13 source bootstrap lacked Viewer, even though the newly added
+cache test imports the distributed add-on and therefore requires its host.
+Every supported scientific context now explicitly selects the previously
+reviewed Viewer ec4c71e574d798b7c8675b7e7e983da878ce9889 and common MolSysMT
+8ae160fc93ed5bc815bcc24b37c2875ba735623d. The latter contains the public
+empty-connectivity and missing-metadata comparison fixes under MolSysMT
+#283/#345. No molecular getter was copied or bypassed in ElastNetMT.
+Base test/development tooling supplies Viewer dependencies through the owner
+requirements generator. Rust 1.98.1 is selected before compiling fixed source
+providers; all four supported minors still execute the entire suite.
+
+The old provider's cache error was independently reproduced using its Python
+source with the current native binary as a diagnostic probe only. The trace
+identifies get_n_inner_bonds_from_atom -> get_inner_bond_index_from_atom ->
+np.hstack on incompatible empty-array dimensions. This mixed-source diagnostic
+is not an installed-provider qualification claim. New source-context guards
+require Viewer and a consistent fixed molecular provider on every minor;
+workflow/source input digests and overlay declarations were re-reviewed.

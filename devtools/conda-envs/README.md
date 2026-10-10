@@ -8,7 +8,7 @@ neither qualify a release nor publish a package.
 
 `pyproject.toml` owns required runtime dependencies and Python bounds.
 `devtools/requirements.yaml` owns ordinary environment tooling. The default test
-file derives its fixed-source omissions and PyUnitWizard bootstrap overlay from
+file derives its fixed-source omissions and PyUnitWizard/MolSysMT bootstrap overlays from
 `devtools/dependency_routes.toml`; the actual immutable Git inputs remain separate.
 
 From any working directory:
@@ -28,7 +28,7 @@ loaded and dumped as ordinary YAML.
 ## Create and update
 
 Use a Python interpreter with `PyYAML` and `packaging`, plus a clean MolSysSuite
-SDK at `2d32048457c6d37093ae509f5626d00a5cda121b`. Point
+SDK at `c866f0aa85f5fa0aec91973421eb23080daefdcc`. Point
 `ELASTNETMT_SUITE_ROOT` to that SDK, or use the reviewed `.molsyssuite` checkout.
 It is not installed into the scientific environment. Existing isolated checker
 libraries under `.molsyssuite-tools` are visible only to the helper process.

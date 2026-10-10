@@ -126,3 +126,44 @@ its existing measured 3.13 lane. A configured development environment is
 not fresh installed-artifact or public-channel qualification. Scientific
 failures and remaining distribution gates remain owned by their existing issues.
 
+
+
+## Installed cache CI follow-up, 2026-10-10
+
+Actual installed CI at c7d85a2 (run 38053683540) exposed a missing Viewer
+bootstrap on 3.13 and 16 cache failures on 3.14 with old MolSysMT 3eb5afd1.
+The former does not qualify complete scientific collection; the latter ran
+218 tests with 202 passes, so earlier successful local evidence with a newer
+molecular provider could not qualify the older pinned source context.
+
+All source scientific minors now select MolSysMT
+8ae160fc93ed5bc815bcc24b37c2875ba735623d, containing the owner fixes for empty
+native connectivity (#283) and undefined comparison metadata (#345), together
+with the previously selected Viewer ec4c71e574d798b7c8675b7e7e983da878ce9889.
+Both metadata contracts admit 3.11–3.14. Add-on dependencies are explicit test
+scope, the generated ordinary test/development environments are synchronized,
+and fixed-source SDK preflight verifies actual installation before science.
+A source-context guard requires both providers in every minor. Keep #19 open
+until hosted and original native Conda/public evidence is complete.
+
+
+The selected molecular provider requires PyUnitWizard >=0.28.1; its old
+controlled source c7a9ff0 installed version 0.26.0+13 and cannot satisfy that
+contract. Use qualified release source 25a4bc2468da4ef3af2a638c0bf068becf2acfb4
+(PyUnitWizard 0.28.1). That release requires ArgDigest >=0.14.0, so use its
+qualified 0.14.0 source 0fa776af2d271065c60727c28480b20c3ce09aee instead of
+c604ce3 (installed 0.13.0+13). Existing DepDigest 0.11.0+13 and SMonitor
+0.16.0+20 source versions satisfy these selected floors. This is a reviewed
+source bootstrap correction, not a public Conda dependency-closure claim.
+
+
+The final local source probe selects exact Viewer ec4c71e5, PyUnitWizard
+25a4bc24 and ArgDigest 0fa776af Python code in a task-owned temporary path,
+with the primary corrected MolSysMT Python/native context and remaining
+primary dependencies. All 218 tests pass without skips (68.72 s). This proves
+those scientific source APIs together; it is not a normally installed
+selected-provider matrix or Conda qualification. All 61 administrative guards
+also pass (24 CI/native, 10 source routes, 10 distribution, 14 environment,
+3 reporting), together with Ruff, indexes, environment generation and suite
+conformance. Subsequent hosted qualification remains necessary for every
+supported interpreter/platform and original package bytes.

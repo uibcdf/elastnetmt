@@ -393,3 +393,23 @@ validation and eight actual installed Conda science cells with qualified public
 or explicitly staged coupled dependencies, followed by immutable promotion
 and independent public verification. See #18's current follow-up and the
 maintained native distribution README. Keep #26/#18/#19 open.
+
+
+## Actual installed CI failures and provider repair, 2026-10-10
+
+Independent Linux progression in c7d85a2 run 38053683540 exposed missing Viewer
+on Python 3.13 and 16/218 cache failures on Python 3.14 with pinned MolSysMT
+3eb5afd1. The failed job logs and local old-source diagnostic identify empty
+inner-bond getter dimensions, already corrected by MolSysMT #283; matching
+undefined metadata also needs owner correction #345. Runtime ENM kernels and
+cache ownership remain unchanged. All scientific minors now explicitly select
+Viewer ec4c71e5 and MolSysMT 8ae160fc; required transitive floors select qualified
+PyUnitWizard 0.28.1 and ArgDigest 0.14.0 release sources. This supersedes earlier
+unchanged-source-pin statements for the corrected qualification attempt.
+
+The 29 cache tests and full 218-test suite pass locally with the selected Viewer
+source and primary corrected molecular provider. These source probes preserve
+their actual primary dependency/native context; they are not fresh installed
+Conda or an exact selected-provider installed matrix. See #17/#19/#18 dated
+follow-ups for exact pins, diagnostic limitations and actual hosted failures.
+The next unskipped correction still requires acquired hosted science.

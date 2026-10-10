@@ -43,14 +43,34 @@ class TestSourceRoutes(unittest.TestCase):
     def audit(self, **kwargs):
         return self.routes.audit(self.root, **kwargs)
 
-    def test_all_current_routes_thirteen_pins_and_seven_contexts_are_classified(self):
+    def test_all_current_routes_fourteen_pins_and_seven_contexts_are_classified(self):
         result = self.audit()
         self.assertEqual(result["schema"], "molsyssuite.dependency-routes@3")
         self.assertEqual(len(result["routes"]), 18)
-        self.assertEqual(len(result["source_routes"]), 13)
+        self.assertEqual(len(result["source_routes"]), 14)
         self.assertEqual(len(result["contexts"]), 7)
         self.assertEqual(result["qualification"], "declared-only")
         self.assertNotIn("installed_sources", result)
+
+    def test_every_scientific_minor_requires_viewer_and_same_fixed_molecular_provider(
+        self,
+    ):
+        result = self.audit()
+        sources = {route["id"]: route for route in result["source_routes"]}
+        revisions = set()
+        minors = set()
+        for context in result["contexts"]:
+            if not context["name"].startswith("ci-"):
+                continue
+            selected = {
+                sources[key]["name"]: sources[key] for key in context["sources"]
+            }
+            self.assertIn("molsysviewer", selected)
+            self.assertEqual(selected["molsysviewer"]["role"], "integration")
+            revisions.add(selected["molsysmt"]["commit"])
+            minors.add(context["python_minor"])
+        self.assertEqual(minors, {"3.11", "3.12", "3.13", "3.14"})
+        self.assertEqual(len(revisions), 1)
 
     def test_native_recipe_audit_does_not_claim_native_or_release_qualification(self):
         route = next(
@@ -109,7 +129,9 @@ class TestSourceRoutes(unittest.TestCase):
     def test_unreviewed_scientific_workflow_change_is_rejected(self):
         path = self.root / ".github/workflows/CI.yaml"
         path.write_text(
-            path.read_text().replace("3bcfaf4d50df6c84ebd14505790ed5221543e5de", "main")
+            path.read_text().replace(
+                "controlled_suite_dependencies_py314.txt", "unreviewed_sources.txt"
+            )
         )
         with self.assertRaisesRegex(ValueError, "reviewed workflow changed"):
             self.audit()
@@ -119,7 +141,9 @@ class TestSourceRoutes(unittest.TestCase):
         original = path.read_text()
         for changed in [
             original.replace("3825c741ee08d2cb0b6c2398337f368a6875dd96", "a" * 40),
-            original.replace('overlays = ["pyunitwizard"]', "overlays = []"),
+            original.replace(
+                'overlays = ["pyunitwizard", "molsysmt"]', "overlays = []"
+            ),
         ]:
             path.write_text(changed)
             with self.subTest(changed=changed[:30]), self.assertRaises(ValueError):
