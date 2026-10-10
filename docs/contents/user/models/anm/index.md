@@ -21,6 +21,13 @@ engines require their dependencies. Interpolation has its own engine argument
 and defaults to `vectorized`. Physical spring stiffness calibration is not
 implemented; keep `stiffness=None`.
 
+Select at least three distinct nodes with finite coordinates. Vibrational
+modes require a network with exactly six rigid zero modes; connectivity alone
+does not guarantee sufficient geometric constraints. Collinear and other
+underconstrained networks raise `DegenerateNetworkError` before caching a
+result. Revise the selection or cutoff. A noncollinear three-node triangle is
+supported. Invalid backend spectra raise `InvalidSpectrumError`.
+
 ```{eval-rst}
 .. toctree::
    :maxdepth: 2

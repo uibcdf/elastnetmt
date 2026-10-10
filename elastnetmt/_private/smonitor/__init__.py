@@ -54,6 +54,34 @@ class InternalAlgorithmError(ElastNetMTError):
     pass
 
 
+class DegenerateNetworkError(InternalAlgorithmError):
+    """The network has additional unconstrained motions."""
+
+    def __init__(self, message=None, *, code="ENM-E020", **kwargs):
+        super().__init__(message, code=code, **kwargs)
+
+
+class InvalidSpectrumError(InternalAlgorithmError):
+    """The numerical decomposition violates the ENM spectrum contract."""
+
+    def __init__(self, message=None, *, code="ENM-E030", **kwargs):
+        super().__init__(message, code=code, **kwargs)
+
+
+class UndefinedCorrelationError(ArgumentError):
+    """A constant profile cannot define Pearson correlation."""
+
+    def __init__(self, message=None, *, code="ENM-E011", **kwargs):
+        super().__init__(message, code=code, **kwargs)
+
+
+class CutoffOptimizationError(InternalAlgorithmError):
+    """No candidate has an admissible spectrum and defined correlation."""
+
+    def __init__(self, message=None, *, code="ENM-E021", **kwargs):
+        super().__init__(message, code=code, **kwargs)
+
+
 class LibraryNotFoundError(ElastNetMTError):
     """Error when a required library is missing."""
 

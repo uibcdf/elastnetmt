@@ -9,16 +9,19 @@ from depdigest import dep_digest
 
 from elastnetmt import pyunitwizard as puw
 from elastnetmt._private.arguments import invalid
+from elastnetmt._private.contacts import validate_node_coordinates
 from elastnetmt._private.engines import (
     build_hessian_parallel,
     diagonalize_gpu,
     select_engine,
 )
-from elastnetmt._private.smonitor import emit_catalog
+from elastnetmt._private.spectral import validate_spectrum
 from elastnetmt.model.elastic_network_model import ElasticNetworkModel
 
 
 class AnisotropicNetworkModel(ElasticNetworkModel):
+    _minimum_nodes = 3
+
     @arg_digest()
     def __init__(
         self,
@@ -53,44 +56,39 @@ class AnisotropicNetworkModel(ElasticNetworkModel):
             structure_indices=0,
             coordinates=True,
         )
-        coords = puw.get_value(coordinates[0], to_unit="nanometers")
+        coords = validate_node_coordinates(
+            puw.get_value(coordinates[0], to_unit="nanometers"),
+            minimum_nodes=self._minimum_nodes,
+        )
         engine_to_use = select_engine(self.engine)
-        self.engine_used = engine_to_use
         if engine_to_use == "parallel":
-            self.hessian_matrix = build_hessian_parallel(
-                coords, self.contacts, self.n_nodes
-            )
+            matrix = build_hessian_parallel(coords, self.contacts, self.n_nodes)
         else:
-            self.hessian_matrix = self._build_hessian_vectorized(coords)
+            matrix = self._build_hessian_vectorized(coords)
         if engine_to_use == "gpu":
-            self._eigenvalues, self._eigenvectors = diagonalize_gpu(self.hessian_matrix)
+            values, vectors = diagonalize_gpu(matrix)
         else:
-            self._eigenvalues, self._eigenvectors = la.eigh(self.hessian_matrix)
+            values, vectors = la.eigh(matrix)
 
-        if self.n_nodes > 2 and np.isclose(self._eigenvalues[6], 0.0, atol=1e-8):
-            emit_catalog("ENM-E020", source="elastnetmt.model.AnisotropicNetworkModel")
-        if np.any(self._eigenvalues[6:] < -1e-6):
-            emit_catalog(
-                "ENM-E030",
-                min_ev=float(np.min(self._eigenvalues)),
-                source="elastnetmt.model.AnisotropicNetworkModel",
-            )
+        raw_values = values
+        values, vectors = validate_spectrum(
+            values, vectors, expected_zero_modes=6, model="ANM"
+        )
+        raw_max_rigid_ev = float(np.max(np.abs(raw_values[:6])))
 
         smonitor.emit(
             "DEBUG",
             "elastnetmt.model.spectral_stats",
             source="elastnetmt.model.AnisotropicNetworkModel",
             extra={
-                "max_rigid_ev": float(np.max(np.abs(self._eigenvalues[:6]))),
-                "first_vibrational_ev": float(self._eigenvalues[6]),
-                "spectral_gap": float(self._eigenvalues[6] - self._eigenvalues[5]),
+                "max_rigid_ev": raw_max_rigid_ev,
+                "first_vibrational_ev": float(values[6]),
+                "spectral_gap": float(values[6] - values[5]),
             },
         )
 
-        self._frequencies = np.sqrt(np.absolute(self._eigenvalues[6:]))
         n_modes = 3 * self.n_nodes
-        self._modes = self._eigenvectors.T.reshape(n_modes, self.n_nodes, 3)
-        self._modes = self._modes[6:]
+        modes = vectors.T.reshape(n_modes, self.n_nodes, 3)[6:]
         t_end = time.time()
         smonitor.emit(
             "INFO",
@@ -102,6 +100,15 @@ class AnisotropicNetworkModel(ElasticNetworkModel):
                 "time": t_end - t_start,
             },
         )
+        self.hessian_matrix = matrix
+        self._eigenvalues, self._eigenvectors = values, vectors
+        self._frequencies = np.sqrt(values[6:])
+        self._modes = modes
+        self.engine_used = engine_to_use
+
+    def _reset_spectral_results(self):
+        super()._reset_spectral_results()
+        self.hessian_matrix = None
 
     def _build_hessian_vectorized(self, coords):
         n = self.n_nodes

@@ -27,14 +27,24 @@ CODES = {
         "user_hint": "The system might be near-singular or poorly constrained. Check for missing residues.",
     },
     "ENM-E020": {
-        "title": "Singular Matrix Error",
-        "user_message": "The Kirchhoff/Hessian matrix is singular and cannot be inverted.",
-        "user_hint": "This usually happens when the system is not fully connected. Check your cutoff and selection.",
+        "title": "Degenerate Network",
+        "user_message": "The {model} network has {n_zero_modes} zero modes; expected {expected_zero_modes} rigid modes.",
+        "user_hint": "Check connectivity and geometric constraints; increase the cutoff or revise the node selection.",
+    },
+    "ENM-E011": {
+        "title": "Undefined Correlation",
+        "user_message": "Pearson correlation is undefined for the constant '{argument}' profile.",
+        "user_hint": "Use varying experimental B factors and a network with a varying fluctuation profile.",
+    },
+    "ENM-E021": {
+        "title": "No Admissible Cutoff",
+        "user_message": "No cutoff in the requested grid gives a connected GNM network with a defined B-factor correlation.",
+        "user_hint": "Revise the cutoff range or selection. The previous model state has been preserved.",
     },
     "ENM-E030": {
-        "title": "Negative Eigenvalues",
-        "user_message": "Detected negative eigenvalues in ANM (min: {min_ev:.2e}).",
-        "user_hint": "The input structure is not at a local minimum. Minimize the structure before ENM analysis.",
+        "title": "Invalid Spectrum",
+        "user_message": "The {model} eigendecomposition is invalid: {reason}.",
+        "user_hint": "Check the coordinates, matrix construction and numerical backend.",
     },
 }
 

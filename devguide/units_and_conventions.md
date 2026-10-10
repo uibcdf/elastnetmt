@@ -16,6 +16,34 @@ policy:
 
 The complete bootstrap policy is maintained in `elastnetmt/_pyunitwizard.py`.
 
+## Scientific input and spectrum contracts
+
+Selected coordinates must be finite and exactly distinct. GNM requires at
+least two nodes; ANM requires at least three. The contact-map base class can
+represent a single node. Validation precedes contact calculation so an empty
+selection or coincident coordinates do not leak provider errors or divisions
+by zero. Near coincidences retain their actual geometry; no hidden physical
+distance cutoff is imposed.
+
+The normalized GNM spectrum has one rigid zero mode. The fully constrained
+ANM spectrum has six. This matches the nonzero-mode pseudoinverse formulation
+in [iGNM 2.0](https://doi.org/10.1093/nar/gkv1236) and the ANM formulation of
+[Atilgan et al.](https://doi.org/10.1016/S0006-3495(01)76033-X).
+ElastNetMT rejects extra unconstrained modes instead of treating them as
+vibrations. Positive semidefiniteness, finite eigenpairs and shape/order are
+checked before publishing caches. Numerical zero tolerance is
+`32 * float64_epsilon * dimension * spectral_radius`; values inside it are
+normalized to zero. Resolved soft modes remain positive. Significant negative
+eigenvalues indicate an invalid decomposition; review the matrix construction
+and numerical backend.
+
+`DegenerateNetworkError` (`ENM-E020`) and `InvalidSpectrumError` (`ENM-E030`)
+subclass `InternalAlgorithmError`. Only successful calculations publish
+spectra, matrices and `engine_used`. Successful contact changes invalidate
+all dependent matrices and calibration. Assignment-only fit, contact update
+and cutoff-search transactions restore prior attribute/array references on
+failure or interruption without copying dense matrices per candidate.
+
 ## Physical Parameters
 
 ### Cutoff Distance
@@ -40,6 +68,20 @@ prediction. After fitting, `get_b_factors()` returns magnitudes in square
 angstroms, applying the scale once. Repeating the fit is stable; recalculating
 contacts invalidates the fit. Plotting experimental values fits first when
 necessary, and cutoff search refits the selected network before returning.
+
+Fitting/Pearson comparison requires one finite, nonnegative experimental value
+per node in a single structure, and varying experimental and theoretical
+profiles. Variation at or below `64 * float64_epsilon * profile_maximum` is
+numerically constant and raises `UndefinedCorrelationError` (`ENM-E011`).
+Missing/invalid experimental data raise `ArgumentError`; raw predictions
+remain available without experimental observations. Scaled profiles avoid
+overflow in correlation. Unrepresentable spectral inverses, calibration scales
+and calibrated predictions are rejected before publishing their results.
+
+Cutoff search fixes the current node indices and experimental snapshot for
+the whole grid. It skips only degenerate spectra and constant theoretical
+profiles. All other data/backend failures propagate. If no candidate is
+admissible, `CutoffOptimizationError` (`ENM-E021`) retains the prior state.
 
 ### Trajectory amplitude
 
