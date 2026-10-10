@@ -196,3 +196,12 @@ The reviewed workflow digest and complete pure-Python payload inventory were
 updated. All 17 distribution/source/CI-route assertions now pass locally.
 This corrects local declaration drift and does not qualify a public artifact
 or the separate development-only Rust extension.
+
+Hosted evidence for the preceding documentation head 439d476 is now terminal:
+CI run 38034571336 fails dependency-route preflight. The completed Reporting
+governance job 114162236633 log explicitly names the changed Sphinx workflow
+digest; the receptor retains all failed jobs. This is not a scientific-test
+pass or a green queue. Correction 082b3f0 re-inspects that owner route and
+synchronizes the declared digest; all 17 corresponding local assertions pass.
+The next unskipped pushed head must execute/inspect its applicable hosted
+checks. Do not rerun the unchanged 439d476 bytes as a proposed repair.

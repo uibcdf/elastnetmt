@@ -54,3 +54,10 @@ def test_unknown_engine_and_incomparable_threads_are_rejected():
     requested.update(engine="rust", threads=2)
     with pytest.raises(ValueError, match="serial"):
         run_case(requested)
+
+
+def test_native_loader_cannot_accept_a_python_substitute(tmp_path):
+    substitute = tmp_path / "_enm_prototype.py"
+    substitute.write_text("raise AssertionError('Python substitute executed')\n")
+    with pytest.raises(ImportError):
+        load_prototype(substitute)

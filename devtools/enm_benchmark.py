@@ -19,6 +19,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from importlib.machinery import ExtensionFileLoader
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,7 +32,8 @@ def load_prototype(path):
     another engine. The private module initialization name is _enm_prototype.
     """
     path = Path(path).resolve(strict=True)
-    spec = importlib.util.spec_from_file_location("_enm_prototype", path)
+    loader = ExtensionFileLoader("_enm_prototype", str(path))
+    spec = importlib.util.spec_from_file_location("_enm_prototype", path, loader=loader)
     if spec is None or spec.loader is None:
         raise ImportError(f"Cannot load the prototype extension: {path}")
     module = importlib.util.module_from_spec(spec)

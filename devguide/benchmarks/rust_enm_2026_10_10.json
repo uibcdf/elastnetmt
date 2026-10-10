@@ -1,0 +1,5538 @@
+{
+  "schema": "elastnetmt.enm_benchmark@1",
+  "source_head": "082b3f0ea518a63924ccb731b5259ba195b2c501",
+  "source_dirty": false,
+  "python": "3.14.7 | packaged by conda-forge | (main, Sep  2 2026, 21:08:32) [GCC 15.3.0]",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "extension_sha256": "cbae1e539c37f7ac131bde319a4fad2b6aaab53b7f5bfdb589ea83521481ff11",
+  "cases": [
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4723560039928998,
+      "contacts_s": 3.9957031680023647,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 1.2519958545453846e-06,
+      "first_construction_s": 7.91040001786314e-05,
+      "warm_construction_s": [
+        4.3821004510391504e-05,
+        3.6372999602463096e-05,
+        1.9828999938908964e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523759616,
+      "peak_rss_after_construction_bytes": 523759616,
+      "eigh_s": 0.00962101300683571,
+      "peak_rss_after_eigh_and_parity_bytes": 529506304,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4420479360051104,
+      "contacts_s": 3.920109394006431,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 1.5749974409118295e-06,
+      "first_construction_s": 6.215900066308677e-05,
+      "warm_construction_s": [
+        2.7864000003319234e-05,
+        2.0918996597174555e-05,
+        3.5152996133547276e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523612160,
+      "peak_rss_after_construction_bytes": 523612160,
+      "eigh_s": 0.010027144002378918,
+      "peak_rss_after_eigh_and_parity_bytes": 529358848,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4363646609999705,
+      "contacts_s": 4.002348419002374,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 1.1739975889213383e-06,
+      "first_construction_s": 6.206300167832524e-05,
+      "warm_construction_s": [
+        2.808700082823634e-05,
+        2.1345003915484995e-05,
+        2.024899731623009e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523571200,
+      "peak_rss_after_construction_bytes": 523571200,
+      "eigh_s": 0.00880377500288887,
+      "peak_rss_after_eigh_and_parity_bytes": 529289216,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4284143019976909,
+      "contacts_s": 4.0297972569969716,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 0.19333237299724715,
+      "first_construction_s": 1.4487870590019156,
+      "warm_construction_s": [
+        3.215300239389762e-05,
+        2.065800072159618e-05,
+        1.8208003893960267e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523440128,
+      "peak_rss_after_construction_bytes": 647122944,
+      "eigh_s": 0.009582500999385957,
+      "peak_rss_after_eigh_and_parity_bytes": 652050432,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.43998949600063497,
+      "contacts_s": 3.9476503870027955,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 0.19138473500061082,
+      "first_construction_s": 1.4476328480013763,
+      "warm_construction_s": [
+        3.1537994800601155e-05,
+        2.0047002180945128e-05,
+        1.7990001651924103e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523730944,
+      "peak_rss_after_construction_bytes": 647249920,
+      "eigh_s": 0.007944709999719635,
+      "peak_rss_after_eigh_and_parity_bytes": 652177408,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4318661860015709,
+      "contacts_s": 3.9353508799977135,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 0.18786986699706176,
+      "first_construction_s": 1.4630368960060878,
+      "warm_construction_s": [
+        3.692300379043445e-05,
+        2.543699520174414e-05,
+        2.1810999896842986e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523558912,
+      "peak_rss_after_construction_bytes": 647254016,
+      "eigh_s": 0.009401604998856783,
+      "peak_rss_after_eigh_and_parity_bytes": 652181504,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4402324439943186,
+      "contacts_s": 4.021197557995038,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 0.0005061519987066276,
+      "first_construction_s": 0.00013200499961385503,
+      "warm_construction_s": [
+        3.3003998396452516e-05,
+        1.883999357232824e-05,
+        1.6680998669471592e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523579392,
+      "peak_rss_after_construction_bytes": 523956224,
+      "eigh_s": 0.010558916997979395,
+      "peak_rss_after_eigh_and_parity_bytes": 529702912,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.433311490000051,
+      "contacts_s": 3.9882882309975685,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 0.0005202209940762259,
+      "first_construction_s": 0.00010065199603559449,
+      "warm_construction_s": [
+        2.1871004719287157e-05,
+        1.678500120760873e-05,
+        1.5412995708175004e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523714560,
+      "peak_rss_after_construction_bytes": 524087296,
+      "eigh_s": 0.009741226000187453,
+      "peak_rss_after_eigh_and_parity_bytes": 529997824,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.44944633100385545,
+      "contacts_s": 4.059354986995459,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 0.0005488930037245154,
+      "first_construction_s": 0.00010356699931435287,
+      "warm_construction_s": [
+        2.3410000721924007e-05,
+        1.7815000319387764e-05,
+        1.627300662221387e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523706368,
+      "peak_rss_after_construction_bytes": 524255232,
+      "eigh_s": 0.010792287001095247,
+      "peak_rss_after_eigh_and_parity_bytes": 530001920,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.43847325200476917,
+      "contacts_s": 3.9789221059982083,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 1.3570024748332798e-06,
+      "first_construction_s": 0.0017272260010940954,
+      "warm_construction_s": [
+        0.000989552994724363,
+        0.0009544179993099533,
+        0.0009653570014052093
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523612160,
+      "peak_rss_after_construction_bytes": 524759040,
+      "eigh_s": 0.015010522998636588,
+      "peak_rss_after_eigh_and_parity_bytes": 531914752,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4433667080011219,
+      "contacts_s": 4.006115649994172,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 1.710999640636146e-06,
+      "first_construction_s": 0.001623033000214491,
+      "warm_construction_s": [
+        0.0009792249984457158,
+        0.0009659720017225482,
+        0.0009618190015316941
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523493376,
+      "peak_rss_after_construction_bytes": 524640256,
+      "eigh_s": 0.014655854000011459,
+      "peak_rss_after_eigh_and_parity_bytes": 531632128,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.44141222599864705,
+      "contacts_s": 4.030363711004611,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 1.2789969332516193e-06,
+      "first_construction_s": 0.0017066840009647422,
+      "warm_construction_s": [
+        0.0010238899994874373,
+        0.0009879080025712028,
+        0.0009761129986145534
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523730944,
+      "peak_rss_after_construction_bytes": 524877824,
+      "eigh_s": 0.01621514699945692,
+      "peak_rss_after_eigh_and_parity_bytes": 532033536,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4541768500057515,
+      "contacts_s": 4.0048931400015135,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 0.1920658859962714,
+      "first_construction_s": 1.8795665420038858,
+      "warm_construction_s": [
+        5.00919995829463e-05,
+        4.07799961976707e-05,
+        3.8557998777832836e-05
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523390976,
+      "peak_rss_after_construction_bytes": 650846208,
+      "eigh_s": 0.01648725000268314,
+      "peak_rss_after_eigh_and_parity_bytes": 657313792,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4425739549988066,
+      "contacts_s": 3.993018592002045,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 0.191207021001901,
+      "first_construction_s": 1.9064915620037937,
+      "warm_construction_s": [
+        4.945500404573977e-05,
+        6.747100269421935e-05,
+        4.071999865118414e-05
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523665408,
+      "peak_rss_after_construction_bytes": 651526144,
+      "eigh_s": 0.01664180599618703,
+      "peak_rss_after_eigh_and_parity_bytes": 658485248,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4884504959991318,
+      "contacts_s": 4.087219061999349,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 0.19347193000430707,
+      "first_construction_s": 1.915176752001571,
+      "warm_construction_s": [
+        4.878899926552549e-05,
+        4.003799404017627e-05,
+        3.822699363809079e-05
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523149312,
+      "peak_rss_after_construction_bytes": 650682368,
+      "eigh_s": 0.014734533004229888,
+      "peak_rss_after_eigh_and_parity_bytes": 657149952,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45870538400049554,
+      "contacts_s": 4.207158540993987,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 0.0005540589991142042,
+      "first_construction_s": 0.0002642190011101775,
+      "warm_construction_s": [
+        8.124200394377112e-05,
+        4.828399687539786e-05,
+        4.457799514057115e-05
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523718656,
+      "peak_rss_after_construction_bytes": 524431360,
+      "eigh_s": 0.015217588996165432,
+      "peak_rss_after_eigh_and_parity_bytes": 532930560,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.463934553998115,
+      "contacts_s": 4.0730564080004115,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 0.0005711090052500367,
+      "first_construction_s": 0.00028814099641749635,
+      "warm_construction_s": [
+        8.26479954412207e-05,
+        5.657599831465632e-05,
+        5.5038995924405754e-05
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523427840,
+      "peak_rss_after_construction_bytes": 524115968,
+      "eigh_s": 0.012436347002221737,
+      "peak_rss_after_eigh_and_parity_bytes": 532258816,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4897643069998594,
+      "contacts_s": 4.155745437994483,
+      "contact_density": 0.12648809523809523,
+      "engine_import_s": 0.0005855760027770884,
+      "first_construction_s": 0.00027141700411448255,
+      "warm_construction_s": [
+        5.209600203670561e-05,
+        4.6385001041926444e-05,
+        4.5191001845523715e-05
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523632640,
+      "peak_rss_after_construction_bytes": 524357632,
+      "eigh_s": 0.014703324995934963,
+      "peak_rss_after_eigh_and_parity_bytes": 532529152,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45206874400173547,
+      "contacts_s": 4.174437335997936,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 1.3879980542697012e-06,
+      "first_construction_s": 8.489700121572241e-05,
+      "warm_construction_s": [
+        4.160300159128383e-05,
+        2.0549996406771243e-05,
+        3.547399683156982e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523522048,
+      "peak_rss_after_construction_bytes": 523522048,
+      "eigh_s": 0.01125029499962693,
+      "peak_rss_after_eigh_and_parity_bytes": 529268736,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4473931440006709,
+      "contacts_s": 4.130052341999544,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 1.253996742889285e-06,
+      "first_construction_s": 8.930299372877926e-05,
+      "warm_construction_s": [
+        4.113299655728042e-05,
+        1.933900057338178e-05,
+        1.8129998352378607e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523382784,
+      "peak_rss_after_construction_bytes": 523382784,
+      "eigh_s": 0.009548052003083285,
+      "peak_rss_after_eigh_and_parity_bytes": 529293312,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4869887370005017,
+      "contacts_s": 4.099373705001199,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 1.2520031305029988e-06,
+      "first_construction_s": 7.384699711110443e-05,
+      "warm_construction_s": [
+        2.865800342988223e-05,
+        2.2371001250576228e-05,
+        2.1100000594742596e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523677696,
+      "peak_rss_after_construction_bytes": 523841536,
+      "eigh_s": 0.00958528000046499,
+      "peak_rss_after_eigh_and_parity_bytes": 529588224,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45849312800419284,
+      "contacts_s": 4.102118493996386,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 0.2008433619994321,
+      "first_construction_s": 1.4987187719962094,
+      "warm_construction_s": [
+        4.24310055677779e-05,
+        4.444899968802929e-05,
+        2.6680994778871536e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523575296,
+      "peak_rss_after_construction_bytes": 647036928,
+      "eigh_s": 0.011471561003418174,
+      "peak_rss_after_eigh_and_parity_bytes": 651964416,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.46790837599837687,
+      "contacts_s": 4.199908110000251,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 0.19908908599609276,
+      "first_construction_s": 1.4810886240011314,
+      "warm_construction_s": [
+        3.956599539378658e-05,
+        2.719699841691181e-05,
+        2.438900264678523e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523567104,
+      "peak_rss_after_construction_bytes": 647274496,
+      "eigh_s": 0.011972222004260402,
+      "peak_rss_after_eigh_and_parity_bytes": 652201984,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4562982719944557,
+      "contacts_s": 4.1315424970016466,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 0.19558041799609782,
+      "first_construction_s": 1.4864737519965274,
+      "warm_construction_s": [
+        3.74549999833107e-05,
+        2.6326000806875527e-05,
+        2.378700446570292e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523268096,
+      "peak_rss_after_construction_bytes": 646840320,
+      "eigh_s": 0.009409354999661446,
+      "peak_rss_after_eigh_and_parity_bytes": 651902976,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4644424570069532,
+      "contacts_s": 4.112603114001104,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 0.0005538739933399484,
+      "first_construction_s": 0.00011257299775024876,
+      "warm_construction_s": [
+        3.237000055378303e-05,
+        2.587999915704131e-05,
+        2.3836997570469975e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523591680,
+      "peak_rss_after_construction_bytes": 523972608,
+      "eigh_s": 0.010294845000316855,
+      "peak_rss_after_eigh_and_parity_bytes": 529883136,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4558118509958149,
+      "contacts_s": 4.076509769998665,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 0.0004910479983664118,
+      "first_construction_s": 0.00010310499783372506,
+      "warm_construction_s": [
+        3.108300006715581e-05,
+        2.5262001145165414e-05,
+        2.374099858570844e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523304960,
+      "peak_rss_after_construction_bytes": 523685888,
+      "eigh_s": 0.008813517000817228,
+      "peak_rss_after_eigh_and_parity_bytes": 529764352,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.47449062499799766,
+      "contacts_s": 4.1206454030034365,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 0.0005092749997857027,
+      "first_construction_s": 0.0001226859967573546,
+      "warm_construction_s": [
+        3.223700332455337e-05,
+        2.6793000870384276e-05,
+        2.408999716863036e-05
+      ],
+      "matrix_shape": [
+        64,
+        64
+      ],
+      "matrix_bytes": 32768,
+      "peak_rss_before_engine_bytes": 523751424,
+      "peak_rss_after_construction_bytes": 524128256,
+      "eigh_s": 0.011667394006508403,
+      "peak_rss_after_eigh_and_parity_bytes": 529874944,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.49570457399386214,
+      "contacts_s": 4.039612207001483,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 1.167005393654108e-06,
+      "first_construction_s": 0.002321234002010897,
+      "warm_construction_s": [
+        0.0013438570022117347,
+        0.0012314030027482659,
+        0.001177377998828888
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523489280,
+      "peak_rss_after_construction_bytes": 524963840,
+      "eigh_s": 0.01456661699921824,
+      "peak_rss_after_eigh_and_parity_bytes": 531795968,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45013785399351036,
+      "contacts_s": 4.1551481839996995,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 1.1259980965405703e-06,
+      "first_construction_s": 0.0021752489992650226,
+      "warm_construction_s": [
+        0.0012123679989599623,
+        0.0011824149987660348,
+        0.0012097419967176393
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523722752,
+      "peak_rss_after_construction_bytes": 525197312,
+      "eigh_s": 0.017748564001522027,
+      "peak_rss_after_eigh_and_parity_bytes": 531861504,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.478677653001796,
+      "contacts_s": 4.1441167059965665,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 1.0139992809854448e-06,
+      "first_construction_s": 0.002197068002715241,
+      "warm_construction_s": [
+        0.0011551540010259487,
+        0.001158891995146405,
+        0.001249663000635337
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523452416,
+      "peak_rss_after_construction_bytes": 524926976,
+      "eigh_s": 0.015365820996521506,
+      "peak_rss_after_eigh_and_parity_bytes": 531591168,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45637516400165623,
+      "contacts_s": 4.074327048998384,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 0.1899767430004431,
+      "first_construction_s": 1.9138222719993792,
+      "warm_construction_s": [
+        9.913200483424589e-05,
+        7.404200005112216e-05,
+        8.761500066611916e-05
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523530240,
+      "peak_rss_after_construction_bytes": 651321344,
+      "eigh_s": 0.014344988994707819,
+      "peak_rss_after_eigh_and_parity_bytes": 658149376,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45783893600309966,
+      "contacts_s": 4.149518326004909,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 0.19392002999666147,
+      "first_construction_s": 1.9194593719948898,
+      "warm_construction_s": [
+        8.393899770453572e-05,
+        7.52929990994744e-05,
+        7.315899711102247e-05
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523350016,
+      "peak_rss_after_construction_bytes": 651059200,
+      "eigh_s": 0.01560782799788285,
+      "peak_rss_after_eigh_and_parity_bytes": 657887232,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.44442555999557953,
+      "contacts_s": 4.059433015994728,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 0.18824414799746592,
+      "first_construction_s": 1.8842093480052426,
+      "warm_construction_s": [
+        8.491699554724619e-05,
+        7.683599687879905e-05,
+        7.385999924736097e-05
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523776000,
+      "peak_rss_after_construction_bytes": 651554816,
+      "eigh_s": 0.014980352003476582,
+      "peak_rss_after_eigh_and_parity_bytes": 658546688,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.47382419199857395,
+      "contacts_s": 4.033425906003686,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 0.000531079997017514,
+      "first_construction_s": 0.0003851400033454411,
+      "warm_construction_s": [
+        0.00011202599853277206,
+        0.00010222299897577614,
+        8.524399891030043e-05
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523702272,
+      "peak_rss_after_construction_bytes": 524414976,
+      "eigh_s": 0.01622523900005035,
+      "peak_rss_after_eigh_and_parity_bytes": 532914176,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.43876165600522654,
+      "contacts_s": 4.05975792400568,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 0.0005742570065194741,
+      "first_construction_s": 0.0003394390005269088,
+      "warm_construction_s": [
+        0.00012344400602160022,
+        9.835499804466963e-05,
+        9.719200170366094e-05
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523563008,
+      "peak_rss_after_construction_bytes": 524275712,
+      "eigh_s": 0.016213408001931384,
+      "peak_rss_after_eigh_and_parity_bytes": 532447232,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 64,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4565245159974438,
+      "contacts_s": 4.00464669700159,
+      "contact_density": 0.6076388888888888,
+      "engine_import_s": 0.000491491002321709,
+      "first_construction_s": 0.00030397900263778865,
+      "warm_construction_s": [
+        9.373100328957662e-05,
+        8.756299939705059e-05,
+        8.588100172346458e-05
+      ],
+      "matrix_shape": [
+        192,
+        192
+      ],
+      "matrix_bytes": 294912,
+      "peak_rss_before_engine_bytes": 523194368,
+      "peak_rss_after_construction_bytes": 523902976,
+      "eigh_s": 0.01585934300237568,
+      "peak_rss_after_eigh_and_parity_bytes": 532074496,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45073438600229565,
+      "contacts_s": 4.057543884002371,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 1.3739991118200123e-06,
+      "first_construction_s": 0.000723201002983842,
+      "warm_construction_s": [
+        0.0001866289967438206,
+        0.00015498900029342622,
+        0.00015163700300035998
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524541952,
+      "peak_rss_after_construction_bytes": 525426688,
+      "eigh_s": 0.02106690100481501,
+      "peak_rss_after_eigh_and_parity_bytes": 534487040,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4407463229945279,
+      "contacts_s": 4.0913873329991475,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 1.4140023267827928e-06,
+      "first_construction_s": 0.0006608280018554069,
+      "warm_construction_s": [
+        0.00016390000382671133,
+        0.0001830019973567687,
+        0.00015889800124568865
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524476416,
+      "peak_rss_after_construction_bytes": 525524992,
+      "eigh_s": 0.02408839100098703,
+      "peak_rss_after_eigh_and_parity_bytes": 534417408,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4447104999999283,
+      "contacts_s": 3.9922489689997747,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 1.4120014384388924e-06,
+      "first_construction_s": 0.0006540350004797801,
+      "warm_construction_s": [
+        0.0001641529961489141,
+        0.00015675400209147483,
+        0.00018513199756853282
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524451840,
+      "peak_rss_after_construction_bytes": 525500416,
+      "eigh_s": 0.020275440998375416,
+      "peak_rss_after_eigh_and_parity_bytes": 534589440,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4364975259959465,
+      "contacts_s": 4.029712898998696,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 0.19269607900059782,
+      "first_construction_s": 1.4474619969987543,
+      "warm_construction_s": [
+        0.00023927899746922776,
+        0.00018649599951459095,
+        0.00022615999478148296
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524275712,
+      "peak_rss_after_construction_bytes": 648728576,
+      "eigh_s": 0.020821014993998688,
+      "peak_rss_after_eigh_and_parity_bytes": 656703488,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4807656609991682,
+      "contacts_s": 4.05100340500212,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 0.19296807900536805,
+      "first_construction_s": 1.4578797750000376,
+      "warm_construction_s": [
+        0.00020358699839562178,
+        0.000227060001634527,
+        0.00018258800264447927
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524783616,
+      "peak_rss_after_construction_bytes": 649154560,
+      "eigh_s": 0.022523965999425855,
+      "peak_rss_after_eigh_and_parity_bytes": 657141760,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4400071689960896,
+      "contacts_s": 4.0381142440019175,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 0.19512480100092944,
+      "first_construction_s": 1.5345316220045788,
+      "warm_construction_s": [
+        0.0002313939985469915,
+        0.000224247996811755,
+        0.00021197299793129787
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524390400,
+      "peak_rss_after_construction_bytes": 648884224,
+      "eigh_s": 0.020140494998486247,
+      "peak_rss_after_eigh_and_parity_bytes": 656859136,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.5087278459977824,
+      "contacts_s": 4.183303002995672,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 0.0004842929993174039,
+      "first_construction_s": 0.0005578730051638559,
+      "warm_construction_s": [
+        0.00021948699577478692,
+        0.00019582400273066014,
+        0.0001953879982465878
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524439552,
+      "peak_rss_after_construction_bytes": 525475840,
+      "eigh_s": 0.019238334003603086,
+      "peak_rss_after_eigh_and_parity_bytes": 535097344,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.5137516610047896,
+      "contacts_s": 4.2142817310013925,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 0.0006062820029910654,
+      "first_construction_s": 0.0006419769997592084,
+      "warm_construction_s": [
+        0.00020111999765504152,
+        0.00019631299801403657,
+        0.0002238810047856532
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524582912,
+      "peak_rss_after_construction_bytes": 525459456,
+      "eigh_s": 0.021085908003442455,
+      "peak_rss_after_eigh_and_parity_bytes": 535105536,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4524174869948183,
+      "contacts_s": 4.0313333200028865,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 0.0004914520031888969,
+      "first_construction_s": 0.0005687349985237233,
+      "warm_construction_s": [
+        0.00023129799956222996,
+        0.0002341819999855943,
+        0.00021738999930676073
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524754944,
+      "peak_rss_after_construction_bytes": 525631488,
+      "eigh_s": 0.01919152000482427,
+      "peak_rss_after_eigh_and_parity_bytes": 535277568,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.47078628899907926,
+      "contacts_s": 4.140753081999719,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 1.3650060282088816e-06,
+      "first_construction_s": 0.01741529600258218,
+      "warm_construction_s": [
+        0.01674324500345392,
+        0.014785235005547293,
+        0.015289809001842514
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524808192,
+      "peak_rss_after_construction_bytes": 542531584,
+      "eigh_s": 0.1565990720046102,
+      "peak_rss_after_eigh_and_parity_bytes": 557965312,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4390365399958682,
+      "contacts_s": 4.095567977994506,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 1.6269987099803984e-06,
+      "first_construction_s": 0.017483594005170744,
+      "warm_construction_s": [
+        0.018232581998745445,
+        0.016185460997803602,
+        0.015623432998836506
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524845056,
+      "peak_rss_after_construction_bytes": 542429184,
+      "eigh_s": 0.1529324689981877,
+      "peak_rss_after_eigh_and_parity_bytes": 560787456,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4982518920005532,
+      "contacts_s": 4.067805504004355,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 1.4450051821768284e-06,
+      "first_construction_s": 0.017691517998173367,
+      "warm_construction_s": [
+        0.016991947995848022,
+        0.014844644996628631,
+        0.015098496005521156
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524656640,
+      "peak_rss_after_construction_bytes": 542584832,
+      "eigh_s": 0.15714029199443758,
+      "peak_rss_after_eigh_and_parity_bytes": 558170112,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.47415566600102466,
+      "contacts_s": 4.107448119000765,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 0.19430400100100087,
+      "first_construction_s": 1.9682431199980783,
+      "warm_construction_s": [
+        0.0028885010033263825,
+        0.0004309209980419837,
+        0.00043324600119376555
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524652544,
+      "peak_rss_after_construction_bytes": 656732160,
+      "eigh_s": 0.17052482400322333,
+      "peak_rss_after_eigh_and_parity_bytes": 683700224,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45366177200048696,
+      "contacts_s": 4.102874206000706,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 0.20416048699553357,
+      "first_construction_s": 1.9825970279998728,
+      "warm_construction_s": [
+        0.0026892079986282624,
+        0.0004334780023782514,
+        0.0004641350024030544
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524701696,
+      "peak_rss_after_construction_bytes": 656863232,
+      "eigh_s": 0.17048693599645048,
+      "peak_rss_after_eigh_and_parity_bytes": 683687936,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4644084550018306,
+      "contacts_s": 4.109218181998585,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 0.1960067589971004,
+      "first_construction_s": 1.887752657996316,
+      "warm_construction_s": [
+        0.0026965279976138845,
+        0.0004890399941359647,
+        0.0003978480017394759
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524804096,
+      "peak_rss_after_construction_bytes": 657108992,
+      "eigh_s": 0.1469057009962853,
+      "peak_rss_after_eigh_and_parity_bytes": 683741184,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4726145019958494,
+      "contacts_s": 4.102551624004263,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 0.0005228090012678877,
+      "first_construction_s": 0.002927957997599151,
+      "warm_construction_s": [
+        0.0025478179959463887,
+        0.000495305001095403,
+        0.0004742780001834035
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524668928,
+      "peak_rss_after_construction_bytes": 529813504,
+      "eigh_s": 0.1554824729973916,
+      "peak_rss_after_eigh_and_parity_bytes": 561463296,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.46159879100014223,
+      "contacts_s": 4.01262291999592,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 0.0004984769984730519,
+      "first_construction_s": 0.002956281001388561,
+      "warm_construction_s": [
+        0.0025419770026928745,
+        0.0005014190028305165,
+        0.0006894909965922125
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524636160,
+      "peak_rss_after_construction_bytes": 529747968,
+      "eigh_s": 0.15008123900042847,
+      "peak_rss_after_eigh_and_parity_bytes": 561393664,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4409260750035173,
+      "contacts_s": 4.052150161005557,
+      "contact_density": 0.04221813725490196,
+      "engine_import_s": 0.0005489109971676953,
+      "first_construction_s": 0.003222248997190036,
+      "warm_construction_s": [
+        0.002820854999299627,
+        0.0005252620030660182,
+        0.0005558280026889406
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524435456,
+      "peak_rss_after_construction_bytes": 529580032,
+      "eigh_s": 0.1705620220018318,
+      "peak_rss_after_eigh_and_parity_bytes": 558333952,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.5256220299997949,
+      "contacts_s": 4.2464869230025215,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 1.1520023690536618e-06,
+      "first_construction_s": 0.0006627260008826852,
+      "warm_construction_s": [
+        0.0001524559993413277,
+        0.00018206700042355806,
+        0.00014839399955235422
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524734464,
+      "peak_rss_after_construction_bytes": 525619200,
+      "eigh_s": 0.021970066001813393,
+      "peak_rss_after_eigh_and_parity_bytes": 534511616,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45841863399982685,
+      "contacts_s": 4.086850141000468,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 1.2969976523891091e-06,
+      "first_construction_s": 0.0006636799953412265,
+      "warm_construction_s": [
+        0.00015500999870710075,
+        0.00014585199824068695,
+        0.0001450100025977008
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524779520,
+      "peak_rss_after_construction_bytes": 525664256,
+      "eigh_s": 0.02006322499801172,
+      "peak_rss_after_eigh_and_parity_bytes": 534753280,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.44707102699612733,
+      "contacts_s": 3.981226391995733,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 1.2219970813021064e-06,
+      "first_construction_s": 0.0006835719977971166,
+      "warm_construction_s": [
+        0.0001681120047578588,
+        0.0001653299987083301,
+        0.00016506799875060096
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524845056,
+      "peak_rss_after_construction_bytes": 525729792,
+      "eigh_s": 0.01886717599700205,
+      "peak_rss_after_eigh_and_parity_bytes": 534802432,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.44140603299456416,
+      "contacts_s": 3.9930684060018393,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 0.19188453399692662,
+      "first_construction_s": 1.4686044739937643,
+      "warm_construction_s": [
+        0.0003063440017285757,
+        0.0002842289977706969,
+        0.00030088100174907595
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524607488,
+      "peak_rss_after_construction_bytes": 648994816,
+      "eigh_s": 0.017275584999879356,
+      "peak_rss_after_eigh_and_parity_bytes": 656969728,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.5034019669983536,
+      "contacts_s": 4.0783989720002864,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 0.2012486439998611,
+      "first_construction_s": 1.4718472660024418,
+      "warm_construction_s": [
+        0.0003816440002992749,
+        0.00039223500061780214,
+        0.000292534998152405
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524464128,
+      "peak_rss_after_construction_bytes": 648941568,
+      "eigh_s": 0.019092779999482445,
+      "peak_rss_after_eigh_and_parity_bytes": 656916480,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4453512670006603,
+      "contacts_s": 4.073945698000898,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 0.1964707160004764,
+      "first_construction_s": 1.460812593002629,
+      "warm_construction_s": [
+        0.00033319400245090947,
+        0.00034558399784145877,
+        0.0004170829997747205
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524681216,
+      "peak_rss_after_construction_bytes": 649363456,
+      "eigh_s": 0.021032602002378553,
+      "peak_rss_after_eigh_and_parity_bytes": 657338368,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45396923800581135,
+      "contacts_s": 4.030141556999297,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 0.0006068930015317164,
+      "first_construction_s": 0.0007281319994945079,
+      "warm_construction_s": [
+        0.000358575998689048,
+        0.0004058479971718043,
+        0.0004055230019730516
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524206080,
+      "peak_rss_after_construction_bytes": 525246464,
+      "eigh_s": 0.019138968993502203,
+      "peak_rss_after_eigh_and_parity_bytes": 534892544,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4787268869986292,
+      "contacts_s": 4.056475552999473,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 0.0005116510001244023,
+      "first_construction_s": 0.0007502660009777173,
+      "warm_construction_s": [
+        0.0003439069987507537,
+        0.0003162220018566586,
+        0.0003232079980080016
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524640256,
+      "peak_rss_after_construction_bytes": 525512704,
+      "eigh_s": 0.01987692999682622,
+      "peak_rss_after_eigh_and_parity_bytes": 535134208,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.44190531900676433,
+      "contacts_s": 4.055227721000847,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 0.0005418559958343394,
+      "first_construction_s": 0.0007900570053607225,
+      "warm_construction_s": [
+        0.00033710199932102114,
+        0.00039277000178117305,
+        0.00035253300302429125
+      ],
+      "matrix_shape": [
+        256,
+        256
+      ],
+      "matrix_bytes": 524288,
+      "peak_rss_before_engine_bytes": 524423168,
+      "peak_rss_after_construction_bytes": 525291520,
+      "eigh_s": 0.02051545400172472,
+      "peak_rss_after_eigh_and_parity_bytes": 534937600,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.48453743499703705,
+      "contacts_s": 4.199967430999095,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 1.1209995136596262e-06,
+      "first_construction_s": 0.02003323299868498,
+      "warm_construction_s": [
+        0.019321456005854998,
+        0.01702774099976523,
+        0.017571266995219048
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524566528,
+      "peak_rss_after_construction_bytes": 544206848,
+      "eigh_s": 0.14479976700386032,
+      "peak_rss_after_eigh_and_parity_bytes": 558919680,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.46730859999661334,
+      "contacts_s": 4.12728868600243,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 1.1259980965405703e-06,
+      "first_construction_s": 0.019284487003460526,
+      "warm_construction_s": [
+        0.01736573599919211,
+        0.016540247001103126,
+        0.0168697639965103
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524414976,
+      "peak_rss_after_construction_bytes": 543977472,
+      "eigh_s": 0.15201828700082842,
+      "peak_rss_after_eigh_and_parity_bytes": 559050752,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4533318589965347,
+      "contacts_s": 4.064502748005907,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 1.2899981811642647e-06,
+      "first_construction_s": 0.01937507600086974,
+      "warm_construction_s": [
+        0.018977815001562703,
+        0.017199583002366126,
+        0.01714208599878475
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524595200,
+      "peak_rss_after_construction_bytes": 544153600,
+      "eigh_s": 0.15296927799499827,
+      "peak_rss_after_eigh_and_parity_bytes": 561844224,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4553771689970745,
+      "contacts_s": 4.093637982005021,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 0.20136014000308933,
+      "first_construction_s": 1.9448782969993772,
+      "warm_construction_s": [
+        0.0029967509981361218,
+        0.0007861400008550845,
+        0.0007935559988254681
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524480512,
+      "peak_rss_after_construction_bytes": 656646144,
+      "eigh_s": 0.1742168299970217,
+      "peak_rss_after_eigh_and_parity_bytes": 683098112,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4803068179971888,
+      "contacts_s": 4.082602964997932,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 0.19724298300570808,
+      "first_construction_s": 1.923004103002313,
+      "warm_construction_s": [
+        0.002623136002512183,
+        0.0007389370002783835,
+        0.0007776940037729219
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524566528,
+      "peak_rss_after_construction_bytes": 656543744,
+      "eigh_s": 0.1671591560007073,
+      "peak_rss_after_eigh_and_parity_bytes": 683204608,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45292882899957476,
+      "contacts_s": 4.210019271995407,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 0.21075732799363323,
+      "first_construction_s": 2.0275698530022055,
+      "warm_construction_s": [
+        0.002558781998232007,
+        0.0006571669946424663,
+        0.0006788800019421615
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524611584,
+      "peak_rss_after_construction_bytes": 657059840,
+      "eigh_s": 0.16256072300166124,
+      "peak_rss_after_eigh_and_parity_bytes": 683507712,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.46820336199743906,
+      "contacts_s": 4.107512004004093,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 0.000520963003509678,
+      "first_construction_s": 0.003906600002665073,
+      "warm_construction_s": [
+        0.00331727099546697,
+        0.0009317229996668175,
+        0.0009757329971762374
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524808192,
+      "peak_rss_after_construction_bytes": 529944576,
+      "eigh_s": 0.165490471998055,
+      "peak_rss_after_eigh_and_parity_bytes": 562466816,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45744760800153017,
+      "contacts_s": 4.271844328002771,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 0.0005551180001930334,
+      "first_construction_s": 0.003725549002410844,
+      "warm_construction_s": [
+        0.003220285005227197,
+        0.0009049719956237823,
+        0.0008607700001448393
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524697600,
+      "peak_rss_after_construction_bytes": 529833984,
+      "eigh_s": 0.14511531600146554,
+      "peak_rss_after_eigh_and_parity_bytes": 557871104,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 256,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.482239800003299,
+      "contacts_s": 4.137135916003899,
+      "contact_density": 0.24739583333333334,
+      "engine_import_s": 0.0005151830046088435,
+      "first_construction_s": 0.0035166359957656823,
+      "warm_construction_s": [
+        0.002994291004142724,
+        0.000882367996382527,
+        0.0008890059980330989
+      ],
+      "matrix_shape": [
+        768,
+        768
+      ],
+      "matrix_bytes": 4718592,
+      "peak_rss_before_engine_bytes": 524439552,
+      "peak_rss_after_construction_bytes": 529571840,
+      "eigh_s": 0.15910108099342324,
+      "peak_rss_after_eigh_and_parity_bytes": 559202304,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4519150029955199,
+      "contacts_s": 4.0342290609987685,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 1.2370001059025526e-06,
+      "first_construction_s": 0.0017652919996180572,
+      "warm_construction_s": [
+        0.0015223529990180396,
+        0.0005332100045052357,
+        0.0005363310046959668
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 524185600,
+      "peak_rss_after_construction_bytes": 526774272,
+      "eigh_s": 0.05389516500144964,
+      "peak_rss_after_eigh_and_parity_bytes": 541458432,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.44823779899888905,
+      "contacts_s": 4.168095257999084,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 1.3370008673518896e-06,
+      "first_construction_s": 0.0018438940023770556,
+      "warm_construction_s": [
+        0.0015635489980923012,
+        0.0005811020018882118,
+        0.0006021150038577616
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 524312576,
+      "peak_rss_after_construction_bytes": 526909440,
+      "eigh_s": 0.061693089999607764,
+      "peak_rss_after_eigh_and_parity_bytes": 541597696,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.48182944700238295,
+      "contacts_s": 4.124398177002149,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 1.2700038496404886e-06,
+      "first_construction_s": 0.0016637469962006435,
+      "warm_construction_s": [
+        0.0014407820053747855,
+        0.0004942910018144175,
+        0.0005395280022639781
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 524324864,
+      "peak_rss_after_construction_bytes": 526934016,
+      "eigh_s": 0.06045198799984064,
+      "peak_rss_after_eigh_and_parity_bytes": 541593600,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4579890719978721,
+      "contacts_s": 4.152035727005568,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 0.209523438999895,
+      "first_construction_s": 1.5030034530063858,
+      "warm_construction_s": [
+        0.0020738180028274655,
+        0.002073880001262296,
+        0.0021561480025411583
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 524374016,
+      "peak_rss_after_construction_bytes": 651849728,
+      "eigh_s": 0.05788562200177694,
+      "peak_rss_after_eigh_and_parity_bytes": 664076288,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4545779459949699,
+      "contacts_s": 4.203614695004944,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 0.2051062130049104,
+      "first_construction_s": 1.4758426219996181,
+      "warm_construction_s": [
+        0.002039860002696514,
+        0.002096030999382492,
+        0.0019770149956457317
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 523841536,
+      "peak_rss_after_construction_bytes": 651448320,
+      "eigh_s": 0.05945185200107517,
+      "peak_rss_after_eigh_and_parity_bytes": 663859200,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45506040300097084,
+      "contacts_s": 4.124302169999282,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 0.2005540940008359,
+      "first_construction_s": 1.5195690370019292,
+      "warm_construction_s": [
+        0.002087105000100564,
+        0.001984808004635852,
+        0.00207800799398683
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 524541952,
+      "peak_rss_after_construction_bytes": 652111872,
+      "eigh_s": 0.057963899002061225,
+      "peak_rss_after_eigh_and_parity_bytes": 664551424,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4829090040002484,
+      "contacts_s": 4.104415904999769,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 0.000584795001486782,
+      "first_construction_s": 0.0017880849991342984,
+      "warm_construction_s": [
+        0.0017903419939102605,
+        0.0007727900010650046,
+        0.0006523219999508001
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 524472320,
+      "peak_rss_after_construction_bytes": 526893056,
+      "eigh_s": 0.05385614799888572,
+      "peak_rss_after_eigh_and_parity_bytes": 542154752,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.44115768499614205,
+      "contacts_s": 4.1358787509961985,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 0.0005453210033010691,
+      "first_construction_s": 0.0017493760024080984,
+      "warm_construction_s": [
+        0.0015716470006736927,
+        0.0010508800041861832,
+        0.0012945280031999573
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 524283904,
+      "peak_rss_after_construction_bytes": 526655488,
+      "eigh_s": 0.05125432799832197,
+      "peak_rss_after_eigh_and_parity_bytes": 541929472,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45289737800339935,
+      "contacts_s": 4.167513089996646,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 0.0005939809998380952,
+      "first_construction_s": 0.0018156950027332641,
+      "warm_construction_s": [
+        0.0016666740048094653,
+        0.0007230769988382235,
+        0.000764536001952365
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 524251136,
+      "peak_rss_after_construction_bytes": 526663680,
+      "eigh_s": 0.061653749995457474,
+      "peak_rss_after_eigh_and_parity_bytes": 541937664,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4463851740001701,
+      "contacts_s": 4.215147593997244,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 1.2220043572597206e-06,
+      "first_construction_s": 0.06673303099523764,
+      "warm_construction_s": [
+        0.06422744800511282,
+        0.05899382899951888,
+        0.059682510000129696
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 524365824,
+      "peak_rss_after_construction_bytes": 591904768,
+      "eigh_s": 0.774908986997616,
+      "peak_rss_after_eigh_and_parity_bytes": 643215360,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.49203424499864923,
+      "contacts_s": 4.130164091999177,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 1.2669988791458309e-06,
+      "first_construction_s": 0.07387836499401601,
+      "warm_construction_s": [
+        0.06861465900146868,
+        0.05974619799962966,
+        0.058577447998686694
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 523993088,
+      "peak_rss_after_construction_bytes": 590884864,
+      "eigh_s": 0.795681349998631,
+      "peak_rss_after_eigh_and_parity_bytes": 642899968,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.46642803300346714,
+      "contacts_s": 4.303023886997835,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 1.448999682907015e-06,
+      "first_construction_s": 0.06759951000276487,
+      "warm_construction_s": [
+        0.06763112100452418,
+        0.06477677200018661,
+        0.06279247700149426
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 524148736,
+      "peak_rss_after_construction_bytes": 591712256,
+      "eigh_s": 0.771840916997462,
+      "peak_rss_after_eigh_and_parity_bytes": 642871296,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.46090564600308426,
+      "contacts_s": 4.17429945099866,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 0.19966286000271793,
+      "first_construction_s": 1.9705205310019664,
+      "warm_construction_s": [
+        0.009815036995860282,
+        0.0018759419981506653,
+        0.0015232309960993007
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 524222464,
+      "peak_rss_after_construction_bytes": 669220864,
+      "eigh_s": 0.7846621170028811,
+      "peak_rss_after_eigh_and_parity_bytes": 769318912,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.48095928100519814,
+      "contacts_s": 4.277924870002607,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 0.1988233760057483,
+      "first_construction_s": 2.0342897820009966,
+      "warm_construction_s": [
+        0.010093201002746355,
+        0.0020089960016775876,
+        0.00178073400456924
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 524349440,
+      "peak_rss_after_construction_bytes": 669327360,
+      "eigh_s": 0.8103016090026358,
+      "peak_rss_after_eigh_and_parity_bytes": 769863680,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45537598800001433,
+      "contacts_s": 4.12736399500136,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 0.20053185500000836,
+      "first_construction_s": 1.9171384360015509,
+      "warm_construction_s": [
+        0.010009716999775264,
+        0.0017894369957502931,
+        0.001520166995760519
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 524156928,
+      "peak_rss_after_construction_bytes": 669335552,
+      "eigh_s": 0.7832131020040833,
+      "peak_rss_after_eigh_and_parity_bytes": 769445888,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.46585389300162205,
+      "contacts_s": 4.146096903998114,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 0.0005635339985019527,
+      "first_construction_s": 0.01130371000181185,
+      "warm_construction_s": [
+        0.010180653000134043,
+        0.002021027001319453,
+        0.0020939609967172146
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 524087296,
+      "peak_rss_after_construction_bytes": 542330880,
+      "eigh_s": 0.8058974449959351,
+      "peak_rss_after_eigh_and_parity_bytes": 643411968,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.5011230890013394,
+      "contacts_s": 4.20995071100333,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 0.0005522840001503937,
+      "first_construction_s": 0.01126585900055943,
+      "warm_construction_s": [
+        0.010444658000778873,
+        0.0020731010008603334,
+        0.0018623819996719249
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 524087296,
+      "peak_rss_after_construction_bytes": 542232576,
+      "eigh_s": 0.7972873710023123,
+      "peak_rss_after_eigh_and_parity_bytes": 643325952,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 0.7,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45685716300067725,
+      "contacts_s": 4.183233452000422,
+      "contact_density": 0.022076004413578244,
+      "engine_import_s": 0.0005900219985051081,
+      "first_construction_s": 0.011135190005006734,
+      "warm_construction_s": [
+        0.010150430003704969,
+        0.001920183000038378,
+        0.0017189819991472177
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 524263424,
+      "peak_rss_after_construction_bytes": 542404608,
+      "eigh_s": 0.8045046810002532,
+      "peak_rss_after_eigh_and_parity_bytes": 643596288,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.5289591949986061,
+      "contacts_s": 4.368100915002287,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 1.7229976947419345e-06,
+      "first_construction_s": 0.001775370998075232,
+      "warm_construction_s": [
+        0.0011385760008124635,
+        0.0005224970009294339,
+        0.0005827060012961738
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 525955072,
+      "peak_rss_after_construction_bytes": 528510976,
+      "eigh_s": 0.05925464699976146,
+      "peak_rss_after_eigh_and_parity_bytes": 542760960,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.44796983099513454,
+      "contacts_s": 4.257557106000604,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 1.215994416270405e-06,
+      "first_construction_s": 0.001849601001595147,
+      "warm_construction_s": [
+        0.0011295500007690862,
+        0.000539569002285134,
+        0.00048754399904282764
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 525479936,
+      "peak_rss_after_construction_bytes": 528035840,
+      "eigh_s": 0.053672544003347866,
+      "peak_rss_after_eigh_and_parity_bytes": 542257152,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numpy",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4532002449996071,
+      "contacts_s": 4.132812110001396,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 1.2329983292147517e-06,
+      "first_construction_s": 0.0017266619979636744,
+      "warm_construction_s": [
+        0.001322389995038975,
+        0.0005882149998797104,
+        0.0005401249945862219
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 525914112,
+      "peak_rss_after_construction_bytes": 528470016,
+      "eigh_s": 0.06460149100166745,
+      "peak_rss_after_eigh_and_parity_bytes": 542703616,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4446387119969586,
+      "contacts_s": 4.184242708004604,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 0.20578370000293944,
+      "first_construction_s": 1.5016940409987,
+      "warm_construction_s": [
+        0.0024184700014302507,
+        0.002360384998610243,
+        0.002476649999152869
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 525766656,
+      "peak_rss_after_construction_bytes": 652693504,
+      "eigh_s": 0.05963371100369841,
+      "peak_rss_after_eigh_and_parity_bytes": 665272320,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4624126639973838,
+      "contacts_s": 4.242075418995228,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 0.21362535099615343,
+      "first_construction_s": 1.6384497699982603,
+      "warm_construction_s": [
+        0.0023481759999413043,
+        0.002358098005061038,
+        0.0023929789967951365
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 525504512,
+      "peak_rss_after_construction_bytes": 652460032,
+      "eigh_s": 0.07663199099624762,
+      "peak_rss_after_eigh_and_parity_bytes": 664924160,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "numba",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.46050444999855245,
+      "contacts_s": 4.207602014001168,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 0.19492801000160398,
+      "first_construction_s": 1.486850389999745,
+      "warm_construction_s": [
+        0.002511918995878659,
+        0.0024606330043752678,
+        0.002630768998642452
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 525836288,
+      "peak_rss_after_construction_bytes": 652910592,
+      "eigh_s": 0.056124131006072275,
+      "peak_rss_after_eigh_and_parity_bytes": 665509888,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.48104461200273363,
+      "contacts_s": 4.252578498002549,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 0.0006187289982335642,
+      "first_construction_s": 0.002381933001743164,
+      "warm_construction_s": [
+        0.0016910479971556924,
+        0.0010380719977547415,
+        0.000984669997706078
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 525926400,
+      "peak_rss_after_construction_bytes": 528437248,
+      "eigh_s": 0.05675237800460309,
+      "peak_rss_after_eigh_and_parity_bytes": 543125504,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4639928210017388,
+      "contacts_s": 4.314690288003476,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 0.0006055750054656528,
+      "first_construction_s": 0.002359859994612634,
+      "warm_construction_s": [
+        0.0019278379986644723,
+        0.0011228649964323267,
+        0.0011258450031164102
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 525963264,
+      "peak_rss_after_construction_bytes": 528478208,
+      "eigh_s": 0.05267872200056445,
+      "peak_rss_after_eigh_and_parity_bytes": 543170560,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "GNM",
+      "engine": "rust",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45439414699649205,
+      "contacts_s": 4.233592413998849,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 0.00061071700474713,
+      "first_construction_s": 0.00226251500134822,
+      "warm_construction_s": [
+        0.0016431429976364598,
+        0.001037062997056637,
+        0.0009967119985958561
+      ],
+      "matrix_shape": [
+        497,
+        497
+      ],
+      "matrix_bytes": 1976072,
+      "peak_rss_before_engine_bytes": 526073856,
+      "peak_rss_after_construction_bytes": 528584704,
+      "eigh_s": 0.05299815200123703,
+      "peak_rss_after_eigh_and_parity_bytes": 543625216,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.48428869099734584,
+      "contacts_s": 4.235665860003792,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 1.7839993233792484e-06,
+      "first_construction_s": 0.07845330499549164,
+      "warm_construction_s": [
+        0.07030622500315076,
+        0.06836393399862573,
+        0.07184636800229782
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 525901824,
+      "peak_rss_after_construction_bytes": 593141760,
+      "eigh_s": 0.7870510450011352,
+      "peak_rss_after_eigh_and_parity_bytes": 644202496,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4394745850004256,
+      "contacts_s": 4.070570775998931,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 1.4160032151266932e-06,
+      "first_construction_s": 0.0702035110007273,
+      "warm_construction_s": [
+        0.06601168499764754,
+        0.06191290599963395,
+        0.062366099999053404
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 525467648,
+      "peak_rss_after_construction_bytes": 592723968,
+      "eigh_s": 0.7350018810029724,
+      "peak_rss_after_eigh_and_parity_bytes": 643694592,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.43959754199750023,
+      "contacts_s": 4.144294451005408,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 1.4510005712509155e-06,
+      "first_construction_s": 0.07661012100288644,
+      "warm_construction_s": [
+        0.0689692330051912,
+        0.06366249800339574,
+        0.07160896099958336
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 525840384,
+      "peak_rss_after_construction_bytes": 593100800,
+      "eigh_s": 0.767785019997973,
+      "peak_rss_after_eigh_and_parity_bytes": 644136960,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45457537499896716,
+      "contacts_s": 4.123198706001858,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 0.19973912600107724,
+      "first_construction_s": 1.940875349995622,
+      "warm_construction_s": [
+        0.010086969996336848,
+        0.0019960969948442653,
+        0.0020418690037331544
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 525950976,
+      "peak_rss_after_construction_bytes": 670474240,
+      "eigh_s": 0.7264311649996671,
+      "peak_rss_after_eigh_and_parity_bytes": 770244608,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.45052611400024034,
+      "contacts_s": 4.111288480999065,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 0.1969834310002625,
+      "first_construction_s": 1.9274929729945143,
+      "warm_construction_s": [
+        0.00979083700076444,
+        0.0022268679967965,
+        0.0020396990003064275
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 525660160,
+      "peak_rss_after_construction_bytes": 670494720,
+      "eigh_s": 0.7321672890029731,
+      "peak_rss_after_eigh_and_parity_bytes": 770416640,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.43944504800310824,
+      "contacts_s": 4.159561025997391,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 0.19773934000113513,
+      "first_construction_s": 1.9554602880016319,
+      "warm_construction_s": [
+        0.01043170699995244,
+        0.0022342369993566535,
+        0.002343223000934813
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 525901824,
+      "peak_rss_after_construction_bytes": 670457856,
+      "eigh_s": 0.7501837270028773,
+      "peak_rss_after_eigh_and_parity_bytes": 770232320,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4625248910015216,
+      "contacts_s": 4.2927727150017745,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 0.0005876899958821014,
+      "first_construction_s": 0.011273112002527341,
+      "warm_construction_s": [
+        0.011402162999729626,
+        0.002737257003900595,
+        0.002659503006725572
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 525475840,
+      "peak_rss_after_construction_bytes": 543715328,
+      "eigh_s": 0.746610451999004,
+      "peak_rss_after_eigh_and_parity_bytes": 644231168,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.44980107699666405,
+      "contacts_s": 4.133647759997984,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 0.0005978050030535087,
+      "first_construction_s": 0.013393360997724812,
+      "warm_construction_s": [
+        0.011676394002279267,
+        0.003289913998742122,
+        0.0026909230000455864
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 525836288,
+      "peak_rss_after_construction_bytes": 544075776,
+      "eigh_s": 0.7707701540057315,
+      "peak_rss_after_eigh_and_parity_bytes": 644300800,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.4,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": true,
+      "imports_s": 0.4391596919958829,
+      "contacts_s": 4.16266653600178,
+      "contact_density": 0.1421918608424742,
+      "engine_import_s": 0.000622929997916799,
+      "first_construction_s": 0.011861719001899473,
+      "warm_construction_s": [
+        0.011927671999728773,
+        0.0027987450012005866,
+        0.002600152998638805
+      ],
+      "matrix_shape": [
+        1491,
+        1491
+      ],
+      "matrix_bytes": 17784648,
+      "peak_rss_before_engine_bytes": 525897728,
+      "peak_rss_after_construction_bytes": 544137216,
+      "eigh_s": 0.8114282460010145,
+      "peak_rss_after_eigh_and_parity_bytes": 644538368,
+      "numpy": "2.4.6",
+      "molsysmt": "0.22.4+215.g5bd893c85",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    }
+  ],
+  "molsysmt_checkout_head": "8ae160fc93ed5bc815bcc24b37c2875ba735623d",
+  "molsysmt_native_sha256": "c535c7d2f0e2a92b6ebf8298a60b19e4b5555467b4aa087e9563c6760619827e",
+  "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+  "measurement_notes": [
+    "Synthetic fixed-density seeded points, not protein throughput.",
+    "Three new interpreters per case; three warmed constructions per interpreter.",
+    "Construction RSS is process high-water before NumPy parity reference or eigensolve.",
+    "NumPy/Numba assume validated input; Rust boundary validation and input snapshots are included.",
+    "Source revision collected at batch end; benchmark/runtime/Cargo code was unchanged throughout sampling.",
+    "Provider version string is not verified build-to-source provenance.",
+    "Late loader hardening to force a native ExtensionFileLoader is outside the measured revision; native kernel bytes are unchanged."
+  ],
+  "environment_packages": {
+    "numpy": "2.4.6",
+    "numba": "0.68.0",
+    "threadpoolctl": "3.7.0",
+    "scipy": "1.18.1",
+    "pyunitwizard": "0.28.1+3.g2ab37a5",
+    "molsysmt": "0.22.4+215.g5bd893c85"
+  }
+}

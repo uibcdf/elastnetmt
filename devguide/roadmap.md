@@ -53,8 +53,12 @@ latency motivates ahead-of-time construction. Start with reproducible cold/
 warm/memory baselines and private Kirchhoff/Hessian prototypes, preserve the
 Python unit/error/state contracts and compare solvers separately. Native
 platform packaging replaces the current noarch candidate plan and must be
-coordinated with #18/#19 before production delivery. No Rust ENM route is
-implemented or qualified. See [the measured proposal](pending_proposals/rust_enm_kernels.md).
+coordinated with #18/#19 before production delivery. A standalone serial PyO3 construction prototype now passes native properties
+and 108 fresh-process comparisons on Linux/Python 3.14. Warm ANM construction
+improves over NumPy but remains slower than warmed Numba; first-use JIT costs
+are eliminated in the prototype. Public model integration and installed-native
+qualification remain open. See [the measured proposal](pending_proposals/rust_enm_kernels.md)
+and [the reproducible samples](benchmarks/rust_enm_2026_10_10.md).
 
 ## Phase 1: Structural Foundations & Suite Alignment
 *Status: IMPLEMENTED IN PART; qualification and contract review remain open.*

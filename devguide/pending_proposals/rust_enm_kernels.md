@@ -14,6 +14,9 @@ supersedes: []
 
 # Rust study for ElastNetMT
 
+The initial assessment below is retained as historical evidence. Current
+implementation and measurement state appears in the dated checkpoints.
+
 ## What
 
 The maintainer requested review of the sibling Rust migration. The inspected
@@ -162,3 +165,44 @@ responsibility: ElastNetMT maintainers. Review by 2026-11-10; remove the
 development-only duplicate when the production engine/packaging decision is
 qualified or the prototype is rejected. A production migration must replace
 this exception with the accepted owned runtime and its installed gates.
+
+## Repeated measured decision, 2026-10-10
+
+All 108 fresh-process samples complete for GNM/ANM, 64/256/497 nodes,
+0.7/1.4 nm cutoffs, NumPy/Numba/Rust, three process trials and three warmed
+constructions per trial. Raw samples and aggregation are retained in
+[the measured record](../benchmarks/rust_enm_2026_10_10.md). Thread inspection
+confirms one thread for the compared native/JIT/BLAS routes.
+
+At 497 ANM nodes, Rust warm construction is 2.073/2.799 ms versus NumPy
+59.746/68.969 ms and Numba 1.876/2.227 ms (cutoffs 0.7/1.4 nm). First Rust
+construction is 11.266/11.862 ms versus Numba 1970.521/1940.875 ms including
+JIT. Rust wins cold and versus the allocating NumPy Hessian; it does not beat
+warmed Numba here. GNM NumPy already performs well and must remain a candidate.
+Construction phase process peak RSS is roughly 517–519 MiB with Rust,
+564–566 MiB with NumPy and 638–639 MiB with Numba. These are whole-process
+high-water marks including backend loading, not isolated kernel allocation.
+
+Unchanged NumPy eigh takes roughly 0.73–0.80 s in these 497-node ANM samples.
+No public-model end-to-end Rust speedup is established: the development tool
+executes a parity reference before eigh, and public models still select the
+existing engines. Dense NumPy intermediates and first-use JIT are justified
+targets; moving diagonalization blindly is not. The late exact-file loader
+hardening rejects Python substitutes and does not change native kernel bytes.
+
+Maintained performance guidance now uses analytical memory/complexity and
+linked reproducible samples, removing unverified GPU multipliers, exponential
+scaling and workstation node ceilings. The reference protein is TcTIM (1TCD),
+not the historical T4 lysozyme label. These new samples use synthetic geometry.
+
+Next qualification: an owner-local production adapter/backend decision, full
+model scientific/error/unit/state/trajectory tests, bounded parallelism if
+needed, and native platform/install gates coordinated with #18/#19. Public
+engine/API and installed-native admission remain open; retain this issue.
+
+Final local validation: 138 tests pass for `tests` plus the four benchmark
+contract guards. The final native-file loader passes all 13 installed-prototype
+tests without skips. Rust unit tests (3), Clippy with denied warnings, formatting
+and Ruff pass. Reporting indexes/protocol and the 17 actual immutable-SDK
+distribution/source/CI-route assertions pass. The latter include corrected docs
+workflow classification and the new pure-Python matrix resource.
