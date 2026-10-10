@@ -16,6 +16,7 @@ from elastnetmt._private.engines import (
     diagonalize_gpu,
     select_engine,
 )
+from elastnetmt._private.matrix_kernels import build_kirchhoff
 from elastnetmt._private.smonitor import (
     CutoffOptimizationError,
     DegenerateNetworkError,
@@ -130,8 +131,7 @@ class GaussianNetworkModel(ElasticNetworkModel):
         if engine_to_use == "parallel":
             matrix = build_kirchhoff_parallel(self.contacts, self.n_nodes)
         else:
-            matrix = -self.contacts.astype(float)
-            np.fill_diagonal(matrix, self.contacts.sum(axis=1))
+            matrix = build_kirchhoff(self.contacts)
 
         if engine_to_use == "gpu":
             values, vectors = diagonalize_gpu(matrix)

@@ -6,8 +6,8 @@ opened: 2026-10-10
 closed:
 verification: measured
 area: [performance, distribution]
-guard:
-normative:
+guard: devtools/tests/test_rust_prototype.py
+normative: devtools/rust_enm/README.md
 blocked_by: []
 supersedes: []
 ---
@@ -129,3 +129,36 @@ in dense eigh; first-use non-eigh latency is about 1.1–1.3 s. These are
 one-process samples, not independent-process confidence intervals.
 Thread configuration changes materially affect solve time and must be recorded.
 The staged baseline still needs peak memory, multiple sizes and fresh processes.
+
+## Prototype implementation checkpoint, 2026-10-10
+
+The owned NumPy matrix operations were extracted into
+`elastnetmt/_private/matrix_kernels.py`; GNM and ANM call those reusable tools.
+Their numerical formulas and public backend selection remain unchanged.
+`devtools/rust_enm` is a separate serial PyO3/rust-numpy crate, not wired into
+root packaging or public engine dispatch. Native matrix inputs are snapshotted
+before releasing the GIL, layouts are supported explicitly and outputs own
+their storage. NumPy eigh and public provider contacts/interpolation remain
+unchanged. No shared environment or sibling repository is written.
+
+`devtools/enm_benchmark.py` independently orchestrates fresh interpreters, public
+MolSysMT synthetic contacts, explicit thread settings, first/warmed construction,
+optional eigendecomposition and process RSS high-water marks before parity.
+Its contract and executable commands are maintained in the crate README.
+The Rust boundary validates and snapshots inputs while existing NumPy/Numba
+operations assume already validated buffers; measured native overhead includes
+that work. A requested missing native file or failed kernel is not replaced.
+
+Local Rust unit tests pass 3/3. The installed Python prototype gate passes
+13/13 on Linux/Python 3.14 (zero skips), alongside four independent NumPy matrix
+properties. Guards cover spring energy, rigid motions, covariance, storage
+layouts, disconnected/empty inputs and malformed buffers. Installed support
+on other interpreters/platforms and public-model Rust execution remain open.
+Full-process repeated measurements are recorded separately after execution;
+one-case initial timings are not a final performance decision.
+
+Temporary parallel implementations are an owner-local evaluation under #26,
+responsibility: ElastNetMT maintainers. Review by 2026-11-10; remove the
+development-only duplicate when the production engine/packaging decision is
+qualified or the prototype is rejected. A production migration must replace
+this exception with the accepted owned runtime and its installed gates.

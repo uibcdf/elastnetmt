@@ -15,6 +15,7 @@ from elastnetmt._private.engines import (
     diagonalize_gpu,
     select_engine,
 )
+from elastnetmt._private.matrix_kernels import build_hessian
 from elastnetmt._private.spectral import validate_spectrum
 from elastnetmt.model.elastic_network_model import ElasticNetworkModel
 
@@ -169,26 +170,7 @@ class AnisotropicNetworkModel(ElasticNetworkModel):
         self.hessian_matrix = None
 
     def _build_hessian_vectorized(self, coords):
-        n = self.n_nodes
-        hessian = np.zeros((3 * n, 3 * n), dtype=float)
-        diffs = coords[:, np.newaxis, :] - coords[np.newaxis, :, :]
-        dist2 = np.sum(diffs**2, axis=2)
-        outer_prods = np.einsum("ijk,ijg->ijkg", diffs, diffs)
-        mask = self.contacts
-        h_off_diag = np.zeros((n, n, 3, 3))
-        idx_i, idx_j = np.where(mask)
-        if len(idx_i) > 0:
-            h_off_diag[idx_i, idx_j] = (
-                -outer_prods[idx_i, idx_j] / dist2[idx_i, idx_j, np.newaxis, np.newaxis]
-            )
-        for k in range(3):
-            for g in range(3):
-                hessian[k::3, g::3] = h_off_diag[:, :, k, g]
-        h_diag_sum = -np.sum(h_off_diag, axis=1)
-        for k in range(3):
-            for g in range(3):
-                hessian[k::3, g::3] += np.diag(h_diag_sum[:, k, g])
-        return hessian
+        return build_hessian(coords, self.contacts)
 
     def get_eigenvalues(self, include_rigid_modes=False):
         """Return ascending dimensionless Hessian eigenvalues.
