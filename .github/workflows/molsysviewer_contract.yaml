@@ -27,6 +27,11 @@ jobs:
             channel_priority: strict
           create-args: python=3.13
 
+      - name: Select the reviewed Rust toolchain
+        run: |
+          rustup toolchain install 1.98.1 --profile minimal
+          rustup default 1.98.1
+
       - name: Install controlled suite and current MolSysViewer
         shell: bash -l {0}
         run: |

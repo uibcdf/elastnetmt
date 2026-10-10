@@ -53,10 +53,11 @@ def digest_engine(engine):
     if not isinstance(engine, str) or engine not in (
         "auto",
         "vectorized",
+        "rust",
         "parallel",
         "gpu",
     ):
-        invalid("engine", "one of auto, vectorized, parallel or gpu")
+        invalid("engine", "one of auto, rust, vectorized, parallel or gpu")
     return engine
 
 

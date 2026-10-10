@@ -12,6 +12,7 @@ from elastnetmt._private.arguments import invalid
 from elastnetmt._private.contacts import validate_node_coordinates
 from elastnetmt._private.engines import (
     build_hessian_parallel,
+    build_hessian_rust,
     diagonalize_gpu,
     select_engine,
 )
@@ -76,9 +77,10 @@ class AnisotropicNetworkModel(ElasticNetworkModel):
             Finite positive scalar length defining contacts.
         stiffness : None, default=None
             Reserved for physical spring calibration. Other values are rejected.
-        engine : {'auto', 'vectorized', 'parallel', 'gpu'}, default='auto'
-            Auto uses Numba when discoverable and NumPy otherwise. Parallel
-            requires Numba; GPU requires CuPy. Explicit failures propagate.
+        engine : {'auto', 'rust', 'vectorized', 'parallel', 'gpu'}, default='auto'
+            Auto uses the bundled serial Rust constructor with NumPy eigh.
+            Vectorized uses NumPy; parallel requires Numba; GPU requires CuPy.
+            Missing or broken requested engines fail without substitution.
         syntax : str, default='MolSysMT'
             Node-selection language.
 
@@ -120,7 +122,9 @@ class AnisotropicNetworkModel(ElasticNetworkModel):
             minimum_nodes=self._minimum_nodes,
         )
         engine_to_use = select_engine(self.engine)
-        if engine_to_use == "parallel":
+        if engine_to_use == "rust":
+            matrix = build_hessian_rust(coords, self.contacts)
+        elif engine_to_use == "parallel":
             matrix = build_hessian_parallel(coords, self.contacts, self.n_nodes)
         else:
             matrix = self._build_hessian_vectorized(coords)

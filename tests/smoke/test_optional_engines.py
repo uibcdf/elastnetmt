@@ -29,11 +29,11 @@ assert not any(n == 'numba' or n.startswith('numba.') or n == 'cupy' or n.starts
     assert result.returncode == 0, result.stdout + result.stderr
 
 
-def test_auto_uses_numpy_when_numba_is_absent(network_pdb, monkeypatch):
-    monkeypatch.setattr(engines, "is_installed", lambda name: False)
+def test_auto_uses_bundled_rust_without_loading_numba(network_pdb):
     model = GaussianNetworkModel(network_pdb)
     model.get_eigenvalues()
-    assert model.engine_used == "vectorized"
+    assert model.engine_used == "rust"
+    assert engines.select_engine("vectorized") == "vectorized"
 
 
 @pytest.mark.parametrize("engine, dependency", [("parallel", "numba"), ("gpu", "cupy")])
@@ -60,10 +60,12 @@ def test_transitive_backend_failure_is_not_an_absence_fallback(
     def broken(*args):
         raise ImportError("broken native backend dependency")
 
-    monkeypatch.setattr(engines, "is_installed", lambda name: True)
     monkeypatch.setattr(
-        "elastnetmt.model.gaussian_network_model.build_kirchhoff_parallel", broken
+        "elastnetmt.model.gaussian_network_model.build_kirchhoff_rust", broken
     )
     model = GaussianNetworkModel(network_pdb)
     with pytest.raises(ImportError, match="broken native"):
         model.get_eigenvalues()
+    assert model._eigenvalues is None
+    assert model.kirchhoff_matrix is None
+    assert model.engine_used is None

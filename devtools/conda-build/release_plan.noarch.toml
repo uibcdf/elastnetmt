@@ -5,10 +5,10 @@ package = "elastnetmt"
 version = "0.0.0"
 build_number = 2
 route = "staged"
-profile = "native-abi3"
-reason = "First native migration requires platform artifact qualification and complete installed science; replace for the actual candidate."
+profile = "noarch-python"
+reason = "First noarch migration requires installed qualification; replace for the actual candidate."
 decision_by = "Example only; replace with responsible maintainer and date."
-artifact_subdirs = ["linux-64", "osx-arm64"]
+artifact_subdirs = ["noarch"]
 test_platforms = ["linux-64", "osx-arm64"]
 python_versions = ["3.11", "3.12", "3.13", "3.14"]
 required_workflows = [".github/workflows/CI.yaml", ".github/workflows/molsyssuite-policy.yml", ".github/workflows/conda_publication_governance.yaml", ".github/workflows/molsysviewer_contract.yaml"]
@@ -28,14 +28,11 @@ dependencies_public = false
 "Test on macos-15, Python 3.13" = ["Check dependency routes and installed Git context", "Run tests"]
 "Test on macos-15, Python 3.14" = ["Check dependency routes and installed Git context", "Run tests"]
 
-"Build ABI3 wheel on ubuntu-latest" = ["Check Rust contracts", "Build source archive and wheel from its bytes"]
-"Build ABI3 wheel on macos-15" = ["Check Rust contracts", "Build source archive and wheel from its bytes"]
-
 [gate_jobs.".github/workflows/molsyssuite-policy.yml"]
 "policy / conformance" = ["Check repository conformance", "Check Python lint and imports", "Check Python formatting"]
 
 [gate_jobs.".github/workflows/conda_publication_governance.yaml"]
-"publication / check" = ["Check publication workflow controls"]
+"publication / check" = ["Check publication workflow controls", "Check declared noarch recipe and resources without building"]
 
 [gate_jobs.".github/workflows/molsysviewer_contract.yaml"]
 "contract" = ["Install controlled suite and current MolSysViewer", "Verify the add-on contract"]

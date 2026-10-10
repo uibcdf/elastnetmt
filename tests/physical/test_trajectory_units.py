@@ -2,12 +2,14 @@
 
 import molsysmt as msm
 import numpy as np
+import pytest
 
 from elastnetmt import AnisotropicNetworkModel
 from elastnetmt import pyunitwizard as puw
 
 
-def test_trajectory_amplitude_and_equivalent_units(network_pdb, monkeypatch):
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_trajectory_amplitude_and_equivalent_units(network_pdb, monkeypatch, engine):
     import lindelint
 
     original = lindelint.Interpolator
@@ -18,7 +20,7 @@ def test_trajectory_amplitude_and_equivalent_units(network_pdb, monkeypatch):
         return original(*args, **kwargs)
 
     monkeypatch.setattr(lindelint, "Interpolator", record_engine)
-    anm = AnisotropicNetworkModel(network_pdb, engine="vectorized")
+    anm = AnisotropicNetworkModel(network_pdb, engine=engine)
     with puw.context(standard_units=["angstroms", "ps", "kJ/mol"]):
         first = anm.trajectory_along_mode(amplitude="2 angstroms", oscillation_steps=8)
     with puw.context(standard_units=["nm", "ns", "kcal/mol"]):

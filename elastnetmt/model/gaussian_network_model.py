@@ -13,6 +13,7 @@ from elastnetmt._private.b_factors import experimental_profile, fit_profiles
 from elastnetmt._private.contacts import get_contacts
 from elastnetmt._private.engines import (
     build_kirchhoff_parallel,
+    build_kirchhoff_rust,
     diagonalize_gpu,
     select_engine,
 )
@@ -88,9 +89,10 @@ class GaussianNetworkModel(ElasticNetworkModel):
             Zero-based input structure index.
         cutoff : str or quantity, default='7 angstroms'
             Finite positive scalar length defining contacts.
-        engine : {'auto', 'vectorized', 'parallel', 'gpu'}, default='auto'
-            Auto uses Numba when discoverable and NumPy otherwise. Parallel
-            requires Numba; GPU requires CuPy. Explicit failures propagate.
+        engine : {'auto', 'rust', 'vectorized', 'parallel', 'gpu'}, default='auto'
+            Auto uses the bundled serial Rust constructor with NumPy eigh.
+            Vectorized uses NumPy; parallel requires Numba; GPU requires CuPy.
+            Missing or broken requested engines fail without substitution.
         syntax : str, default='MolSysMT'
             Node-selection language.
 
@@ -128,7 +130,9 @@ class GaussianNetworkModel(ElasticNetworkModel):
         t_start = time.time()
         engine_to_use = select_engine(self.engine)
 
-        if engine_to_use == "parallel":
+        if engine_to_use == "rust":
+            matrix = build_kirchhoff_rust(self.contacts)
+        elif engine_to_use == "parallel":
             matrix = build_kirchhoff_parallel(self.contacts, self.n_nodes)
         else:
             matrix = build_kirchhoff(self.contacts)

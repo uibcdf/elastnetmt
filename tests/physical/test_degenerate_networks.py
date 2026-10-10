@@ -20,22 +20,25 @@ def system(path):
 
 
 @pytest.mark.parametrize("model", [GaussianNetworkModel, AnisotropicNetworkModel])
-def test_empty_node_selection_has_an_owned_error(network_pdb, model):
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_empty_node_selection_has_an_owned_error(network_pdb, model, engine):
     with pytest.raises(ArgumentError, match="selection"):
-        model(network_pdb, selection='atom_name=="NOATOM"', engine="vectorized")
+        model(network_pdb, selection='atom_name=="NOATOM"', engine=engine)
 
 
 @pytest.mark.parametrize(
     "model,count", [(GaussianNetworkModel, 1), (AnisotropicNetworkModel, 2)]
 )
-def test_too_few_nodes_has_an_owned_error(network_pdb, model, count):
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_too_few_nodes_has_an_owned_error(network_pdb, model, count, engine):
     with pytest.raises(ArgumentError, match="selection"):
-        model(network_pdb, selection=f"atom_index < {count}", engine="vectorized")
+        model(network_pdb, selection=f"atom_index < {count}", engine=engine)
 
 
 @pytest.mark.parametrize("model", [GaussianNetworkModel, AnisotropicNetworkModel])
 @pytest.mark.parametrize("problem", ["duplicate", "nan", "inf"])
-def test_invalid_node_coordinates_are_rejected(network_pdb, model, problem):
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_invalid_node_coordinates_are_rejected(network_pdb, model, problem, engine):
     native = system(network_pdb)
     coords = puw.get_value(msm.get(native, coordinates=True), to_unit="nm").copy()
     if problem == "duplicate":
@@ -44,15 +47,18 @@ def test_invalid_node_coordinates_are_rejected(network_pdb, model, problem):
         coords[0, 0, 0] = float(problem)
     msm.set(native, coordinates=puw.quantity(coords, "nm"))
     with pytest.raises(ArgumentError, match="coordinates"):
-        model(native, engine="vectorized")
+        model(native, engine=engine)
 
 
-def test_disconnected_components_are_rejected_even_without_isolated_nodes(network_pdb):
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_disconnected_components_are_rejected_even_without_isolated_nodes(
+    network_pdb, engine
+):
     native = system(network_pdb)
     coords = puw.get_value(msm.get(native, coordinates=True), to_unit="nm").copy()
     coords[0, 4:] = coords[0, :4] + [10, 0, 0]
     msm.set(native, coordinates=puw.quantity(coords, "nm"))
-    model = GaussianNetworkModel(native, cutoff="12 A", engine="vectorized")
+    model = GaussianNetworkModel(native, cutoff="12 A", engine=engine)
     assert np.all(model.contacts.sum(axis=1) == 3)
     with pytest.raises(InternalAlgorithmError) as caught:
         model.get_b_factors()
@@ -66,10 +72,13 @@ def test_disconnected_components_are_rejected_even_without_isolated_nodes(networ
     assert np.all(np.isfinite(model.get_b_factors()))
 
 
-def test_connected_underconstrained_anm_does_not_publish_spurious_modes(network_pdb):
-    connected = GaussianNetworkModel(network_pdb, cutoff="5 A", engine="vectorized")
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_connected_underconstrained_anm_does_not_publish_spurious_modes(
+    network_pdb, engine
+):
+    connected = GaussianNetworkModel(network_pdb, cutoff="5 A", engine=engine)
     assert np.all(connected.get_eigenvalues()[1:] > 0)
-    model = AnisotropicNetworkModel(network_pdb, cutoff="5 A", engine="vectorized")
+    model = AnisotropicNetworkModel(network_pdb, cutoff="5 A", engine=engine)
     with pytest.raises(InternalAlgorithmError) as caught:
         model.get_modes()
     assert caught.value.code == "ENM-E020"
@@ -83,10 +92,11 @@ def test_connected_underconstrained_anm_does_not_publish_spurious_modes(network_
     "profile",
     [None, [0] * 8, [10] * 8, [np.nan] * 8, [np.inf] * 8, [-1, 2, 3, 4, 5, 6, 7, 8]],
 )
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
 def test_invalid_experimental_profile_does_not_overwrite_a_valid_fit(
-    network_pdb, profile
+    network_pdb, profile, engine
 ):
-    model = GaussianNetworkModel(network_pdb, engine="vectorized")
+    model = GaussianNetworkModel(network_pdb, engine=engine)
     scale, correlation = model.fit_to_experimental_b_factors()
     expected = model.get_b_factors().copy()
     experimental = model.b_factors_exp.copy()
@@ -101,24 +111,29 @@ def test_invalid_experimental_profile_does_not_overwrite_a_valid_fit(
     np.testing.assert_allclose(model.get_b_factors(), expected)
 
 
-def test_constant_theoretical_profile_cannot_have_a_pearson_correlation(network_pdb):
-    model = GaussianNetworkModel(network_pdb, cutoff="12 A", engine="vectorized")
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_constant_theoretical_profile_cannot_have_a_pearson_correlation(
+    network_pdb, engine
+):
+    model = GaussianNetworkModel(network_pdb, cutoff="12 A", engine=engine)
     with pytest.raises(ArgumentError, match="theoretical_b_factors"):
         model.fit_to_experimental_b_factors()
     assert model.b_factors_exp is None
     assert model.scaling_factor == 1
 
 
-def test_cutoff_search_skips_disconnected_candidates(network_pdb):
-    model = GaussianNetworkModel(network_pdb, engine="vectorized")
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_cutoff_search_skips_disconnected_candidates(network_pdb, engine):
+    model = GaussianNetworkModel(network_pdb, engine=engine)
     cutoff, correlation = model.get_best_cutoff("1 A", "7 A", 3)
     assert puw.get_value(cutoff, to_unit="angstroms") >= 4
     assert np.isfinite(correlation)
     assert np.all(np.isfinite(model.get_b_factors()))
 
 
-def test_unsuccessful_cutoff_search_preserves_the_previous_state(network_pdb):
-    model = GaussianNetworkModel(network_pdb, engine="vectorized")
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_unsuccessful_cutoff_search_preserves_the_previous_state(network_pdb, engine):
+    model = GaussianNetworkModel(network_pdb, engine=engine)
     model.fit_to_experimental_b_factors()
     before = model.__dict__.copy()
     with pytest.raises(InternalAlgorithmError) as caught:
@@ -130,10 +145,11 @@ def test_unsuccessful_cutoff_search_preserves_the_previous_state(network_pdb):
 
 
 @pytest.mark.parametrize("failure", [ImportError, KeyboardInterrupt])
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
 def test_cutoff_search_does_not_swallow_backend_failures(
-    network_pdb, monkeypatch, failure
+    network_pdb, monkeypatch, failure, engine
 ):
-    model = GaussianNetworkModel(network_pdb, engine="vectorized")
+    model = GaussianNetworkModel(network_pdb, engine=engine)
     model.fit_to_experimental_b_factors()
     before = model.__dict__.copy()
 
@@ -147,41 +163,47 @@ def test_cutoff_search_does_not_swallow_backend_failures(
         assert model.__dict__[name] is value, name
 
 
-def test_cutoff_search_preserves_a_selection_changed_after_construction(network_pdb):
-    model = GaussianNetworkModel(network_pdb, engine="vectorized")
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_cutoff_search_preserves_a_selection_changed_after_construction(
+    network_pdb, engine
+):
+    model = GaussianNetworkModel(network_pdb, engine=engine)
     model.calculate_contacts(selection="atom_index < 7")
     indices = model.atom_indices.copy()
     cutoff, _ = model.get_best_cutoff("4 A", "7 A", 4)
     np.testing.assert_array_equal(model.atom_indices, indices)
     expected = GaussianNetworkModel(
-        network_pdb, selection="atom_index < 7", cutoff=cutoff, engine="vectorized"
+        network_pdb, selection="atom_index < 7", cutoff=cutoff, engine=engine
     )
     expected.fit_to_experimental_b_factors()
     np.testing.assert_allclose(model.get_b_factors(), expected.get_b_factors())
 
 
-def test_valid_noncollinear_three_node_anm_is_supported(network_pdb):
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_valid_noncollinear_three_node_anm_is_supported(network_pdb, engine):
     model = AnisotropicNetworkModel(
-        network_pdb, selection="atom_index < 3", engine="vectorized"
+        network_pdb, selection="atom_index < 3", engine=engine
     )
     values = model.get_eigenvalues(include_rigid_modes=True)
     np.testing.assert_array_equal(values[:6], 0)
     assert np.all(values[6:] > 0)
 
 
-def test_collinear_anm_is_rejected_without_division_warnings(network_pdb):
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_collinear_anm_is_rejected_without_division_warnings(network_pdb, engine):
     native = system(network_pdb)
     coords = np.zeros((1, 8, 3))
     coords[0, :, 0] = np.arange(8) / 10
     msm.set(native, coordinates=puw.quantity(coords, "nm"))
-    model = AnisotropicNetworkModel(native, engine="vectorized")
+    model = AnisotropicNetworkModel(native, engine=engine)
     with pytest.raises(InternalAlgorithmError) as caught:
         model.get_modes()
     assert caught.value.code == "ENM-E020"
 
 
-def test_invalid_contact_selection_preserves_a_fitted_model(network_pdb):
-    model = GaussianNetworkModel(network_pdb, engine="vectorized")
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_invalid_contact_selection_preserves_a_fitted_model(network_pdb, engine):
+    model = GaussianNetworkModel(network_pdb, engine=engine)
     model.fit_to_experimental_b_factors()
     before = model.__dict__.copy()
     with pytest.raises(ArgumentError):
@@ -190,21 +212,26 @@ def test_invalid_contact_selection_preserves_a_fitted_model(network_pdb):
         assert model.__dict__[name] is value, name
 
 
-def test_constant_theoretical_candidates_are_skipped(network_pdb):
-    model = GaussianNetworkModel(network_pdb, engine="vectorized")
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_constant_theoretical_candidates_are_skipped(network_pdb, engine):
+    model = GaussianNetworkModel(network_pdb, engine=engine)
     cutoff, correlation = model.get_best_cutoff("6 A", "12 A", 4)
     assert puw.get_value(cutoff, to_unit="angstroms") < 10
     assert np.isfinite(correlation)
 
 
-def test_unavailable_b_factors_do_not_prevent_unfitted_predictions(network_pdb):
-    model = GaussianNetworkModel(network_pdb, engine="vectorized")
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_unavailable_b_factors_do_not_prevent_unfitted_predictions(network_pdb, engine):
+    model = GaussianNetworkModel(network_pdb, engine=engine)
     model.molecular_system.structures.b_factor = None
     assert np.all(np.isfinite(model.get_b_factors()))
 
 
-def test_successful_contact_change_invalidates_anm_matrix_and_engine(network_pdb):
-    model = AnisotropicNetworkModel(network_pdb, engine="vectorized")
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_successful_contact_change_invalidates_anm_matrix_and_engine(
+    network_pdb, engine
+):
+    model = AnisotropicNetworkModel(network_pdb, engine=engine)
     model.get_modes()
     model.calculate_contacts(cutoff="11 A")
     assert model.hessian_matrix is None

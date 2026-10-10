@@ -1,4 +1,4 @@
-//! Serial, owned-buffer ENM prototype. No contact selection or spectral solver.
+//! Serial, owned-buffer ENM matrix kernels. No contact selection or spectral solver.
 use numpy::ndarray::Array2;
 use numpy::{IntoPyArray, PyArray2, PyReadonlyArray2};
 use pyo3::exceptions::{PyMemoryError, PyValueError};
@@ -15,25 +15,37 @@ fn zeros(rows: usize) -> PyResult<Vec<f64>> {
     Ok(data)
 }
 
+fn snapshot_values<T>(values: impl ExactSizeIterator<Item = T>) -> PyResult<Vec<T>> {
+    let mut data = Vec::new();
+    data.try_reserve_exact(values.len())
+        .map_err(|_| PyMemoryError::new_err("input snapshot allocation failed"))?;
+    data.extend(values);
+    Ok(data)
+}
+
 fn contact_snapshot(contacts: PyReadonlyArray2<'_, bool>) -> PyResult<(usize, Vec<bool>)> {
-    let view = contacts.as_array();
+    // NumPy bool permits any nonzero byte, unlike Rust bool's 0/1 validity.
+    // Inspect a same-width uint8 view without constructing Rust bool references.
+    let bytes = contacts.call_method1("view", ("uint8",))?;
+    let bytes = bytes.extract::<PyReadonlyArray2<'_, u8>>()?;
+    let view = bytes.as_array();
     let n = view.shape()[0];
     if view.shape()[1] != n {
         return Err(PyValueError::new_err("contacts must have shape (N, N)"));
     }
     for i in 0..n {
-        if view[[i, i]] {
+        if view[[i, i]] != 0 {
             return Err(PyValueError::new_err("contacts diagonal must be false"));
         }
         for j in 0..i {
-            if view[[i, j]] != view[[j, i]] {
+            if (view[[i, j]] != 0) != (view[[j, i]] != 0) {
                 return Err(PyValueError::new_err("contacts must be symmetric"));
             }
         }
     }
     // Snapshot even strided inputs before releasing the GIL. Never retain Python
     // buffers during detached computation or write through caller-owned arrays.
-    Ok((n, view.iter().copied().collect()))
+    Ok((n, snapshot_values(view.iter().map(|&value| value != 0))?))
 }
 
 fn kirchhoff(contacts: &[bool], n: usize) -> PyResult<Vec<f64>> {
@@ -117,13 +129,13 @@ fn build_hessian<'py>(
             "coords must be finite with shape (N, 3)",
         ));
     }
-    let positions: Vec<f64> = view.iter().copied().collect();
+    let positions = snapshot_values(view.iter().copied())?;
     let data = py.detach(move || hessian(&positions, &snapshot, n))?;
     output(py, n * 3, data)
 }
 
 #[pymodule]
-fn _enm_prototype(m: &Bound<'_, PyModule>) -> PyResult<()> {
+fn _rust(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(build_kirchhoff, m)?)?;
     m.add_function(wrap_pyfunction!(build_hessian, m)?)?;
     m.add("NUM_THREADS", 1)?;

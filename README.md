@@ -15,8 +15,10 @@ Elastic Network Models Multi Toolkit (ElastNetMT) is an open source library to w
 Distribution status: current source targets Python 3.11–3.14, while public delivery
 and admission remain [uibcdf/elastnetmt#18](https://github.com/uibcdf/elastnetmt/issues/18)
 and [uibcdf/elastnetmt#19](https://github.com/uibcdf/elastnetmt/issues/19).
-The prepared single-file noarch route and historical GitHub release badge do not
-certify a current installed public package. See [installation status](docs/contents/about/installation.md).
+Owned matrix construction now uses Rust by default with NumPy diagonalization.
+Native ABI3 wheels and installed gates are being qualified; the historical
+noarch Conda route is suspended. The release badge does not certify a current
+installed public package. See [installation status](docs/contents/about/installation.md).
 
 ## License
 

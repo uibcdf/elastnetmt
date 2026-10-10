@@ -1,7 +1,10 @@
 include LICENSE
 include MANIFEST.in
 include CODE_OF_CONDUCT.md
-include versioneer.py
+include rust/Cargo.toml
+include rust/Cargo.lock
+include rust/README.md
+recursive-include rust/src *.rs
 
 graft elastnetmt
 global-exclude *.py[cod] __pycache__ *.so

@@ -1,5 +1,5 @@
 ---
-summary: Adopt the distribution policy and a guarded single-file noarch publication route.
+summary: Adopt distribution policy and qualify native ABI3 delivery.
 issue: uibcdf/elastnetmt#18
 status: partial
 opened: 2026-10-01
@@ -12,7 +12,7 @@ blocked_by: []
 supersedes: []
 ---
 
-# Noarch distribution adoption
+# Distribution adoption and native delivery
 
 ## What
 
@@ -240,3 +240,22 @@ results. Source-free actual production/development/docs checks, macOS source
 preflight completion, full candidate scientific gates, publication credentials and
 real/public artifact qualification remain separate outstanding evidence. This
 checkpoint does not change partial adoption or authorize a release.
+
+## Native-source correction, 2026-10-10
+
+The maintainer accepted owned Rust construction under #26. Current source now
+bundles a cp311 ABI3 extension, so the earlier noarch classification is historical.
+The former recipe, plan and resources are retained as `meta.noarch.yaml.txt`,
+`release_plan.noarch.toml` and `resources.noarch.toml` for their archive guards.
+There is no active noarch recipe or selected real release plan. Build, installed
+qualification and promotion noarch callers are explicitly suspended; public
+historical files and tag workflows are untouched.
+
+Native wheel source-archive and complete installed science qualification is
+prepared under #26. Native Conda producer/resource/installed/promotion contracts
+must be coordinated through [MolSysSuite #113](https://github.com/uibcdf/molsyssuite/issues/113):
+the reviewed dependency SDK lacks a native recipe profile. No public release
+is authorized by this transition and no wheel/Conda platform admission is
+inferred from a build. Resume a platform-native staged route only with the
+qualified immutable SDK or reviewed equivalent, a real committed decision and
+exact installed-file gates for Linux/macOS arm64 × Python 3.11–3.14.

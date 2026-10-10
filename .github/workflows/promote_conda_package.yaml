@@ -27,6 +27,8 @@ permissions:
   actions: read
 jobs:
   promote:
+    # Suspended for native source: elastnetmt#18/#26. Historical bytes remain.
+    if: ${{ false }}
     uses: uibcdf/molsyssuite/.github/workflows/promote-noarch-conda.yaml@2d32048457c6d37093ae509f5626d00a5cda121b
     with:
       candidate_sha: ${{ inputs.candidate_sha }}

@@ -1,24 +1,15 @@
-"""Installed-prototype gate: an explicit missing or invalid native file fails."""
-
-import os
-import sys
-from pathlib import Path
+"""Native matrix contract gate; the bundled extension is required."""
 
 import numpy as np
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from enm_benchmark import load_prototype
-
 
 @pytest.fixture(scope="module")
 def native():
-    path = os.environ.get("ELASTNETMT_RUST_PROTOTYPE")
-    if not path:
-        pytest.skip(
-            "Development prototype not requested; set ELASTNETMT_RUST_PROTOTYPE"
-        )
-    return load_prototype(path)
+    # Required installed backend: a missing/broken extension is a failure.
+    from elastnetmt import _rust
+
+    return _rust
 
 
 @pytest.fixture
@@ -132,3 +123,19 @@ def test_native_rejects_wrong_dtypes(native, tetrahedron):
         native.build_hessian(coords.astype(np.float32), contacts)
     with pytest.raises(TypeError):
         native.build_kirchhoff(contacts.astype(np.uint8))
+
+
+def test_native_normalizes_numpy_boolean_bytes(native, tetrahedron):
+    coords, contacts = tetrahedron
+    # NumPy permits different nonzero bytes for True; Rust bool permits 0/1.
+    raw = contacts.astype(np.uint8) * 255
+    raw[np.triu(contacts)] = 2
+    original = raw.copy()
+    logical = raw.view(np.bool_)
+    np.testing.assert_array_equal(
+        native.build_kirchhoff(logical), native.build_kirchhoff(contacts)
+    )
+    np.testing.assert_allclose(
+        native.build_hessian(coords, logical), native.build_hessian(coords, contacts)
+    )
+    np.testing.assert_array_equal(raw, original)

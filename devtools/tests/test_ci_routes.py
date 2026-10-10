@@ -22,7 +22,8 @@ def test_contributor_routes_and_complete_supported_matrix():
     assert {"cron": "0 9 * * MON"} in schedules
     assert {"cron": "19 2 * * *", "timezone": "America/Mexico_City"} in schedules
     matrix = workflow["jobs"]["test"]
-    assert matrix["needs"] == "nightly-decision"
+    assert set(matrix["needs"]) == {"nightly-decision", "native-wheel"}
+    assert "needs.native-wheel.result == 'success'" in matrix["if"]
     assert "always()" in matrix["if"]
     assert "needs.nightly-decision.result != 'success'" in matrix["if"]
     assert "inputs.probe_backlog != true" in matrix["if"]
@@ -48,6 +49,9 @@ def test_contributor_routes_and_complete_supported_matrix():
         "python -m pytest --receptor=ci -v --cov-config=.coveragerc --cov=elastnetmt"
         in command
     )
+    assert "unset PYTHONPATH" in command
+    assert 'cd "$ENM_QUALIFICATION"' in command
+    assert command.count("devtools/native_wheel.py") == 2
     assert "--noconftest" not in command
     assert "--ignore" not in command and "smoke" not in command
     assert "if" not in steps["Run tests"]

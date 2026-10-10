@@ -1,4 +1,4 @@
-"""Protect noarch resource and publication declarations without scientific imports."""
+"""Protect historical noarch evidence and suspended native publication."""
 
 from __future__ import annotations
 
@@ -65,6 +65,20 @@ class TestDistributionContract(unittest.TestCase):
                 )
             else:
                 shutil.copy2(source, target)
+        # Reconstruct the historical pure-Python fixture for archive guards.
+        for current, historical in (
+            ("meta.yaml", "meta.noarch.yaml.txt"),
+            ("resources.toml", "resources.noarch.toml"),
+            ("release_plan.example.toml", "release_plan.noarch.toml"),
+        ):
+            shutil.copy2(
+                self.root / "devtools/conda-build" / historical,
+                self.root / "devtools/conda-build" / current,
+            )
+        shutil.copy2(
+            ROOT / "devtools/conda-build/pyproject.noarch.toml",
+            self.root / "pyproject.toml",
+        )
         self.plan, self.inventory = self.noarch.inspect_recipe(
             self.root, PLAN, RESOURCES
         )
@@ -192,6 +206,20 @@ class TestDistributionContract(unittest.TestCase):
         )
         admin_steps = {step.get("name") for step in ci["jobs"]["governance"]["steps"]}
         self.assertTrue(set(science["Reporting governance"]) <= admin_steps)
+
+    def test_native_source_cannot_use_historical_noarch_publication(self):
+        self.assertFalse((ROOT / "devtools/conda-build/meta.yaml").exists())
+        self.assertFalse((ROOT / "devtools/conda-build/resources.toml").exists())
+        for name, job in (
+            ("build_and_upload_conda_packages.yaml", "publish"),
+            ("promote_conda_package.yaml", "promote"),
+            ("test_installed_conda_package.yaml", "installed"),
+        ):
+            data = yaml.load(
+                (ROOT / ".github/workflows" / name).read_text(),
+                Loader=yaml.BaseLoader,
+            )
+            self.assertEqual(data["jobs"][job]["if"], "${{ false }}")
 
     def test_recovery_and_promotion_bind_original_file_with_separate_workflow_sha(self):
         path = ROOT / ".github/workflows/promote_conda_package.yaml"

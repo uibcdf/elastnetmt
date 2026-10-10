@@ -61,3 +61,28 @@ def test_native_loader_cannot_accept_a_python_substitute(tmp_path):
     substitute.write_text("raise AssertionError('Python substitute executed')\n")
     with pytest.raises(ImportError):
         load_prototype(substitute)
+
+
+def test_public_model_measurement_preserves_cache_and_engine(tmp_path):
+    structure = tmp_path / "tetrahedron.pdb"
+    positions = [(0, 0, 0), (3, 0, 0), (0, 4, 0), (0, 0, 5)]
+    structure.write_text(
+        "".join(
+            f"ATOM  {i:5d}  CA  ALA A{i:4d}    {x:8.3f}{y:8.3f}{z:8.3f}{1.0:6.2f}{10.0:6.2f}           C  \n"
+            for i, (x, y, z) in enumerate(positions, 1)
+        )
+        + "TER\nEND\n"
+    )
+    requested = case()
+    requested.update(workload="public-model", structure=str(structure))
+    result = run_case(requested)
+    assert result["nodes"] == 4
+    assert result["engine_used"] == "vectorized"
+    assert (
+        result["initialization_plus_first_query_s"]
+        > result["first_query_s"]
+        > result["eigh_s"]
+        > 0
+    )
+    assert len(result["cached_query_s"]) == 2
+    assert all(pool["num_threads"] == 1 for pool in result["threadpools"])

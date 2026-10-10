@@ -6,9 +6,11 @@ and [PyPI API](https://pypi.org/pypi/elastnetmt/json) returned HTTP 404. GitHub'
 historical 0.1.0 release has no wheel/sdist assets. These are current bounded
 observations; they do not establish that a package never existed.
 
-Current source targets Python 3.11–3.14. The prepared publication route will
-build one reviewed `noarch: python` file, qualify those exact bytes outside source
-in Linux/macOS arm64 across all four minors, then promote them without rebuilding.
+Current source targets Python 3.11–3.14. The owned Rust construction backend requires a native
+`cp311-abi3` extension. Current qualification builds platform wheels and tests
+the same bytes outside source on Linux/macOS arm64 across all four minors.
+The historical `noarch: python` Conda route is suspended; native Conda
+preparation is coordinated through MolSysSuite #113.
 A real committed release plan, executed candidate/installed gates, authorized
 credentials and verified public poststate/clean installation remain prerequisites.
 No current public installation command or Windows qualification is advertised here.
@@ -17,6 +19,7 @@ Follow [uibcdf/elastnetmt#18](https://github.com/uibcdf/elastnetmt/issues/18) fo
 distribution adoption and [uibcdf/elastnetmt#19](https://github.com/uibcdf/elastnetmt/issues/19)
 for Python admission. Local `pip install --no-deps --editable .` after provisioning
 the complete compatible Conda environment connects source to an interpreter;
-it does not certify public delivery or scientific correctness. Existing controlled
+Building from source requires Cargo/Rust and the build dependencies declared
+in `pyproject.toml`. This does not certify public delivery or scientific correctness. Existing controlled
 sibling Git routes remain source test evidence, with their shared preflight review
 tracked in MolSysSuite #45.

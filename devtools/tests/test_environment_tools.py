@@ -53,7 +53,7 @@ class TestEnvironmentTools(unittest.TestCase):
         self,
     ):
         protected = [
-            self.root / "devtools/conda-build/meta.yaml",
+            self.root / "devtools/conda-build/meta.noarch.yaml.txt",
             *self.root.glob("devtools/requirements/*.txt"),
             *(
                 self.root / "devtools/conda-envs" / name

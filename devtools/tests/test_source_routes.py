@@ -19,6 +19,10 @@ class TestSourceRoutes(unittest.TestCase):
 
     def setUp(self):
         fixtures.TestDistributionContract.setUp(self)
+        # Historical fixtures belong to archive guards, not current routes.
+        for name in ("meta.yaml", "resources.toml", "release_plan.example.toml"):
+            (self.root / "devtools/conda-build" / name).unlink()
+        shutil.copy2(fixtures.ROOT / "pyproject.toml", self.root / "pyproject.toml")
         for name in [
             "devtools/conda-envs",
             "devtools/requirements",
@@ -33,10 +37,10 @@ class TestSourceRoutes(unittest.TestCase):
     def audit(self, **kwargs):
         return self.routes.audit(self.root, **kwargs)
 
-    def test_all_eighteen_routes_thirteen_pins_and_seven_contexts_are_classified(self):
+    def test_all_current_routes_thirteen_pins_and_seven_contexts_are_classified(self):
         result = self.audit()
         self.assertEqual(result["schema"], "molsyssuite.dependency-routes@3")
-        self.assertEqual(len(result["routes"]), 18)
+        self.assertEqual(len(result["routes"]), 17)
         self.assertEqual(len(result["source_routes"]), 13)
         self.assertEqual(len(result["contexts"]), 7)
         self.assertEqual(result["qualification"], "declared-only")

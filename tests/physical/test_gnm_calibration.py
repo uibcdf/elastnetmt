@@ -8,12 +8,13 @@ from elastnetmt import GaussianNetworkModel
 from elastnetmt import pyunitwizard as puw
 
 
-def model(path):
-    return GaussianNetworkModel(path, cutoff="7 angstroms", engine="vectorized")
+def model(path, engine):
+    return GaussianNetworkModel(path, cutoff="7 angstroms", engine=engine)
 
 
-def test_repeated_fit_preserves_scale_and_predictions(network_pdb):
-    gnm = model(network_pdb)
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_repeated_fit_preserves_scale_and_predictions(network_pdb, engine):
+    gnm = model(network_pdb, engine)
     first_scale, first_corr = gnm.fit_to_experimental_b_factors()
     first_prediction = gnm.get_b_factors().copy()
     second_scale, second_corr = gnm.fit_to_experimental_b_factors()
@@ -23,8 +24,9 @@ def test_repeated_fit_preserves_scale_and_predictions(network_pdb):
 
 
 @pytest.mark.parametrize("pre_fit", [False, True])
-def test_plot_matches_fitted_predictions(network_pdb, monkeypatch, pre_fit):
-    gnm = model(network_pdb)
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_plot_matches_fitted_predictions(network_pdb, monkeypatch, pre_fit, engine):
+    gnm = model(network_pdb, engine)
     if pre_fit:
         gnm.fit_to_experimental_b_factors()
     monkeypatch.setattr(plt, "show", lambda: None)
@@ -37,18 +39,22 @@ def test_plot_matches_fitted_predictions(network_pdb, monkeypatch, pre_fit):
         plt.close("all")
 
 
-def test_best_cutoff_refits_the_selected_network(network_pdb):
-    gnm = model(network_pdb)
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_best_cutoff_refits_the_selected_network(network_pdb, engine):
+    gnm = model(network_pdb, engine)
     cutoff, correlation = gnm.get_best_cutoff("6 angstroms", "10 angstroms", 3)
-    expected = GaussianNetworkModel(network_pdb, cutoff=cutoff, engine="vectorized")
+    expected = GaussianNetworkModel(network_pdb, cutoff=cutoff, engine=engine)
     expected_scale, expected_corr = expected.fit_to_experimental_b_factors()
     np.testing.assert_allclose(gnm.scaling_factor, expected_scale)
     np.testing.assert_allclose(correlation, expected_corr)
     np.testing.assert_allclose(gnm.get_b_factors(), expected.get_b_factors())
 
 
-def test_unfitted_plot_does_not_claim_physical_b_factor_units(network_pdb, monkeypatch):
-    gnm = model(network_pdb)
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_unfitted_plot_does_not_claim_physical_b_factor_units(
+    network_pdb, monkeypatch, engine
+):
+    gnm = model(network_pdb, engine)
     monkeypatch.setattr(plt, "show", lambda: None)
     try:
         gnm.show_b_factors(show_experimental=False)
@@ -59,13 +65,14 @@ def test_unfitted_plot_does_not_claim_physical_b_factor_units(network_pdb, monke
         plt.close("all")
 
 
-def test_experimental_b_factors_are_fixed_square_angstrom_values(network_pdb):
+@pytest.mark.parametrize("engine", ["vectorized", "rust"])
+def test_experimental_b_factors_are_fixed_square_angstrom_values(network_pdb, engine):
     with puw.context(standard_units=["angstroms", "ps", "kJ/mol"]):
-        reference = model(network_pdb)
+        reference = model(network_pdb, engine)
         reference.fit_to_experimental_b_factors()
         expected = reference.get_b_factors()
     with puw.context(standard_units=["nm", "ns", "kcal/mol"]):
-        other = model(network_pdb)
+        other = model(network_pdb, engine)
         other.fit_to_experimental_b_factors()
         np.testing.assert_allclose(other.b_factors_exp, np.arange(1, 9) * 10)
         np.testing.assert_allclose(other.get_b_factors(), expected)

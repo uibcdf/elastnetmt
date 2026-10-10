@@ -1,18 +1,18 @@
 ---
-summary: Evaluate Rust for owned ENM kernels with measured workload and delivery contracts.
+summary: Integrate owned Rust ENM kernels with measured science and native delivery contracts.
 issue: uibcdf/elastnetmt#26
 status: active
 opened: 2026-10-10
 closed:
 verification: measured
 area: [performance, distribution]
-guard: devtools/tests/test_rust_prototype.py
-normative: devtools/rust_enm/README.md
+guard: tests/physical/test_native_matrix_kernels.py
+normative: rust/README.md
 blocked_by: []
 supersedes: []
 ---
 
-# Rust study for ElastNetMT
+# Rust ENM integration for ElastNetMT
 
 The initial assessment below is retained as historical evidence. Current
 implementation and measurement state appears in the dated checkpoints.
@@ -206,3 +206,77 @@ tests without skips. Rust unit tests (3), Clippy with denied warnings, formattin
 and Ruff pass. Reporting indexes/protocol and the 17 actual immutable-SDK
 distribution/source/CI-route assertions pass. The latter include corrected docs
 workflow classification and the new pure-Python matrix resource.
+
+## Native integration checkpoint, 2026-10-10
+
+The maintainer accepted proceeding after the 108-process measurements. The
+prototype crate was moved into the owning runtime `rust/` and its private
+initialization name is now `elastnetmt._rust`. There is one Rust implementation.
+Setuptools-rust builds the required cp311 ABI3 extension, Cargo.lock pins the
+native dependencies, and the source manifest includes the crate. Public models
+accept `engine="rust"`; `auto` selects serial Rust construction with NumPy eigh.
+Explicit vectorized/parallel/GPU contracts remain NumPy/Numba/CuPy respectively.
+Native imports are lazy and missing/broken extensions propagate without a
+substitute or partial published model state. LinDelINT interpolation stays
+vectorized; contacts remain the public MolSysMT operation. Rust creates no pool,
+uses one thread and snapshots input buffers before detached computation.
+
+The former optional prototype tests are now required scientific tests. The
+same existing model invariant, calibration, unit, trajectory, degenerate-input
+and rollback guards execute through both NumPy and Rust. Initial local evidence:
+191 functional/scientific/tool assertions pass on Linux/Python 3.14, alongside
+3 Rust unit tests; one moved report guard was then repaired separately.
+The first built wheel is cp311-abi3-linux_x86_64. Installed-byte/full-suite and
+source-archive checks are recorded after execution, without public admission.
+
+Source CI now builds a wheel once per Linux/macOS arm64 platform from a source
+archive, then uses those same bytes on Python 3.11–3.14. All tests run outside
+the checkout. `devtools/native_wheel.py` inspects native/resource identity and
+rechecks installed hashes before and after science. Hosted execution remains
+required; configuration alone is not installed support. Viewer/docs source
+installation now selects the reviewed Rust toolchain explicitly.
+
+The noarch Conda classification is superseded for current source. Historical
+recipe/resources/plan remain inactive fixtures and all three noarch execution
+callers are suspended. No release/version/tag/upload has been selected. The
+immutable Suite SDK has no native recipe kind/adapters for this consumer; the
+missing reusable capability is reported with consumer evidence in
+[uibcdf/molsyssuite#113](https://github.com/uibcdf/molsyssuite/issues/113).
+Native Conda preparation/delivery and Python admission remain #18/#19. The
+shared validators were not weakened or copied. The native wheel helper owns
+only this component's scientific/resource contract.
+
+Numba remains temporarily available only through explicit `parallel`. It is
+slightly faster for warmed ANM construction in the recorded synthetic workload;
+removing an accepted explicit engine is a separate compatibility decision.
+Coexistence owner: ElastNetMT maintainers, review by 2026-11-10 after the native
+installed matrix is qualified. The development duplicate exception is retired.
+Ackredit remains an application-owned optional attribution boundary; this backend
+adds no eager provider registration or new citation-reporting API.
+
+Native boundary review additionally avoids Rust references to NumPy boolean
+storage: NumPy permits any nonzero byte for true. A uint8 view normalizes logical
+values into the owned Rust bool snapshot without modifying inputs. Regression
+coverage includes asymmetric raw true bytes (2/255) with symmetric logical
+contacts. This avoids the upstream [rust-numpy #509](https://github.com/PyO3/rust-numpy/issues/509)
+mechanism without changing the dependency pin or the supported ndarray layouts.
+Owned input/output Vec reservations use fallible allocation before computation.
+
+Final local installed qualification executes all 189 tests (zero skips) against
+one cp311-abi3-linux_x86_64 wheel outside the checkout on Linux/Python 3.14.7,
+in the compatible primary Suite environment. All 43 owned Python/native files
+match the wheel before and after science. Wheel SHA256:
+`589a1a9841f490cb4f976b146d006eb68a3912293bf5154615744fdcb0ac8824`.
+The source archive includes the exact current crate/lock/build contracts;
+build dependency constraints are satisfied (versioningit 2.3.0, setuptools-rust
+1.13.0). The final offline build uses a task-owned build-tool overlay provisioned
+from the earlier isolated build's cached wheels; the shared environment is
+unchanged. Native Vec allocation and boolean normalization are included.
+Rust tests (3), Clippy with denied warnings, formatting, Ruff and the 20 selected
+benchmark/native-wheel/CI/report assertions pass. The actual immutable-SDK
+recipe/source and generated-environment tests also pass. This qualifies the
+local installed bytes with existing compatible providers, not a public fresh
+installation or the still-pending hosted eight-cell matrix.
+
+Final installed native SHA256: `3f11d208cec8fd67f9826834f387547ed5e2ae519df16c83d01d4c3bacc451ad`.
+Source archive SHA256: `e6177bcdb5cde0340e3d7fe13e7868727ce7d697d9ca36b8a079299aed7cf121`.

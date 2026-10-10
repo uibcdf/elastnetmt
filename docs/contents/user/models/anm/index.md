@@ -16,7 +16,8 @@ target atom displacement at the sine extrema; mode vectors themselves are
 dimensionless. Equivalent length units produce equivalent trajectories.
 
 The core engine accepts `vectorized`, `parallel` (Numba), `gpu` (CuPy), or
-`auto`, which chooses Numba when available and otherwise NumPy. Explicit
+`auto`, which uses the bundled serial Rust constructor with NumPy eigh.
+`rust` requests the same backend explicitly; `vectorized` uses NumPy. Explicit
 engines require their dependencies. Interpolation has its own engine argument
 and defaults to `vectorized`. Physical spring stiffness calibration is not
 implemented; keep `stiffness=None`.

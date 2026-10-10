@@ -1,13 +1,13 @@
 [package]
-name = "elastnetmt-enm-prototype"
+name = "elastnetmt-native"
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
 publish = false
-description = "Experimental ENM matrix kernels; excluded from the ElastNetMT distribution."
+description = "Owned ENM matrix construction kernels for ElastNetMT."
 
 [lib]
-name = "_enm_prototype"
+name = "_rust"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]

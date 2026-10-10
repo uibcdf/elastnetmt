@@ -1,5 +1,5 @@
 schema = "molsyssuite.dependency-routes@3"
-reason = "Preserve existing scientific pins and qualify Python-specific no-deps Git contexts under ElastNetMT #18 / MolSysSuite #107"
+reason = "Preserve scientific pins and qualify Python-specific no-deps Git contexts; suspend historical noarch publication during native integration under ElastNetMT #18/#26 and MolSysSuite #107/#113"
 
 [[source_routes]]
 id = "smonitor-base"
@@ -197,12 +197,8 @@ python_minor = "3.12"
 sources = []
 reason = "Source-free public dependency route; actual installation still needs separate invocation"
 
-[[recipes]]
-path = "devtools/conda-build/meta.yaml"
-kind = "shared-noarch"
-plan = "devtools/conda-build/release_plan.example.toml"
-resources = "devtools/conda-build/resources.toml"
-reason = "Administrative recipe audit only; illustrative plan cannot authorize publication"
+# Native Conda preparation is tracked in #18/#26. There is no active recipe
+# until the platform-native SDK/profile and installed gates are qualified.
 
 [[environments]]
 path = "devtools/conda-envs/build_env.yaml"
@@ -273,12 +269,12 @@ channel_reason = "Preserve existing AmberTools scientific bootstrap"
 
 [[workflows]]
 path = ".github/workflows/CI.yaml"
-sha256 = "89e8ab60f5952eb5d79318b9e307e2375724492d11b3cbc4cea8f34410273636"
-reason = "Independent governance plus original complete eight-cell science; existing fixed source inputs now checked before tests without modifying their pins"
+sha256 = "05dce75ffe0916672213d0fa4946331275d28be2f3114f18718f82a9be765a8d"
+reason = "Re-reviewed #26: two per-platform cp311 ABI3 wheel builds from sdist; complete eight-cell science now installs identical per-platform bytes and verifies runtime/native hashes outside source before/after tests. Governance also tests native archive guards. Original source pins and supported cells retained."
 
 [[workflows]]
 path = ".github/workflows/build_and_upload_conda_packages.yaml"
-sha256 = "a7ae60a309898f9da75e01255fc69356d5a9ebf9e9091c9af4ef8ef5c804bd61"
+sha256 = "603894cadbcc6cfdc2f960d0d648214c15f9138fc44211454eeca6da2d27c667"
 reason = "Policy, producer, promotion or exact installed-artifact reader; separate existing candidate/artifact controls retained"
 
 [[workflows]]
@@ -293,20 +289,20 @@ reason = "Policy, producer, promotion or exact installed-artifact reader; separa
 
 [[workflows]]
 path = ".github/workflows/molsysviewer_contract.yaml"
-sha256 = "c24bb33f7b0f00954f24eb0440976ceec70a8234653fc009690f2746425192c7"
-reason = "Existing moving-current Viewer development probe, preserved byte-for-byte; explicitly not immutable release or installed-artifact provenance"
+sha256 = "8ee29a7e58d0635c00f2f606ab625305e4b27b4a102a13b3a93cc23d29328f0b"
+reason = "Re-reviewed #26: current Viewer development probe and fixed sibling source pins retained; own editable install now compiles Rust with toolchain 1.98.1. This moving-host development probe is separate from exact installed-byte release qualification."
 
 [[workflows]]
 path = ".github/workflows/promote_conda_package.yaml"
-sha256 = "3f32320ef21e7a14d6b4b5117f53611f5f8e197c5983c432f428dc7108e9faf7"
+sha256 = "8302664e63557013e3603208970cc1c1b35b2cbdac886be36e7c9ac184802364"
 reason = "Policy, producer, promotion or exact installed-artifact reader; separate existing candidate/artifact controls retained"
 
 [[workflows]]
 path = ".github/workflows/sphinx_docs_to_gh_pages.yaml"
-sha256 = "75593b5b0d25e89b5eb618daf9ac7933ef9e271d2f043a1fd70ca66c28f85045"
-reason = "Re-reviewed under #25/#26: Python 3.12 docs-3.12 public Conda environment and pip --no-deps root install are unchanged. Strict executed Sphinx, apidoc disabled and bounded thread environment alter documentation execution only; installed provider/publication qualification remains separate."
+sha256 = "9ec14ea254c30c771d06a500c5e29d1367ea50bb6a8db2722c42fc8f7171fbae"
+reason = "Re-reviewed #26: Python 3.12 docs-3.12 public Conda bootstrap and strict executed Sphinx are retained. Root source installation now builds the native extension with Rust 1.98.1; provider/publication qualification remains separate."
 
 [[workflows]]
 path = ".github/workflows/test_installed_conda_package.yaml"
-sha256 = "83bcd0126b7150334e31cc2407a39b4e9963834f7a027a341be268db7f2dcf28"
+sha256 = "3f75008b28c8641e9c781d5a002bf5279ad83c53e57094d8349f1ffbf7c19fd0"
 reason = "Policy, producer, promotion or exact installed-artifact reader; separate existing candidate/artifact controls retained"

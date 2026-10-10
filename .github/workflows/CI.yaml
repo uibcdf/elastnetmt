@@ -22,6 +22,42 @@ permissions:
   actions: read
 
 jobs:
+  native-wheel:
+    name: Build ABI3 wheel on ${{ matrix.os }}
+    if: inputs.probe_backlog != true
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-15]
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+    - name: Select the reviewed Rust toolchain
+      run: |
+        rustup toolchain install 1.98.1 --profile minimal --component rustfmt --component clippy
+        rustup default 1.98.1
+        rustc --version
+    - name: Check Rust contracts
+      run: |
+        cargo fmt --manifest-path rust/Cargo.toml --check
+        cargo clippy --locked --manifest-path rust/Cargo.toml --no-default-features -- -D warnings
+        cargo test --locked --manifest-path rust/Cargo.toml --no-default-features
+    - name: Build source archive and wheel from its bytes
+      run: |
+        python -m pip install build
+        python -m build --sdist --outdir native-sdist
+        python -m pip wheel native-sdist/*.tar.gz --no-deps --wheel-dir native-wheelhouse
+    - uses: actions/upload-artifact@v4
+      with:
+        name: native-wheel-${{ matrix.os }}
+        path: native-wheelhouse/*.whl
+        if-no-files-found: error
+
   governance:
     name: Reporting governance
     runs-on: ubuntu-latest
@@ -44,7 +80,7 @@ jobs:
     - name: Install CI-governance test tools
       run: python -m pip install "pytest>=8" "pytest-receptor==1.2.1" "PyYAML>=6" "Jinja2>=3,<4" "packaging>=24"
     - name: Test CI recovery and contributor routes
-      run: python -m pytest --receptor=ci tests/test_ci_backlog.py devtools/tests/test_ci_routes.py
+      run: python -m pytest --receptor=ci tests/test_ci_backlog.py devtools/tests/test_ci_routes.py devtools/tests/test_native_wheel.py
     - name: Review declared dependency routes
       run: python devtools/check_dependency_routes.py --declared-only
     - name: Test environment generation and helper contracts
@@ -75,9 +111,10 @@ jobs:
         run: python devtools/ci_backlog.py
 
   test:
-    needs: nightly-decision
+    needs: [nightly-decision, native-wheel]
     if: >-
       always() && inputs.probe_backlog != true
+      && needs.native-wheel.result == 'success'
       && (github.event_name != 'schedule' || github.event.schedule != '19 2 * * *'
       || needs.nightly-decision.result != 'success'
       || needs.nightly-decision.outputs.run_full == 'true')
@@ -165,10 +202,15 @@ jobs:
         micromamba info
         micromamba list
 
+    - uses: actions/download-artifact@v4
+      with:
+        name: native-wheel-${{ matrix.cfg.os }}
+        path: native-wheelhouse
+
     - name: Install package
       shell: bash -l {0}
       run: |
-        python -m pip install . --no-deps
+        python -m pip install --no-deps native-wheelhouse/*.whl
 
     - name: Test import module
       shell: bash -l {0}
@@ -199,8 +241,16 @@ jobs:
     - name: Run tests
       shell: bash -l {0}
       run: |
-        export PYTHONPATH=$PYTHONPATH:$(pwd)
+        set -euo pipefail
+        ENM_QUALIFICATION="$RUNNER_TEMP/elastnetmt-installed"
+        mkdir -p "$ENM_QUALIFICATION"
+        cp -R tests devtools devguide rust pyproject.toml .coveragerc *.md "$ENM_QUALIFICATION/"
+        cd "$ENM_QUALIFICATION"
+        unset PYTHONPATH
+        python "$GITHUB_WORKSPACE/devtools/native_wheel.py" "$GITHUB_WORKSPACE"/native-wheelhouse/*.whl --inventory "$GITHUB_WORKSPACE/devtools/conda-build/native_resources.toml" --checkout "$GITHUB_WORKSPACE"
         python -m pytest --receptor=ci -v --cov-config=.coveragerc --cov=elastnetmt --cov-report=xml --junitxml=junit.xml --color=yes
+        python "$GITHUB_WORKSPACE/devtools/native_wheel.py" "$GITHUB_WORKSPACE"/native-wheelhouse/*.whl --inventory "$GITHUB_WORKSPACE/devtools/conda-build/native_resources.toml" --checkout "$GITHUB_WORKSPACE"
+        cp coverage.xml junit.xml "$GITHUB_WORKSPACE/"
 
     - name: Check coverage
       shell: bash -l {0}

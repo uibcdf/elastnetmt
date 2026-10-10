@@ -9,6 +9,11 @@ b_factors = gnm.get_b_factors()  # magnitudes in square angstroms after fitting
 gnm.show_b_factors()
 ```
 
+Matrix construction defaults to the bundled serial Rust engine with NumPy
+eigendecomposition. Use `engine="rust"` explicitly, or `vectorized` for NumPy,
+`parallel` for optional Numba and `gpu` for optional CuPy diagonalization.
+Missing or broken requested engines propagate their errors.
+
 The uncalibrated prediction is dimensionless. Fit it to experimental PDB B
 factors before interpreting it in square angstroms. Repeating a fit preserves
 the result; recalculating contacts resets the calibration. `n_modes` selects
