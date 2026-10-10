@@ -11,6 +11,14 @@ neither qualify a release nor publish a package.
 file derives its fixed-source omissions and PyUnitWizard/MolSysMT bootstrap overlays from
 `devtools/dependency_routes.toml`; the actual immutable Git inputs remain separate.
 
+When a qualification route requires fixed Git source provenance, install its
+reviewed source manifest with `pip install --no-deps --force-reinstall -r ...`.
+An equal-version public Conda package can otherwise satisfy pip without being
+replaced; its absence of the requested Git origin correctly fails the shared
+installed-context check. Reinstallation retains normal `Requires-Python`
+validation. This is a controlled-source qualification route, separate from
+public dependency closure.
+
 From any working directory:
 
 ```bash

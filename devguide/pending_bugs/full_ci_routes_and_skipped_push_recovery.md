@@ -251,3 +251,21 @@ np.hstack on incompatible empty-array dimensions. This mixed-source diagnostic
 is not an installed-provider qualification claim. New source-context guards
 require Viewer and a consistent fixed molecular provider on every minor;
 workflow/source input digests and overlay declarations were re-reviewed.
+
+
+## Equal-version public bootstrap is not selected Git provenance, 2026-10-10
+
+Correction 5e3a601's run 38059876364 builds both native platform wheels and
+passes governance, but Linux 3.11/3.12 jobs 114236633284/114236633310 fail the
+installed-source preflight: pyunitwizard-base is not a reviewed root Git
+installation. The installation summary replaces all other selected packages
+but leaves public PyUnitWizard 0.28.1 untouched. Pip accepts that equal public
+version unless explicitly asked to reinstall the required Git source.
+
+Controlled source installation now uses --no-deps --force-reinstall in both
+scientific minor branches and the development contract probe. The original
+source-origin verifier is unchanged; the route still validates Requires-Python
+normally, does not force public admission and does not bypass any science.
+The CI route guard requires explicit reinstallation in both branch commands.
+All other platform cells and source/Conda/public qualification retain their
+separate execution requirements. Inspect the next unskipped correction head.

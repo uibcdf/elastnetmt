@@ -287,8 +287,8 @@ channel_reason = "Preserve existing AmberTools scientific bootstrap"
 
 [[workflows]]
 path = ".github/workflows/CI.yaml"
-sha256 = "a56fca676b7a7eae8f93432f00e9c8fe540ee27a418bd33a5618c20eda16e331"
-reason = "Re-reviewed #17/#26: independent Linux/macOS wheel dependencies retain the same eight displayed scientific job names and full installed-byte gates. Shared YAML step anchors preserve identical qualification. Adopt qualified SDK c866f0a; Scientific provider pins re-reviewed after exact installed CI failures; all minors require Viewer and fixed public MolSysMT connectivity/metadata contracts."
+sha256 = "f33340dd5ad9f1d48e52c7192418f88559927c106c27aa0edeacd63e4aacfecb"
+reason = "Re-reviewed #17/#26: independent Linux/macOS wheel dependencies retain the same eight displayed scientific job names and full installed-byte gates. Shared YAML step anchors preserve identical qualification. Adopt qualified SDK c866f0a; Scientific provider pins re-reviewed after exact installed CI failures; all minors require Viewer and fixed public MolSysMT connectivity/metadata contracts; explicit source reinstallation rejects equal-version public-package substitution."
 
 [[workflows]]
 path = ".github/workflows/build_and_upload_conda_packages.yaml"
@@ -307,8 +307,8 @@ reason = "Policy, producer, promotion or exact installed-artifact reader; separa
 
 [[workflows]]
 path = ".github/workflows/molsysviewer_contract.yaml"
-sha256 = "052c1c52d8c1fead94870621f03f0231c6d57f16d36d2405952e16d780206653"
-reason = "Re-reviewed #26: current Viewer development probe retained; fixed suite source input now adopts corrected MolSysMT connectivity/metadata contracts; own editable install now compiles Rust with toolchain 1.98.1. This moving-host development probe is separate from exact installed-byte release qualification."
+sha256 = "a6fb6d3395efaf3343f1b74c9c036703ed1419eb0c4882a948dc721c270d8332"
+reason = "Re-reviewed #26: current Viewer development probe retained; fixed suite source input now adopts corrected MolSysMT connectivity/metadata contracts and forces selected Git provenance even for an equal public version; own editable install now compiles Rust with toolchain 1.98.1. This moving-host development probe is separate from exact installed-byte release qualification."
 
 [[workflows]]
 path = ".github/workflows/promote_conda_package.yaml"

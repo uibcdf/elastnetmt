@@ -179,9 +179,9 @@ jobs:
       run: |
         set -euo pipefail
         if [[ "${{ matrix.cfg.python-version }}" == "3.14" ]]; then
-          python -m pip install --no-deps -r devtools/requirements/controlled_suite_dependencies_py314.txt
+          python -m pip install --no-deps --force-reinstall -r devtools/requirements/controlled_suite_dependencies_py314.txt
         else
-          python -m pip install --no-deps -r devtools/requirements/controlled_suite_dependencies.txt
+          python -m pip install --no-deps --force-reinstall -r devtools/requirements/controlled_suite_dependencies.txt
         fi
 
     - name: Check out the reviewed dependency SDK

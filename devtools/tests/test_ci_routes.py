@@ -83,6 +83,7 @@ def test_contributor_routes_and_complete_supported_matrix():
     source_command = steps["Install pinned suite dependencies"]["run"]
     assert "controlled_suite_dependencies.txt" in source_command
     assert "controlled_suite_dependencies_py314.txt" in source_command
+    assert source_command.count("--force-reinstall") == 2
     assert "Select the reviewed Rust toolchain for source providers" in steps
     addon = yaml.load(
         (ROOT / ".github/workflows/molsysviewer_contract.yaml").read_text(),
