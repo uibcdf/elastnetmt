@@ -1,6 +1,7 @@
 """Fresh-process ENM matrix and public-model measurements; see ../rust/README.md.
 
-Public operations: load_native(path), load_prototype(path), run_case(case, extension=None).
+Public operations: load_native(path), load_prototype(path), profile_call(operation),
+run_case(case, extension=None).
 The CLI writes raw process samples, never a speed threshold or best-of result.
 Scientific imports belong to workers, after thread environment configuration.
 """
@@ -69,6 +70,8 @@ def worker(case, extension):
     """Compute one input/engine case; called only in a fresh child interpreter."""
     if case.get("workload") == "public-model":
         return public_model_worker(case)
+    if case.get("workload") == "public-preparation":
+        return public_preparation_worker(case)
     start = time.perf_counter()
     import molsysmt as msm
     import numpy as np
@@ -238,6 +241,118 @@ def public_model_worker(case):
     }
 
 
+def profile_call(operation):
+    """Return result, wall seconds and bounded cProfile rows for one call.
+
+    Profiling adds overhead: these wall times are diagnostic, not comparable
+    benchmark samples. Only the calling thread is profiled; cumulative rows
+    overlap and must not be summed. Exceptions propagate after disabling it.
+    """
+    import cProfile
+    import pstats
+
+    profiler = cProfile.Profile()
+    profiler.enable()
+    try:
+        result, elapsed = measure(operation)
+    finally:
+        profiler.disable()
+    stats = pstats.Stats(profiler)
+    rows = []
+    for (filename, line, function), values in sorted(
+        stats.stats.items(), key=lambda item: item[1][3], reverse=True
+    )[:40]:
+        primitive, calls, own_s, cumulative_s, _ = values
+        rows.append(
+            dict(
+                filename=filename,
+                line=line,
+                function=function,
+                primitive_calls=primitive,
+                calls=calls,
+                own_s=own_s,
+                cumulative_s=cumulative_s,
+            )
+        )
+    return result, elapsed, rows
+
+
+def public_preparation_worker(case):
+    """Separate first-use, repeated-file and already-converted preparation.
+
+    Construct independent public models without evaluating spectra. Compare
+    node order and every contact to the first model. The prepared input is the
+    first model's public molecular_system; conversion/validation remain enabled.
+    Optional cProfile covers only first initialization and labels its overhead.
+    """
+    start = time.perf_counter()
+    import molsysmt as msm
+    import numpy as np
+    from threadpoolctl import threadpool_info
+
+    import elastnetmt as enm
+
+    imports_s = time.perf_counter() - start
+    model_type = (
+        enm.GaussianNetworkModel
+        if case["model"] == "GNM"
+        else enm.AnisotropicNetworkModel
+    )
+    engine = {"numpy": "vectorized", "numba": "parallel", "rust": "rust"}[
+        case["engine"]
+    ]
+
+    def construct(source):
+        return model_type(source, cutoff=f"{case['cutoff_nm']} nm", engine=engine)
+
+    def operation():
+        return construct(case["structure"])
+
+    if case.get("profile_preparation", False):
+        first, first_s, profile = profile_call(operation)
+    else:
+        first, first_s = measure(operation)
+        profile = None
+    contacts = first.contacts.copy()
+    indices = first.atom_indices.copy()
+    coordinates = enm.pyunitwizard.get_value(
+        msm.get(first.molecular_system, coordinates=True), to_unit="nm"
+    ).copy()
+    timings = {"repeated_file_initialization_s": [], "prepared_initialization_s": []}
+    for field, source in (
+        ("repeated_file_initialization_s", case["structure"]),
+        ("prepared_initialization_s", first.molecular_system),
+    ):
+        for _ in range(case["repeats"]):
+            model, elapsed = measure(lambda: construct(source))
+            timings[field].append(elapsed)
+            np.testing.assert_array_equal(model.atom_indices, indices)
+            np.testing.assert_array_equal(model.contacts, contacts)
+            assert model._eigenvalues is None, "Preparation must not solve"
+    np.testing.assert_array_equal(first.contacts, contacts)
+    np.testing.assert_array_equal(
+        enm.pyunitwizard.get_value(
+            msm.get(first.molecular_system, coordinates=True), to_unit="nm"
+        ),
+        coordinates,
+    )
+    return {
+        **case,
+        "nodes": first.n_nodes,
+        "runtime_file": enm.__file__,
+        "molsysmt_runtime_file": msm.__file__,
+        "molsysmt": msm.__version__,
+        "imports_s": imports_s,
+        "first_initialization_s": first_s,
+        "profile": profile,
+        "profiled_first_initialization": profile is not None,
+        "preparation_parity_checked": True,
+        **timings,
+        "numpy": np.__version__,
+        "threadpools": threadpool_info(),
+    }
+
+
 def run_case(case, extension=None):
     """Run one case in a fresh process with explicit native/JIT thread limits.
 
@@ -245,13 +360,18 @@ def run_case(case, extension=None):
     cutoff_nm, seed, threads, repeats and solve. For workload='public-model',
     structure supplies a molecular file and node count comes from its selection;
     the bundled runtime engine is used. Timings exclude process startup.
+    Public-preparation measures first/repeated file and prepared MolSys input
+    without solving. Optional profile_preparation is diagnostic, not a benchmark.
     Missing/failed engines and failed numerical checks raise; no fallback.
     Temporary worker files/caches are removed on success and failure.
     """
-    if case.get("workload", "matrices") not in {"matrices", "public-model"}:
+    workload = case.get("workload", "matrices")
+    if workload not in {"matrices", "public-model", "public-preparation"}:
         raise ValueError("Unsupported workload")
-    if case.get("workload") == "public-model" and extension is not None:
+    if workload.startswith("public-") and extension is not None:
         raise ValueError("Public models use their bundled extension")
+    if case.get("profile_preparation") and workload != "public-preparation":
+        raise ValueError("Profiling requires a public-preparation workload")
     if case["engine"] not in {"numpy", "numba", "rust"} or case["model"] not in {
         "GNM",
         "ANM",
@@ -259,7 +379,7 @@ def run_case(case, extension=None):
         raise ValueError("Unsupported model or engine")
     count_keys = (
         ("threads", "repeats")
-        if case.get("workload") == "public-model"
+        if workload.startswith("public-")
         else ("nodes", "threads", "repeats")
     )
     if any(case[key] < 1 for key in count_keys):
@@ -320,6 +440,16 @@ def main():
     parser.add_argument(
         "--native-module", choices=["_rust", "_enm_prototype"], default="_rust"
     )
+    parser.add_argument(
+        "--preparation-only",
+        action="store_true",
+        help="Compare first/repeated file initialization with prepared MolSys input; no spectral query",
+    )
+    parser.add_argument(
+        "--profile-preparation",
+        action="store_true",
+        help="Profile first initialization separately; diagnostic times include profiler overhead",
+    )
     parser.add_argument("--threads", type=int, default=1)
     parser.add_argument("--trials", type=int, default=3)
     parser.add_argument("--repeats", type=int, default=3)
@@ -333,6 +463,10 @@ def main():
         parser.error("sizes, counts, threads and cutoffs must be positive")
     if args.public_structure and args.extension:
         parser.error("public models load their bundled engine; do not pass --extension")
+    if args.preparation_only and not args.public_structure:
+        parser.error("--preparation-only requires --public-structure")
+    if args.profile_preparation and not args.preparation_only:
+        parser.error("--profile-preparation requires --preparation-only")
     if "rust" in args.engines and not args.extension and not args.public_structure:
         parser.error("--extension is required for Rust")
     if "rust" in args.engines and args.threads != 1:
@@ -360,9 +494,13 @@ def main():
         )
         if args.public_structure:
             case.update(
-                workload="public-model",
+                workload="public-preparation"
+                if args.preparation_only
+                else "public-model",
                 structure=str(args.public_structure.resolve(strict=True)),
             )
+            if args.preparation_only:
+                case["profile_preparation"] = args.profile_preparation
         try:
             result = run_case(case, extension)
         except subprocess.CalledProcessError as exc:
@@ -395,7 +533,11 @@ if __name__ == "__main__":
     # Workers use the exact parent interpreter and write structured results to
     # a private file: provider stdout cannot corrupt the JSON protocol.
     if len(sys.argv) > 1 and sys.argv[1] == "--worker":
-        if json.loads(sys.argv[2]).get("workload") != "public-model":
+        if (
+            not json.loads(sys.argv[2])
+            .get("workload", "matrices")
+            .startswith("public-")
+        ):
             sys.path.insert(0, str(ROOT))
         Path(sys.argv[3]).write_text(
             json.dumps(worker(json.loads(sys.argv[2]), sys.argv[4]))

@@ -108,3 +108,21 @@ Registered BLAS/OpenMP and owned Rust/Numba threads are bounded as above. These
 measurements perform no matrix parity allocation before the solve and report
 actual initialization-plus-first-query time separately from imports/process
 startup. Each fresh process represents a first query, not a cold OS disk cache.
+
+To locate preparation costs without solving spectra, compare first file use,
+repeated file parsing and the first model's already converted public
+`molecular_system`. All paths retain conversion, selection and validation;
+the tool checks identical node order/contacts and unchanged input coordinates.
+
+```bash
+python devtools/enm_benchmark.py --public-structure /path/to/1tcd.pdb --preparation-only --models ANM --engines rust --cutoffs 1.2 --trials 3 --repeats 3 --output .cache/rust-enm/preparation.json
+```
+
+Use a separate invocation with `--profile-preparation` for the forty leading
+cProfile rows of first initialization. These diagnostic times include profiler
+overhead and must not be mixed into unprofiled benchmark comparisons. Rows cover
+the calling thread, overlap recursively and must not be summed. Repeated-file
+and prepared-input times are warm measurements in the same interpreter; they
+do not remove first-use costs from a new process. Public preparation mode never
+loads a native kernel merely to construct contacts. Provision the intended
+runtime and record provider versions/source identity when retaining evidence.
