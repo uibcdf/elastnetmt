@@ -8,6 +8,7 @@ from elastnetmt.model.elastic_network_model import ElasticNetworkModel
 
 from ..runtime import (
     ensure_runtime,
+    get_or_build_model,
     record_event,
     set_overlay_visibility,
     update_overlay_parameters,
@@ -35,36 +36,16 @@ def get_or_build_contact_model(
     cutoff: Any | None = None,
     syntax: str = "MolSysMT",
 ) -> ElasticNetworkModel:
-    runtime = ensure_runtime(view)
-    if molecular_system is None:
-        molecular_system = getattr(view, "molecular_system", None)
-    if molecular_system is None:
-        raise ValueError(
-            "A molecular system must be loaded in the view before rendering ElastNetMT contacts."
-        )
-
-    selection = selection or runtime.selection
-    cutoff = cutoff or runtime.cutoff
-
-    cache_key = f"contacts:{selection}:{cutoff}:{structure_index}:{syntax}"
-    model = runtime.cached_models.get(cache_key)
-    if model is None:
-        model = ElasticNetworkModel(
-            molecular_system,
-            selection=selection,
-            structure_index=structure_index,
-            cutoff=cutoff,
-            syntax=syntax,
-        )
-        runtime.cached_models[cache_key] = model
-        record_event(
-            view,
-            "build_contact_model",
-            selection=selection,
-            cutoff=str(cutoff),
-            structure_index=structure_index,
-        )
-    return model
+    return get_or_build_model(
+        view,
+        ElasticNetworkModel,
+        "contacts",
+        molecular_system=molecular_system,
+        selection=selection,
+        structure_index=structure_index,
+        cutoff=cutoff,
+        syntax=syntax,
+    )
 
 
 def render_contact_network(

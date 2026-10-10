@@ -9,6 +9,7 @@ from elastnetmt.model.anisotropic_network_model import AnisotropicNetworkModel
 
 from ..runtime import (
     ensure_runtime,
+    get_or_build_model,
     record_event,
     set_overlay_visibility,
     update_overlay_parameters,
@@ -24,36 +25,16 @@ def get_or_build_anm_model(
     cutoff: Any | None = None,
     syntax: str = "MolSysMT",
 ) -> AnisotropicNetworkModel:
-    runtime = ensure_runtime(view)
-    if molecular_system is None:
-        molecular_system = getattr(view, "molecular_system", None)
-    if molecular_system is None:
-        raise ValueError(
-            "A molecular system must be loaded in the view before rendering ElastNetMT modes."
-        )
-
-    selection = selection or runtime.selection
-    cutoff = cutoff or runtime.cutoff
-
-    cache_key = f"anm:{selection}:{cutoff}:{structure_index}:{syntax}"
-    model = runtime.cached_models.get(cache_key)
-    if model is None:
-        model = AnisotropicNetworkModel(
-            molecular_system,
-            selection=selection,
-            structure_index=structure_index,
-            cutoff=cutoff,
-            syntax=syntax,
-        )
-        runtime.cached_models[cache_key] = model
-        record_event(
-            view,
-            "build_anm_model",
-            selection=selection,
-            cutoff=str(cutoff),
-            structure_index=structure_index,
-        )
-    return model
+    return get_or_build_model(
+        view,
+        AnisotropicNetworkModel,
+        "anm",
+        molecular_system=molecular_system,
+        selection=selection,
+        structure_index=structure_index,
+        cutoff=cutoff,
+        syntax=syntax,
+    )
 
 
 def build_mode_vectors(

@@ -22,6 +22,7 @@ class TestSourceRoutes(unittest.TestCase):
         # Historical fixtures belong to archive guards, not current routes.
         for name in ("meta.yaml", "resources.toml", "release_plan.example.toml"):
             (self.root / "devtools/conda-build" / name).unlink()
+        (self.root / "elastnetmt/model/old_anm.py").unlink()
         shutil.copy2(fixtures.ROOT / "pyproject.toml", self.root / "pyproject.toml")
         for name in [
             "devtools/conda-envs",

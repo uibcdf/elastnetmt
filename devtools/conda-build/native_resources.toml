@@ -1,4 +1,4 @@
-reason = "Both Python distribution roots plus the required wheel ABI3 extension: all tracked payload paths, including private diagnostics, add-on resources and the generated/versioned module. Legacy inactive old_anm.py remains owned by uibcdf/elastnetmt#12. Required _rust ABI3 wheel bytes are checked separately by devtools/native_wheel.py. No public admission is inferred."
+reason = "Both Python distribution roots plus the required wheel ABI3 extension: all tracked payload paths, including private diagnostics, add-on resources and the generated/versioned module. Historical Python 2 code is archived outside the runtime under uibcdf/elastnetmt#14. Required _rust ABI3 wheel bytes are checked separately by devtools/native_wheel.py. No public admission is inferred."
 import_name = "elastnetmt"
 version_file = "site-packages/elastnetmt/_version.py"
 required_paths = [
@@ -29,7 +29,6 @@ required_paths = [
   "site-packages/elastnetmt/model/anisotropic_network_model.py",
   "site-packages/elastnetmt/model/elastic_network_model.py",
   "site-packages/elastnetmt/model/gaussian_network_model.py",
-  "site-packages/elastnetmt/model/old_anm.py",
   "site-packages/elastnetmt/py.typed",
   "site-packages/molsysviewer_elastnetmt/__init__.py",
   "site-packages/molsysviewer_elastnetmt/adapters/__init__.py",

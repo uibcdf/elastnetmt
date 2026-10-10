@@ -1,13 +1,13 @@
 ---
 summary: Add-on adapters reuse cached ENM models after replacing the molecular input.
 issue: uibcdf/elastnetmt#27
-status: open
+status: resolved
 opened: 2026-10-10
-closed:
+closed: 2026-10-10
 severity: high
-verification: reproduced
+verification: measured
 area: [integration]
-guard:
+guard: tests/integration/test_addon_model_cache.py
 normative:
 blocked_by: []
 supersedes: []
@@ -65,3 +65,41 @@ replacement and explicit alternate inputs with actual provider regression cases.
 Review in-place coordinate/topology edits and scene additions; these additional
 cases remain unexecuted. Preserve input state and existing spectrum/error
 contracts. Resolve this report only with an executed mechanism guard.
+
+
+## Resolution and public-input correction — 2026-10-10
+
+The correct normalized public viewer boundary is `view.molsys`, confirmed in
+MolSysViewer `c046fca173f501c6e259761ef8f3d6b1825f17e8`. The historical reproduction
+above used `view.molecular_system`; that attribute need not have the MolSys form.
+Both adapters and the model panel now consume public `view.molsys`, with explicit
+alternate forms normalized by public MolSysMT conversion.
+
+The shared `runtime.get_or_build_model` binds the cache to the source object and
+validates cached ENM inputs through public MolSysMT selection, frame extraction,
+attribute access and topology comparison. Coordinates, periodic boxes and
+experimental B factors are compared exactly in common units. Replacements and
+edited cached inputs clear the model cache. Unloaded or invalid inputs raise.
+Runtime summaries exclude molecular systems and dense model objects.
+
+The guard has 29 actual-provider regression cases. Both model builders preserve
+unchanged reuse, reject stale models after real viewer replacement/addition and
+explicit alternate inputs, and detect coordinate/topology/B-factor/box changes.
+A tiny displacement across an actual contact threshold changes the graph even
+though NumPy allclose considers the coordinates equal. Tests also cover chosen
+frames/structure append, PDB inputs, edited cached cutoffs and the public panel
+boundary. Invalidation is checked on the next adapter request; no automatic
+frontend redraw or scene-change event contract is claimed.
+
+A normal ABI3 wheel was built from the new source archive and installed outside
+the checkout on Linux/Python 3.14.7. All 218 scientific, integration and reporting
+tests passed without skips. All 42 owned Python/native file hashes matched the
+wheel before and after tests and the cache timing probe. Python source bytes in
+the wheel match the working implementation and compile successfully. The retired
+Python 2 module and its repository archive text are absent from both artifacts.
+This is local installed evidence, not a completed hosted platform matrix or
+public support admission.
+
+Provider observations are separately owned by MolSysMT #383 (scalar atom IDs)
+and #384 (B-factor frame selection). This fix uses provider frame extraction
+instead of copying or privately slicing molecular storage.

@@ -120,7 +120,6 @@ extend-exclude = [
     "devguide",
     "docs",
     "sandbox",
-    "elastnetmt/model/old_anm.py", # Unreferenced Python 2 legacy; tracked by uibcdf/elastnetmt#12.
     "ACKREDIT_GUIDE.md",
     "ARGDIGEST_GUIDE.md",
     "DEPDIGEST_GUIDE.md",

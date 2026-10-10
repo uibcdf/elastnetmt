@@ -102,3 +102,21 @@ exact-source workflow evidence. Local calibration and scientific edge-case
 reports #21/#23 are resolved and archived. This record stays active for the
 remaining ecosystem/provider review; the LinDelINT automatic route and public
 installed delivery are not established by the consumer workaround.
+
+
+## Legacy runtime retirement checkpoint — 2026-10-10
+
+The inactive Python 2 module `elastnetmt/model/old_anm.py` has been moved byte for
+byte to `devguide/legacy/old_anm.py.txt`. Its SHA256 is
+`89a6503cf59b211f80a7b039efa0e4cabb8d353d5078c40563c180a45d991376`.
+The current runtime inventory and Ruff scope no longer include the old module.
+`devtools/tests/test_native_wheel.py` compiles all current Python runtime source,
+checks complete ownership coverage and rejects a wheel containing the retired
+module. Historical noarch files remain unchanged; their temporary test fixture
+reconstructs the original source from the archive.
+
+A new ABI3 wheel built from the source archive contains no legacy source or
+archive text and passes all 218 installed tests on Linux/Python 3.14. All 42
+owned Python/native hashes match before and after science. This closes the
+legacy cleanup identified in this review, without closing the remaining
+provider/ecosystem and public-delivery work in #14.

@@ -1,0 +1,19 @@
+{
+  "fixture": "MolSysMT bundled 1TCD",
+  "n_nodes": 497,
+  "cached_request_with_existing_modes_seconds": [
+    0.5956548649992328,
+    0.31080602000292856,
+    0.31062641499738675,
+    0.3121517670006142,
+    0.5947672709953622
+  ],
+  "fresh_model_with_modes_seconds": [
+    0.8305455280060414,
+    0.821924431998923,
+    0.8009504009969532
+  ],
+  "median_cached_seconds": 0.3121517670006142,
+  "median_fresh_seconds": 0.821924431998923,
+  "scope": "warm local Linux/Python 3.14 installed wheel; distinct iteration counts; includes input validation; excludes viewer/rendering and cold preparation"
+}

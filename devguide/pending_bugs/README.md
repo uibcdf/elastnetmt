@@ -9,8 +9,4 @@ Queued defects have an owning GitHub issue. See the
 
 - [`full_ci_routes_and_skipped_push_recovery.md`](full_ci_routes_and_skipped_push_recovery.md) — [#17](https://github.com/uibcdf/elastnetmt/issues/17) — Complete contributor full-CI routes and skipped-push recovery. *(partial, measured)*
 
-### Open (1)
-
-- [`addon_molecular_cache_identity.md`](addon_molecular_cache_identity.md) — [#27](https://github.com/uibcdf/elastnetmt/issues/27) — Add-on adapters reuse cached ENM models after replacing the molecular input. *(open, reproduced)*
-
 <!-- /generated -->

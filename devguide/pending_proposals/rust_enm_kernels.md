@@ -332,3 +332,29 @@ Its retirement is recorded under open ecosystem review #14; its existing #12
 inventory/exclusion references identify a closed Ruff adoption issue, not a
 completed legacy cleanup. No active core molecular parser or private MolSysMT
 data manipulation was found in this reviewed Python/native surface.
+
+
+## Completed molecular-boundary follow-up and correction, 2026-10-10
+
+The normalized public viewer property is `view.molsys`, confirmed in the sibling
+MolSysViewer source. The earlier recommendation of `view.molecular_system` above
+was incomplete: its form is not guaranteed to be `molsysmt.MolSys`. The panel and
+both model builders now use `view.molsys`; explicit alternate forms still go
+through supported public MolSysMT conversion.
+
+The stale-cache defect #27 is resolved with shared ENM-specific source validation
+and 29 actual-provider cases. See its archived resolution in
+`devguide/archive/addon_molecular_cache_identity.md`. All molecular selection,
+frame extraction, attribute access and topology comparison remain public
+MolSysMT tools. Warm 1TCD cache validation/reuse retains the modes at a local
+median 0.312 s versus 0.822 s for a fresh ANM including modes; raw data is in
+`devguide/benchmarks/addon_cache_2026_10_10.json`.
+
+Inactive Python 2 `old_anm.py` is preserved byte for byte in `devguide/legacy/`,
+outside both runtime artifacts. Current resource inventory and wheel inspection
+reject its installed presence; frozen noarch fixtures remain historical. The
+new source-archive-built ABI3 wheel passed all 218 tests outside the checkout
+on Linux/Python 3.14, with all 42 owned file hashes unchanged before/after.
+These consumer changes do not complete #26/#18/#19 public/native admission.
+Provider follow-ups #383/#384 belong to MolSysMT and were filed with consumer
+evidence and the component label.

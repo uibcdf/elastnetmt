@@ -35,6 +35,8 @@ def inspect_wheel(wheel, inventory):
             for name in names
         ):
             raise ValueError("Ambiguous or unsafe wheel payload")
+        if "elastnetmt/model/old_anm.py" in names:
+            raise ValueError("Retired Python 2 module must not enter the runtime wheel")
         required = [
             path.removeprefix("site-packages/") for path in inventory["required_paths"]
         ]

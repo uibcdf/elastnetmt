@@ -5,8 +5,9 @@ See the [local reporting protocol](../reporting_protocol.md).
 
 <!-- generated: devguide_index -->
 
-### Resolved (4)
+### Resolved (5)
 
+- [`addon_molecular_cache_identity.md`](addon_molecular_cache_identity.md) — [#27](https://github.com/uibcdf/elastnetmt/issues/27) — Add-on adapters reuse cached ENM models after replacing the molecular input. *(resolved, measured)*
 - [`adopt_reporting_lifecycle.md`](adopt_reporting_lifecycle.md) — [#16](https://github.com/uibcdf/elastnetmt/issues/16) — Adopt the MolSysSuite issue-backed reporting lifecycle locally. *(resolved, inspected)*
 - [`degenerate_network_contracts.md`](degenerate_network_contracts.md) — [#23](https://github.com/uibcdf/elastnetmt/issues/23) — Reject degenerate ENM calculations without publishing partial model state. *(resolved, measured)*
 - [`executable_documentation.md`](executable_documentation.md) — [#25](https://github.com/uibcdf/elastnetmt/issues/25) — Repair the public API reference, navigation and executable tutorials. *(resolved, measured)*

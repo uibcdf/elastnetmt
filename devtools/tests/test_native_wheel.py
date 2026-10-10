@@ -1,6 +1,8 @@
 """Native distribution identity/resource failures must fail before admission."""
 
+import tomllib
 import zipfile
+from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
@@ -34,6 +36,31 @@ def test_native_wheel_records_exact_extension_and_runtime_bytes(tmp_path):
         "elastnetmt/__init__.py",
         "elastnetmt/_rust.abi3.so",
     }
+
+
+def test_native_wheel_rejects_retired_python2_module(tmp_path):
+    path = wheel(tmp_path)
+    with zipfile.ZipFile(path, "a") as archive:
+        archive.writestr("elastnetmt/model/old_anm.py", b"print 'legacy'\n")
+    with pytest.raises(ValueError, match="Retired Python 2"):
+        inspect_wheel(path, INVENTORY)
+
+
+def test_current_inventory_covers_runtime_and_all_python_compiles():
+    root = Path(__file__).resolve().parents[2]
+    owned = set()
+    for package in ("elastnetmt", "molsysviewer_elastnetmt"):
+        for path in (root / package).rglob("*"):
+            if path.suffix == ".py" or path.name == "py.typed":
+                owned.add("site-packages/" + path.relative_to(root).as_posix())
+                if path.suffix == ".py":
+                    compile(path.read_bytes(), str(path), "exec")
+    inventory = tomllib.loads(
+        (root / "devtools/conda-build/native_resources.toml").read_text()
+    )
+    assert set(inventory["required_paths"]) == owned
+    assert "site-packages/elastnetmt/model/old_anm.py" not in owned
+    assert (root / "devguide/legacy/old_anm.py.txt").is_file()
 
 
 @pytest.mark.parametrize("tag", ["py3-none-any", "cp314-cp314-linux_x86_64"])

@@ -44,6 +44,10 @@ model-specific displacements; pass their molecular results to MolSysMT for
 system construction/manipulation. Extend or request missing molecular tools in
 MolSysMT rather than copying its implementation or accessing private structures.
 
+For MolSysViewer add-on inputs, use public `view.molsys`, which supplies the
+normalized `molsysmt.MolSys`. Keep explicit alternate input forms supported
+through public MolSysMT conversion.
+
 ## Durable working instructions
 
 Keep technical findings in owning issues, fixes, tests and maintained guidance.

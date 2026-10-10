@@ -208,23 +208,15 @@ class ElastNetMTModelPanel(AddonPanelWidget):
         from ..adapters.contacts import get_or_build_contact_model
         from ..adapters.modes import get_or_build_anm_model
 
-        molsys = getattr(view, "_molsys", None) or getattr(
-            view, "molecular_system", None
-        )
-        if molsys is None:
-            raise RuntimeError("No molecular system loaded in the viewer.")
-
         if runtime.model_kind == "gnm":
             model = get_or_build_contact_model(
                 view,
-                molecular_system=molsys,
                 selection=runtime.selection,
                 cutoff=runtime.cutoff,
             )
         else:
             model = get_or_build_anm_model(
                 view,
-                molecular_system=molsys,
                 selection=runtime.selection,
                 cutoff=runtime.cutoff,
             )

@@ -79,6 +79,10 @@ class TestDistributionContract(unittest.TestCase):
             ROOT / "devtools/conda-build/pyproject.noarch.toml",
             self.root / "pyproject.toml",
         )
+        shutil.copy2(
+            ROOT / "devguide/legacy/old_anm.py.txt",
+            self.root / "elastnetmt/model/old_anm.py",
+        )
         self.plan, self.inventory = self.noarch.inspect_recipe(
             self.root, PLAN, RESOURCES
         )
@@ -123,6 +127,8 @@ class TestDistributionContract(unittest.TestCase):
             text=True,
         ).splitlines()
         expected = {"site-packages/" + name for name in tracked}
+        # This is a frozen historical inventory, including its retired module.
+        expected.add("site-packages/elastnetmt/model/old_anm.py")
         expected.add("site-packages/elastnetmt/_version.py")
         self.assertEqual(set(self.inventory["required_paths"]), expected)
         self.assertIn("site-packages/elastnetmt/_private/smonitor/catalog.py", expected)
