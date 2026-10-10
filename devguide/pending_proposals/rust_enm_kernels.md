@@ -311,3 +311,24 @@ evidence in [the preparation record](../benchmarks/public_preparation_2026_10_10
 without skipping validation or copying provider internals. Nine measurement-tool
 tests pass. The same qualified wheel's 43 owned Python/native hashes match before
 and after these measurements. Provider/native public admission remains separate.
+
+## Molecular ownership review, 2026-10-10
+
+The maintainer confirms that molecular-system manipulation belongs to MolSysMT.
+The active base/model paths use its public conversion, selection, coordinate
+and B-factor access, contacts, extraction, removal and structure append tools.
+Rust owns only Kirchhoff/Hessian construction; mode interpolation is delegated
+to LinDelINT and the model owns physical displacement calculations. A real
+four-node trajectory returns a MolSys with eight frames and preserves both
+input and model coordinates. This is a bounded ownership/immutability probe,
+not a new full-suite or metadata-retention qualification.
+
+The add-on cache review reproduces stale models after public scene replacement,
+tracked independently in #27. The panel also prefers private `view._molsys`
+despite the existing public `view.molecular_system`; future work should use the
+public boundary. Inactive Python-2 `old_anm.py` still contains legacy atom/frame
+manipulation and PDB serialization, and fails Python 3.14 parsing at line 34.
+Its retirement is recorded under open ecosystem review #14; its existing #12
+inventory/exclusion references identify a closed Ruff adoption issue, not a
+completed legacy cleanup. No active core molecular parser or private MolSysMT
+data manipulation was found in this reviewed Python/native surface.

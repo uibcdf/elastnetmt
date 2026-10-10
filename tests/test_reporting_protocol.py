@@ -25,6 +25,7 @@ class TestReportingProtocol(unittest.TestCase):
                 "uibcdf/elastnetmt#23",
                 "uibcdf/elastnetmt#25",
                 "uibcdf/elastnetmt#26",
+                "uibcdf/elastnetmt#27",
                 "uibcdf/elastnetmt#18",
                 "uibcdf/elastnetmt#14",
                 "uibcdf/elastnetmt#16",

@@ -35,6 +35,15 @@ provider with linked consumer evidence. Follow
 [MOLSYSSUITE_GUIDE.md#modular-reusable-tools](MOLSYSSUITE_GUIDE.md#modular-reusable-tools)
 for applicability, compatibility, performance and tracked exceptions.
 
+## Molecular-system ownership
+
+Use supported public MolSysMT operations for molecular-system conversion,
+selection, topology and coordinate access/updates, extraction, and structure
+assembly. ElastNetMT owns ENM definitions, numerical matrices, spectra and
+model-specific displacements; pass their molecular results to MolSysMT for
+system construction/manipulation. Extend or request missing molecular tools in
+MolSysMT rather than copying its implementation or accessing private structures.
+
 ## Durable working instructions
 
 Keep technical findings in owning issues, fixes, tests and maintained guidance.
