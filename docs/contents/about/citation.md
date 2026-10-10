@@ -1,25 +1,16 @@
 # Citation
 
-Citing the [Zenodo DOI of ENMT](https://doi.org/10.5281/zenodo.8092688) in
-addition to the scientific paper is a way to ensure that others can reproduce
-your results, as they will know exactly which version of the software you used.
+When reporting results, record the exact ElastNetMT version or Git revision,
+model, node selection, cutoff, numerical engine and calibration convention.
+A source checkout and a public installed artifact are different provenance.
 
-<br/>
+The [repository](https://github.com/uibcdf/elastnetmt) and its
+[release records](https://github.com/uibcdf/elastnetmt/releases) provide software
+identity. Use bibliographic metadata for the specific version you actually
+used rather than copying an unrelated version's citation.
 
-````{tabs}
-
-```{tab} Paper
-
-Coming soon...
-
-```
-```{tab} Software
-
-Diego Prada-Gracia & Liliana M. Moreno-Vargas. (2025). uibcdf/ElastNetMT: 0.8.1 (0.8.1). Zenodo. https://doi.org/10.5281/zenodo.8092688
-
-[BibTeX](../../_bibtex/software.bib)
-
-```
-
-````
-
+GNM and ANM use established elastic-network formulations; the current unit
+and null-mode contracts are described in the
+[maintained conventions](https://github.com/uibcdf/elastnetmt/blob/main/devguide/units_and_conventions.md).
+Optional runtime attribution is a separate integration boundary; this page
+does not claim that a scientific publication or attribution bundle is produced.

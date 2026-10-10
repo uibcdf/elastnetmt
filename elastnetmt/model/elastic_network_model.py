@@ -12,7 +12,36 @@ from elastnetmt._private.smonitor import emit_catalog
 
 
 class ElasticNetworkModel:
-    """Base class for Elastic Network Models (ENM)."""
+    """Represent selected molecular nodes and their cutoff contact map.
+
+    The base class builds contacts; use GaussianNetworkModel or
+    AnisotropicNetworkModel for spectral calculations.
+
+    Attributes
+    ----------
+    molecular_system : molsysmt.MolSys
+        Converted molecular system containing the chosen input structure.
+    atom_indices : numpy.ndarray
+        Node indices in the converted system, in contact-matrix order.
+    n_nodes : int
+        Number of selected nodes.
+    contacts : numpy.ndarray
+        Shape ``(n_nodes, n_nodes)``. Symmetric adjacency matrix with a false diagonal.
+    cutoff : quantity
+        Contact threshold standardized with PyUnitWizard.
+
+    Examples
+    --------
+    Use the PDB bundled with MolSysMT without downloading a structure.
+
+    >>> from importlib.resources import as_file, files
+    >>> from elastnetmt import ElasticNetworkModel
+    >>> resource = files('molsysmt').joinpath('data/pdb/1tcd.pdb')
+    >>> with as_file(resource) as path:
+    ...     network = ElasticNetworkModel(str(path))
+    >>> assert network.contacts.shape == (network.n_nodes, network.n_nodes)
+    >>> assert not network.contacts.diagonal().any()
+    """
 
     _minimum_nodes = 1
 
@@ -41,6 +70,33 @@ class ElasticNetworkModel:
         cutoff="12 angstroms",
         syntax="MolSysMT",
     ):
+        """Initialize a contact network from one molecular structure.
+
+        Parameters
+        ----------
+        molecular_system : object
+            Molecular system in a form accepted by MolSysMT, such as a PDB path.
+        selection : str, default='atom_name=="CA"'
+            MolSysMT selection expression defining the network nodes.
+        structure_index : int, default=0
+            Zero-based input structure index; must be nonnegative.
+        cutoff : str or quantity, default='12 angstroms'
+            Finite positive scalar distance with explicit length units.
+        syntax : str, default='MolSysMT'
+            Selection language interpreted by MolSysMT.
+
+        Raises
+        ------
+        elastnetmt.ArgumentError
+            If the cutoff or node coordinates are invalid, nodes coincide,
+            or the selection has fewer nodes than the model requires.
+
+        Notes
+        -----
+        The base class permits one node; GNM requires two and ANM three.
+        Construction validates coordinates and builds contacts. Subclasses
+        validate connectivity and geometric constraints when solving.
+        """
 
         self._input_molecular_system = molecular_system
         self._input_selection = selection
@@ -69,8 +125,32 @@ class ElasticNetworkModel:
 
     @arg_digest()
     def calculate_contacts(self, selection=None, cutoff=None, syntax=None):
-        """
-        Calculates the contact map and checks for connectivity issues.
+        """Rebuild contacts and invalidate dependent spectra and calibration.
+
+        Parameters
+        ----------
+        selection : str or None, default=None
+            Node expression. None reuses the original constructor selection.
+        cutoff : str, quantity or None, default=None
+            Positive scalar length. None retains the current cutoff.
+        syntax : str or None, default=None
+            Selection language. None reuses the constructor syntax.
+
+        Returns
+        -------
+        None
+            Update contacts, node indices and cutoff in place.
+
+        Raises
+        ------
+        elastnetmt.ArgumentError
+            If the selection, coordinates or cutoff violate the input contract.
+
+        Notes
+        -----
+        A failed update preserves the previous state. Diagnostics for isolated
+        or low-degree nodes do not establish connectedness; spectral queries
+        enforce the subclass's null-mode contract.
         """
         if selection is None:
             selection = self._input_selection
@@ -142,6 +222,23 @@ class ElasticNetworkModel:
 
     @dep_digest("matplotlib")
     def show_contact_map(self, cmap="binary"):
+        """Display the current adjacency matrix with Matplotlib.
+
+        Parameters
+        ----------
+        cmap : str or matplotlib.colors.Colormap, default='binary'
+            Colormap passed to Matplotlib.
+
+        Returns
+        -------
+        None
+            Display the figure using the active Matplotlib backend.
+
+        Raises
+        ------
+        ImportError
+            If the plotting dependency is unavailable or cannot initialize.
+        """
         from matplotlib import pyplot as plt
 
         plt.matshow(self.contacts, cmap=cmap)
@@ -150,6 +247,33 @@ class ElasticNetworkModel:
 
     @dep_digest("nglview")
     def view(self, protein=True, network=False, representation="cartoon"):
+        """Create a molecular viewer through MolSysMT.
+
+        Parameters
+        ----------
+        protein : bool, default=True
+            Retain the initial representation. False calls the viewer's clear
+            operation and requires that the returned viewer support it.
+        network : bool, default=False
+            Reserved flag; contact-network rendering is currently unimplemented.
+        representation : str, default='cartoon'
+            Reserved argument; the delegated viewer's default is currently used.
+
+        Returns
+        -------
+        object
+            Viewer returned by MolSysMT; its type depends on the provider.
+
+        Raises
+        ------
+        ImportError
+            If NGLView or the provider's selected viewer is unavailable.
+
+        Notes
+        -----
+        Interactive display requires a compatible notebook frontend. For
+        ENM overlays, see the separate MolSysViewer add-on.
+        """
         view = msm.view(self.molecular_system)
         if not protein:
             view.clear()

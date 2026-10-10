@@ -1,6 +1,6 @@
 # About
 
-ENMT is an open-source Python library designed to facilitate the study of
+ElastNetMT is an open-source Python library designed to facilitate the study of
 elastic network models of biomolecules. It provides a versatile toolkit for
 working with Gaussian Network Models, Anisotropic Network Models, and related
 approaches, enabling the analysis of proteins, complexes, and systems including

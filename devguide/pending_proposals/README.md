@@ -5,9 +5,10 @@ Queued proposals have an owning GitHub issue. See the
 
 <!-- generated: devguide_index -->
 
-### Active (1)
+### Active (2)
 
 - [`review_python_ecosystem_policy_adoption.md`](review_python_ecosystem_policy_adoption.md) — [#14](https://github.com/uibcdf/elastnetmt/issues/14) — Review ElastNetMT Python ecosystem policy adoption. *(active, measured)*
+- [`rust_enm_kernels.md`](rust_enm_kernels.md) — [#26](https://github.com/uibcdf/elastnetmt/issues/26) — Evaluate Rust for owned ENM kernels with measured workload and delivery contracts. *(active, measured)*
 
 ### Partial (2)
 

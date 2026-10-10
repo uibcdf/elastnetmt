@@ -20,6 +20,34 @@ from elastnetmt.model.elastic_network_model import ElasticNetworkModel
 
 
 class AnisotropicNetworkModel(ElasticNetworkModel):
+    """Calculate directional modes of a fully constrained unit-spring network.
+
+    The Hessian uses coordinates converted explicitly to nanometers. With
+    normalized springs, eigenvalues and mode vectors are dimensionless;
+    derived spectral frequencies are not physical frequencies.
+
+    Attributes
+    ----------
+    hessian_matrix : numpy.ndarray or None
+        Matrix of shape (3 * n_nodes, 3 * n_nodes) after a successful solve.
+    engine : str
+        Requested construction/decomposition engine.
+    engine_used : str or None
+        Resolved engine after a successful solve.
+    stiffness : None
+        Physical stiffness calibration is currently unimplemented.
+
+    Examples
+    --------
+    >>> from importlib.resources import as_file, files
+    >>> from elastnetmt import AnisotropicNetworkModel
+    >>> resource = files('molsysmt').joinpath('data/pdb/1tcd.pdb')
+    >>> with as_file(resource) as path:
+    ...     anm = AnisotropicNetworkModel(str(path), engine='vectorized')
+    >>> assert anm.get_modes().shape == (3 * anm.n_nodes - 6, anm.n_nodes, 3)
+    >>> assert anm.get_eigenvalues().shape == (3 * anm.n_nodes - 6,)
+    """
+
     _minimum_nodes = 3
 
     @arg_digest()
@@ -33,6 +61,36 @@ class AnisotropicNetworkModel(ElasticNetworkModel):
         engine="auto",
         syntax="MolSysMT",
     ):
+        """Initialize an ANM model with lazy spectral evaluation.
+
+        Parameters
+        ----------
+        molecular_system : object
+            Molecular system in a form supported by MolSysMT.
+        selection : str, default='atom_name=="CA"'
+            Node expression; at least three finite, distinct nodes are required.
+        structure_index : int, default=0
+            Zero-based input structure index.
+        cutoff : str or quantity, default='12 angstroms'
+            Finite positive scalar length defining contacts.
+        stiffness : None, default=None
+            Reserved for physical spring calibration. Other values are rejected.
+        engine : {'auto', 'vectorized', 'parallel', 'gpu'}, default='auto'
+            Auto uses Numba when discoverable and NumPy otherwise. Parallel
+            requires Numba; GPU requires CuPy. Explicit failures propagate.
+        syntax : str, default='MolSysMT'
+            Node-selection language.
+
+        Raises
+        ------
+        elastnetmt.ArgumentError
+            If arguments or selected coordinates are invalid.
+
+        Notes
+        -----
+        A solved ANM must have exactly six numerical rigid zero modes.
+        Connectivity alone does not establish geometric rigidity.
+        """
         super().__init__(
             molecular_system,
             selection=selection,
@@ -133,12 +191,54 @@ class AnisotropicNetworkModel(ElasticNetworkModel):
         return hessian
 
     def get_eigenvalues(self, include_rigid_modes=False):
+        """Return ascending dimensionless Hessian eigenvalues.
+
+        Parameters
+        ----------
+        include_rigid_modes : bool, default=False
+            Include the six leading rigid zeros when true.
+
+        Returns
+        -------
+        numpy.ndarray
+            Shape (3 * n_nodes - 6,) by default, or (3 * n_nodes,) including
+            rigid modes. Treat this cached array/view as read-only.
+
+        Raises
+        ------
+        elastnetmt.DegenerateNetworkError
+            If the network has additional unconstrained motions.
+        elastnetmt.InvalidSpectrumError
+            If the numerical decomposition violates the spectrum contract.
+        ImportError
+            If the requested optional engine cannot be loaded.
+        """
         self._solve()
         if include_rigid_modes:
             return self._eigenvalues
         return self._eigenvalues[6:]
 
     def get_modes(self):
+        """Return dimensionless directional modes without rigid motions.
+
+        Returns
+        -------
+        numpy.ndarray
+            Shape ``(3 * n_nodes - 6, n_nodes, 3)``. Mode k corresponds to get_eigenvalues()[k]. Node order follows
+            atom_indices. Treat the cached array as read-only.
+
+        Raises
+        ------
+        elastnetmt.DegenerateNetworkError
+            If the network is disconnected or geometrically underconstrained.
+        elastnetmt.InvalidSpectrumError
+            If eigenpairs are invalid.
+
+        Notes
+        -----
+        Mode indexing is zero-based after removing six rigid modes. Eigenvector
+        signs and bases within degenerate subspaces may vary between backends.
+        """
         self._solve()
         return self._modes
 
@@ -153,6 +253,48 @@ class AnisotropicNetworkModel(ElasticNetworkModel):
         syntax="MolSysMT",
         interpolation_engine="vectorized",
     ):
+        """Generate sinusoidal target-atom displacements along one ANM mode.
+
+        Parameters
+        ----------
+        mode : int, default=0
+            Zero-based non-rigid mode index, as returned by get_modes().
+        selection : str, default='all'
+            Target atoms for interpolation, independent of the node selection.
+        amplitude : str or quantity, default='6.0 angstroms'
+            Finite nonnegative maximum target-atom displacement with length units.
+        oscillation_steps : int, default=60
+            Positive number of frames in one cycle, with the endpoint excluded.
+        syntax : str, default='MolSysMT'
+            Target-selection language.
+        interpolation_engine : {'auto', 'vectorized', 'parallel', 'gpu'}, default='vectorized'
+            LinDelINT engine, independent of the model engine. Explicit choices
+            are forwarded to the provider; backend failures propagate.
+
+        Returns
+        -------
+        molsysmt.MolSys
+            Selected target atoms with oscillation_steps structures. Coordinates
+            are generated in nanometers; the initial model is unchanged.
+
+        Raises
+        ------
+        elastnetmt.ArgumentError
+            If mode, target selection, amplitude or frame count is invalid.
+        elastnetmt.DegenerateNetworkError
+            If the node network is underconstrained.
+        elastnetmt.InvalidSpectrumError
+            If the model decomposition is invalid.
+        ImportError
+            If LinDelINT or a requested optional backend cannot be loaded.
+
+        Notes
+        -----
+        Normalize the interpolated direction by its maximum target-atom norm,
+        then apply amplitude once. The sampled maximum equals amplitude when
+        the frame grid includes a sine extremum, for example with eight frames.
+        The vectorized default is the tracked workaround for lindelint#8.
+        """
         from lindelint import Interpolator
 
         self._solve()

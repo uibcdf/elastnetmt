@@ -1,47 +1,26 @@
-# Fork MolSysMT
+# Source checkout and contribution routes
 
-## Clone your fork
-
-The raw code fully alive can be cloned from the [github repository](https://github.com/uibcdf/MolSysMT) as follows:
+Clone the canonical repository:
 
 ```bash
-git clone https://github.com/uibcdf/MolSysMT.git
+git clone https://github.com/uibcdf/elastnetmt.git
+cd elastnetmt
 ```
 
-or with the native GitHub cli:
+Provision a compatible development environment before connecting this source:
 
 ```bash
-gh repo clone uibcdf/MolSysMT
+python -m pip install --no-deps --editable .
 ```
 
-If you are going to contribute to the code, having a look to the Developer Guide is strongly suggested. 
+This command does not install the dependency environment or qualify public
+delivery. Follow the suite's maintained environment recipe and the
+[local environment guidance](https://github.com/uibcdf/elastnetmt/tree/main/devtools).
 
-## Work with a conda environment
+External contributions use branches and pull requests with the required
+checks. Authorized internal maintainer work may use direct commits and
+pushes under the suite checkpoint policy. Keep focused changes and run checks
+appropriate to their scope; authorization is specific to the maintainer/task.
 
-Instructions to build a conda environment depending on the case. Description of the required
-packages.
-
-environments manager, as conda. If this is the case, use MolSysMT in a python 3.7 environment. You
-can create a new one this way (where `ENV_NAME` is the name you want to give to the new
-environment):
-
-```bash
-conda create --name ENV_NAME python=3.7
-```
-
-Load the virtual environment where MolSysMT is going to be installed. If you just create a new
-environment with conda:
-
-```bash
-conda activate ENV_NAME
-```
-
-## Install it
-
-Having the dependencies solved, the command to install MolSysMT from its source code is:
-
-```bash
-cd MolSysMT
-python setup.py develop
-```
-
+Documentation contributors should use the strict build described in
+[docs/README.md](https://github.com/uibcdf/elastnetmt/blob/main/docs/README.md).

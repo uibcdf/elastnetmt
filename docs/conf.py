@@ -6,8 +6,7 @@
 # full list see the documentation:
 # http://www.sphinx-doc.org/en/master/config
 
-import os
-import sys
+from pathlib import Path
 
 # -- Path setup --------------------------------------------------------------
 
@@ -46,7 +45,6 @@ print(f'version {version}, release {release}')
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
     'sphinx.ext.mathjax',
     'sphinx.ext.todo',
@@ -74,7 +72,12 @@ myst_enable_extensions = [
 
 myst_heading_anchors = 3
 
-nb_execution_mode = "off"
+nb_execution_mode = "cache"
+nb_execution_in_temp = True
+nb_execution_timeout = 180
+nb_execution_raise_on_error = True
+# Keep the cache with generated output, outside the source documentation.
+nb_execution_cache_path = str(Path(__file__).parent / '_build' / '.jupyter_cache')
 
 # -- Options for autodoc ----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#configuration
@@ -88,10 +91,21 @@ autodoc_class_signature = "mixed"
 
 # Autosummary options
 
-autosummary_generate = True
+autoclass_content = 'both'
 
 # Napoleon settings
 napoleon_include_special_with_doc = True
+napoleon_preprocess_types = True
+# External provider types are shown literally so an offline build does not
+# depend on downloading inventories. Owned objects retain their API links.
+napoleon_type_aliases = {
+    'numpy.ndarray': '``numpy.ndarray``',
+    'molsysmt.MolSys': '``molsysmt.MolSys``',
+    'matplotlib.colors.Colormap': '``matplotlib.colors.Colormap``',
+    'quantity': '``quantity``',
+    'True': '``True``',
+    'False': '``False``',
+}
 
 #napoleon_numpy_docstring = True 
 #napoleon_google_docstring = False
@@ -132,16 +146,12 @@ gettext_compact = False
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path .
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints', 'old_api', 'freezer']
+exclude_patterns = ['_build', 'README.md', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints', 'old_api', 'freezer']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'default'
 
-# Remove from toctrees
 remove_from_toctrees = []
-for directory in os.walk('api'):
-    if directory[0].endswith('/autosummary'):
-        remove_from_toctrees.append(directory[0]+'/*')
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -204,8 +214,6 @@ html_css_files = [
 def setup(app):
     app.add_css_file('sphinx_tabs.css')
     app.add_css_file('custom.css')
-    app.add_js_file('https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js')
-    app.add_js_file('https://cdn.jsdelivr.net/npm/nglview-js-widgets@3.1.0/dist/index.js')
 
 
 # -- Options for HTMLHelp output ---------------------------------------------

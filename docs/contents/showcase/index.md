@@ -4,5 +4,6 @@
 .. toctree::
    :maxdepth: 1
 
-   Quickstart_guide.ipynb
+   Quickstart.ipynb
+   GNM_Foundations.ipynb
 ```

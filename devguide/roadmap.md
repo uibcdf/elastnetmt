@@ -34,14 +34,27 @@ separate milestones.
    recorded in PR #22. Performance and larger solver work remain separate
    follow-up work.
 5. **Refresh the complete documentation and add-on review.** The core GNM/ANM
-   examples and units are updated in the first implementation. Remaining work
-   includes obsolete notebooks/imports, copied API pages, complete public
-   docstrings (#8), published documentation (#13), and viewer/export contracts.
+   examples, API navigation, public NumPy docstrings and offline executable
+   tutorials now pass a strict forced-execution Sphinx build and 130 local
+   tests (#8/#25). Report #25 is resolved and archived. Remaining work includes
+   deployed documentation (#13) and viewer/export contract review.
 6. **Qualify installed delivery.** Resolve compatible public sibling routes,
    commit a real release plan, qualify the exact candidate bytes outside the
    checkout across Python 3.11–3.14 on Linux/macOS arm64, and verify public
    installation before advertising support (#18/#19). Source CI alone does
    not complete this milestone.
+
+## Rust performance evaluation (#26)
+
+The sibling MolSysMT Rust architecture has been inspected without modifying
+its checkout. A bounded MKL-one-thread 497-node measurement finds warm ANM
+Numba solves spend about 99% in native NumPy eigh, while first-use non-eigh
+latency motivates ahead-of-time construction. Start with reproducible cold/
+warm/memory baselines and private Kirchhoff/Hessian prototypes, preserve the
+Python unit/error/state contracts and compare solvers separately. Native
+platform packaging replaces the current noarch candidate plan and must be
+coordinated with #18/#19 before production delivery. No Rust ENM route is
+implemented or qualified. See [the measured proposal](pending_proposals/rust_enm_kernels.md).
 
 ## Phase 1: Structural Foundations & Suite Alignment
 *Status: IMPLEMENTED IN PART; qualification and contract review remain open.*

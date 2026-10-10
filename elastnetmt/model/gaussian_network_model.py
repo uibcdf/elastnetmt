@@ -28,8 +28,39 @@ from elastnetmt.model.elastic_network_model import ElasticNetworkModel
 
 
 class GaussianNetworkModel(ElasticNetworkModel):
-    """
-    Gaussian Network Model (GNM) implementation.
+    """Calculate isotropic fluctuations from a connected unit-spring network.
+
+    GNM diagonalizes the normalized Kirchhoff matrix. Eigenvalues and the
+    uncalibrated pseudoinverse diagonal are dimensionless. Experimental
+    B factors provide a separate fitted scale in square angstroms.
+
+    Attributes
+    ----------
+    kirchhoff_matrix : numpy.ndarray or None
+        Matrix of shape (n_nodes, n_nodes), available after a successful solve.
+    engine : str
+        Requested construction/decomposition engine.
+    engine_used : str or None
+        Resolved engine after a successful solve.
+    scaling_factor : float
+        One before fitting; fitted square-angstrom scale afterward.
+    b_factors_theo : numpy.ndarray or None
+        Most recently calculated unscaled prediction, one value per node.
+    b_factors_exp : numpy.ndarray or None
+        Experimental magnitudes in square angstroms after a successful fit.
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> from importlib.resources import as_file, files
+    >>> from elastnetmt import GaussianNetworkModel
+    >>> resource = files('molsysmt').joinpath('data/pdb/1tcd.pdb')
+    >>> with as_file(resource) as path:
+    ...     gnm = GaussianNetworkModel(str(path), engine='vectorized')
+    >>> raw = gnm.get_b_factors()
+    >>> assert raw.shape == (gnm.n_nodes,)
+    >>> scale, correlation = gnm.fit_to_experimental_b_factors()
+    >>> np.testing.assert_allclose(gnm.get_b_factors(), raw * scale)
     """
 
     _minimum_nodes = 2
@@ -44,6 +75,34 @@ class GaussianNetworkModel(ElasticNetworkModel):
         engine="auto",
         syntax="MolSysMT",
     ):
+        """Initialize a GNM model with lazy spectral evaluation.
+
+        Parameters
+        ----------
+        molecular_system : object
+            Molecular system in a form supported by MolSysMT.
+        selection : str, default='atom_name=="CA"'
+            Node selection; at least two finite, distinct positions are required.
+        structure_index : int, default=0
+            Zero-based input structure index.
+        cutoff : str or quantity, default='7 angstroms'
+            Finite positive scalar length defining contacts.
+        engine : {'auto', 'vectorized', 'parallel', 'gpu'}, default='auto'
+            Auto uses Numba when discoverable and NumPy otherwise. Parallel
+            requires Numba; GPU requires CuPy. Explicit failures propagate.
+        syntax : str, default='MolSysMT'
+            Node-selection language.
+
+        Raises
+        ------
+        elastnetmt.ArgumentError
+            If input values or selected coordinates are invalid.
+
+        Notes
+        -----
+        Eigenpairs are evaluated on first query. A connected GNM must have
+        exactly one numerical zero mode; disconnected spectra are rejected.
+        """
 
         super().__init__(
             molecular_system,
@@ -101,20 +160,84 @@ class GaussianNetworkModel(ElasticNetworkModel):
         self.engine_used = engine_to_use
 
     def get_eigenvalues(self):
+        """Return ascending dimensionless Kirchhoff eigenvalues.
+
+        Returns
+        -------
+        numpy.ndarray
+            Shape ``(n_nodes,)``. Eigenvalues including the leading rigid zero mode.
+
+        Raises
+        ------
+        elastnetmt.DegenerateNetworkError
+            If the network has more than one numerical zero mode.
+        elastnetmt.InvalidSpectrumError
+            If the backend decomposition violates the spectrum contract.
+        ImportError
+            If the requested optional engine cannot be loaded.
+
+        Notes
+        -----
+        Treat this cached array as read-only. Rebuilding contacts invalidates it.
+        """
         self._solve()
         return self._eigenvalues
 
     def get_eigenvectors(self):
+        """Return dimensionless eigenvectors as columns in eigenvalue order.
+
+        Returns
+        -------
+        numpy.ndarray
+            Shape ``(n_nodes, n_nodes)``. Column zero is the rigid mode. Column k belongs to eigenvalue k.
+
+        Raises
+        ------
+        elastnetmt.DegenerateNetworkError
+            If the network is disconnected.
+        elastnetmt.InvalidSpectrumError
+            If decomposition results are invalid.
+
+        Notes
+        -----
+        Treat this cached array as read-only. Signs and the basis within a
+        degenerate eigenspace may differ between numerical backends.
+        """
         self._solve()
         return self._eigenvectors
 
     @arg_digest()
     def get_b_factors(self, n_modes="all"):
-        """Return fitted B-factor magnitudes in square angstroms.
+        """Return raw fluctuations or calibrated B-factor magnitudes.
 
         Before fitting, values are the dimensionless spectral prediction with
         scaling factor one. ``b_factors_theo`` always retains that unscaled
         prediction. ``n_modes`` counts non-rigid modes; ``"all"`` uses all of them.
+
+        Parameters
+        ----------
+        n_modes : int or {'all'}, default='all'
+            Positive number of lowest non-rigid modes; capped at n_nodes - 1.
+
+        Returns
+        -------
+        numpy.ndarray
+            Shape ``(n_nodes,)``. Plain magnitudes: dimensionless before fitting, square angstroms
+            afterward. The result is not a PyUnitWizard quantity.
+
+        Raises
+        ------
+        elastnetmt.ArgumentError
+            If n_modes is invalid.
+        elastnetmt.DegenerateNetworkError
+            If the network is disconnected.
+        elastnetmt.InvalidSpectrumError
+            If eigenpairs, their inverse or the prediction are unrepresentable.
+
+        Notes
+        -----
+        The fitted scale always uses the complete spectrum. Changing n_modes
+        applies that same scale to a truncated spectral prediction.
         """
         with self._restore_state_on_failure():
             with np.errstate(over="raise", invalid="raise", divide="raise"):
@@ -171,6 +294,24 @@ class GaussianNetworkModel(ElasticNetworkModel):
 
         Both profiles must be finite, nonnegative and varying. A failed fit
         retains the previous calibration and caches.
+
+        Returns
+        -------
+        scale : float
+            Least-squares multiplier from raw fluctuations to square angstroms.
+        correlation : float
+            Pearson correlation in [-1, 1].
+
+        Raises
+        ------
+        elastnetmt.ArgumentError
+            If experimental values are missing, invalid or unrepresentable.
+        elastnetmt.UndefinedCorrelationError
+            If either profile is numerically constant.
+        elastnetmt.DegenerateNetworkError
+            If the network is disconnected.
+        elastnetmt.InvalidSpectrumError
+            If the spectral prediction is invalid.
         """
         with self._restore_state_on_failure():
             return self._fit_to_profile(self._experimental_profile())
@@ -209,6 +350,32 @@ class GaussianNetworkModel(ElasticNetworkModel):
     @dep_digest("matplotlib")
     @arg_digest()
     def show_b_factors(self, show_experimental=True, title="B-factors Profile"):
+        """Plot predicted fluctuations and optionally experimental B factors.
+
+        Parameters
+        ----------
+        show_experimental : bool, default=True
+            Fit first when necessary and overlay experimental values.
+        title : str, default='B-factors Profile'
+            Nonempty figure title.
+
+        Returns
+        -------
+        None
+            Display through Matplotlib's active backend.
+
+        Raises
+        ------
+        elastnetmt.ArgumentError
+            If arguments or requested experimental values are invalid.
+        elastnetmt.UndefinedCorrelationError
+            If a requested fit has a constant profile.
+
+        Notes
+        -----
+        The vertical axis is dimensionless before calibration and square
+        angstroms afterward. Plotting applies the calibration scale once.
+        """
         import matplotlib.pyplot as plt
 
         self._solve()
@@ -241,6 +408,33 @@ class GaussianNetworkModel(ElasticNetworkModel):
         constant theoretical profiles, then refit the winner. Missing/invalid
         experimental data and backend failures propagate. If no candidate is
         admissible, raise CutoffOptimizationError and preserve prior state.
+
+        Parameters
+        ----------
+        min_cutoff : str or quantity, default='5 angstroms'
+            Positive lower endpoint with explicit length units.
+        max_cutoff : str or quantity, default='15 angstroms'
+            Upper endpoint, strictly larger than min_cutoff.
+        steps : int, default=10
+            Number of evenly spaced candidates, including endpoints; at least two.
+
+        Returns
+        -------
+        cutoff : quantity
+            Winning threshold in angstroms.
+        correlation : float
+            Winning Pearson correlation; ties retain the first grid candidate.
+
+        Raises
+        ------
+        elastnetmt.ArgumentError
+            If the grid or experimental values are invalid.
+        elastnetmt.UndefinedCorrelationError
+            If the experimental profile is constant.
+        elastnetmt.CutoffOptimizationError
+            If every candidate is degenerate or has a constant theoretical profile.
+        elastnetmt.InvalidSpectrumError
+            If a candidate's numerical decomposition is invalid.
         """
         lower = puw.get_value(min_cutoff, to_unit="angstroms")
         upper = puw.get_value(max_cutoff, to_unit="angstroms")

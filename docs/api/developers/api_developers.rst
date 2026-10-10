@@ -1,9 +1,7 @@
-Developers
-==========
+Scientific errors
+=================
 
 .. toctree::
-   :name: developers
-   :caption: Developers
    :maxdepth: 2
 
    exceptions/api_exceptions.rst

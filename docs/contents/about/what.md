@@ -20,7 +20,7 @@ sublicense, and/or sell copies without any limitations.
 If you have suggestions, improvements, enhancement proposals, if you miss a
 functionality, or you have identified a bug or a malfunction, feel free to
 contribute to its development or interact with the authors and contributors by
-using the [MolSysMT public GitHub repository](https://github.com/uibcdf/elastnetmt).
+using the [ElastNetMT public GitHub repository](https://github.com/uibcdf/elastnetmt).
 
 When using ElastNetMT, it is important to understand that the authors and
 contributors do not provide any legal warranty or assume any liability of any
