@@ -294,3 +294,20 @@ limits, installed byte identity and the bounded interpretation are maintained in
 [the public-model record](../benchmarks/rust_public_anm_2026_10_10.md).
 This establishes local public-model evidence without claiming a universal gain,
 a repaired provider bottleneck or public/native platform admission.
+
+## Preparation follow-up, 2026-10-10
+
+The preparation-only tool at `de4cc1e` separates first file use, repeated file
+use and already converted public MolSys input, without solving spectra. Three
+fresh workers show medians of 5.358 s, 0.764 s and 0.089 s respectively on 1TCD.
+All node/contact maps agree and prepared coordinates remain unchanged. The
+separate diagnostic profile attributes the dominant first-use cost to complete
+form-adapter loading triggered by MolSysMT target-form validation, through
+DepDigest's whole-registry lazy implementation. Profiling times include overhead
+and are not mixed into benchmark comparisons. Provider ownership and acceptance
+criteria are recorded in [molsysmt#382](https://github.com/uibcdf/molsysmt/issues/382).
+This component documents public converted-input reuse and retains measured raw
+evidence in [the preparation record](../benchmarks/public_preparation_2026_10_10.md),
+without skipping validation or copying provider internals. Nine measurement-tool
+tests pass. The same qualified wheel's 43 owned Python/native hashes match before
+and after these measurements. Provider/native public admission remains separate.

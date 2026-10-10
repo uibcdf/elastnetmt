@@ -29,6 +29,23 @@ underconstrained networks raise `DegenerateNetworkError` before caching a
 result. Revise the selection or cutoff. A noncollinear three-node triangle is
 supported. Invalid backend spectra raise `InvalidSpectrumError`.
 
+For several independent models of the same structure, convert the file once
+and reuse the public MolSys input. This avoids repeated file parsing; each
+model still selects and validates its nodes and constructs its own contacts.
+
+```python
+import molsysmt as msm
+
+system = msm.convert("system.pdb", to_form="molsysmt.MolSys", structure_indices=0)
+models = [AnisotropicNetworkModel(system, cutoff=f"{cutoff} angstroms")
+          for cutoff in (10, 12, 14)]
+```
+
+To change one model's cutoff, use `anm.calculate_contacts(cutoff="14 angstroms")`.
+This reuses the converted system and invalidates cached spectra. A subsequent
+query solves the new network and checks its rigid-mode contract. Provider
+initialization remains a first-use cost in a new process.
+
 ```{eval-rst}
 .. toctree::
    :maxdepth: 2

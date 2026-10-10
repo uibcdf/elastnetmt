@@ -1,0 +1,659 @@
+{
+  "measurements": {
+    "schema": "elastnetmt.enm_benchmark@1",
+    "source_head": "de4cc1e86b630793f5c83f0d72dfecef0060b01e",
+    "source_dirty": false,
+    "python": "3.14.7 | packaged by conda-forge | (main, Sep  2 2026, 21:08:32) [GCC 15.3.0]",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "extension_sha256": null,
+    "cases": [
+      {
+        "nodes": 497,
+        "cutoff_nm": 1.2,
+        "model": "ANM",
+        "engine": "rust",
+        "trial": 0,
+        "seed": 1729,
+        "threads": 1,
+        "repeats": 3,
+        "solve": false,
+        "native_module": "_rust",
+        "workload": "public-preparation",
+        "structure": "<suite-source>/molsysmt/molsysmt/data/pdb/1tcd.pdb",
+        "profile_preparation": false,
+        "runtime_file": "<installed-wheel>/elastnetmt/__init__.py",
+        "molsysmt_runtime_file": "<suite-source>/molsysmt/molsysmt/__init__.py",
+        "molsysmt": "0.22.4+215.g5bd893c85",
+        "imports_s": 0.4681666970063816,
+        "first_initialization_s": 5.358082753002236,
+        "profile": null,
+        "profiled_first_initialization": false,
+        "preparation_parity_checked": true,
+        "repeated_file_initialization_s": [
+          0.7617232470001909,
+          0.7560485139983939,
+          0.7758614100021077
+        ],
+        "prepared_initialization_s": [
+          0.09025924000161467,
+          0.08855917099572252,
+          0.08832069300115108
+        ],
+        "numpy": "2.4.6",
+        "threadpools": [
+          {
+            "user_api": "openmp",
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libomp",
+            "filepath": "<environment>/lib/libomp.so",
+            "version": null
+          },
+          {
+            "user_api": "blas",
+            "internal_api": "mkl",
+            "num_threads": 1,
+            "prefix": "libmkl_rt",
+            "filepath": "<environment>/lib/libmkl_rt.so.2",
+            "version": "2025.3-Product",
+            "threading_layer": "intel"
+          }
+        ]
+      },
+      {
+        "nodes": 497,
+        "cutoff_nm": 1.2,
+        "model": "ANM",
+        "engine": "rust",
+        "trial": 1,
+        "seed": 1729,
+        "threads": 1,
+        "repeats": 3,
+        "solve": false,
+        "native_module": "_rust",
+        "workload": "public-preparation",
+        "structure": "<suite-source>/molsysmt/molsysmt/data/pdb/1tcd.pdb",
+        "profile_preparation": false,
+        "runtime_file": "<installed-wheel>/elastnetmt/__init__.py",
+        "molsysmt_runtime_file": "<suite-source>/molsysmt/molsysmt/__init__.py",
+        "molsysmt": "0.22.4+215.g5bd893c85",
+        "imports_s": 0.47488148599950364,
+        "first_initialization_s": 5.430846801995358,
+        "profile": null,
+        "profiled_first_initialization": false,
+        "preparation_parity_checked": true,
+        "repeated_file_initialization_s": [
+          0.8560499160012114,
+          0.8306152279983507,
+          0.8596798270009458
+        ],
+        "prepared_initialization_s": [
+          0.09693783600232564,
+          0.09078446600324241,
+          0.09047068700601812
+        ],
+        "numpy": "2.4.6",
+        "threadpools": [
+          {
+            "user_api": "openmp",
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libomp",
+            "filepath": "<environment>/lib/libomp.so",
+            "version": null
+          },
+          {
+            "user_api": "blas",
+            "internal_api": "mkl",
+            "num_threads": 1,
+            "prefix": "libmkl_rt",
+            "filepath": "<environment>/lib/libmkl_rt.so.2",
+            "version": "2025.3-Product",
+            "threading_layer": "intel"
+          }
+        ]
+      },
+      {
+        "nodes": 497,
+        "cutoff_nm": 1.2,
+        "model": "ANM",
+        "engine": "rust",
+        "trial": 2,
+        "seed": 1729,
+        "threads": 1,
+        "repeats": 3,
+        "solve": false,
+        "native_module": "_rust",
+        "workload": "public-preparation",
+        "structure": "<suite-source>/molsysmt/molsysmt/data/pdb/1tcd.pdb",
+        "profile_preparation": false,
+        "runtime_file": "<installed-wheel>/elastnetmt/__init__.py",
+        "molsysmt_runtime_file": "<suite-source>/molsysmt/molsysmt/__init__.py",
+        "molsysmt": "0.22.4+215.g5bd893c85",
+        "imports_s": 0.43871982199925696,
+        "first_initialization_s": 5.141580488998443,
+        "profile": null,
+        "profiled_first_initialization": false,
+        "preparation_parity_checked": true,
+        "repeated_file_initialization_s": [
+          0.7642689729982521,
+          0.7519130760047119,
+          0.8263664139958564
+        ],
+        "prepared_initialization_s": [
+          0.08825034400069853,
+          0.08773473399924114,
+          0.09133608400588855
+        ],
+        "numpy": "2.4.6",
+        "threadpools": [
+          {
+            "user_api": "openmp",
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libomp",
+            "filepath": "<environment>/lib/libomp.so",
+            "version": null
+          },
+          {
+            "user_api": "blas",
+            "internal_api": "mkl",
+            "num_threads": 1,
+            "prefix": "libmkl_rt",
+            "filepath": "<environment>/lib/libmkl_rt.so.2",
+            "version": "2025.3-Product",
+            "threading_layer": "intel"
+          }
+        ]
+      }
+    ]
+  },
+  "profile_diagnostic": {
+    "schema": "elastnetmt.enm_benchmark@1",
+    "source_head": "de4cc1e86b630793f5c83f0d72dfecef0060b01e",
+    "source_dirty": false,
+    "python": "3.14.7 | packaged by conda-forge | (main, Sep  2 2026, 21:08:32) [GCC 15.3.0]",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "extension_sha256": null,
+    "cases": [
+      {
+        "nodes": 497,
+        "cutoff_nm": 1.2,
+        "model": "ANM",
+        "engine": "rust",
+        "trial": 0,
+        "seed": 1729,
+        "threads": 1,
+        "repeats": 3,
+        "solve": false,
+        "native_module": "_rust",
+        "workload": "public-preparation",
+        "structure": "<suite-source>/molsysmt/molsysmt/data/pdb/1tcd.pdb",
+        "profile_preparation": true,
+        "runtime_file": "<installed-wheel>/elastnetmt/__init__.py",
+        "molsysmt_runtime_file": "<suite-source>/molsysmt/molsysmt/__init__.py",
+        "molsysmt": "0.22.4+215.g5bd893c85",
+        "imports_s": 0.4594176589962444,
+        "first_initialization_s": 8.67352251400007,
+        "profile": [
+          {
+            "filename": "<suite-source>/elastnetmt/devtools/enm_benchmark.py",
+            "line": 62,
+            "function": "measure",
+            "primitive_calls": 1,
+            "calls": 1,
+            "own_s": 8.575e-06,
+            "cumulative_s": 8.673527878
+          },
+          {
+            "filename": "<suite-source>/elastnetmt/devtools/enm_benchmark.py",
+            "line": 308,
+            "function": "operation",
+            "primitive_calls": 1,
+            "calls": 1,
+            "own_s": 2.339e-06,
+            "cumulative_s": 8.673517531
+          },
+          {
+            "filename": "<suite-source>/elastnetmt/devtools/enm_benchmark.py",
+            "line": 305,
+            "function": "construct",
+            "primitive_calls": 1,
+            "calls": 1,
+            "own_s": 1.1594000000000001e-05,
+            "cumulative_s": 8.673515192
+          },
+          {
+            "filename": "<suite-source>/smonitor/smonitor/core/decorator.py",
+            "line": 320,
+            "function": "invoke",
+            "primitive_calls": 1,
+            "calls": 360,
+            "own_s": 0.00144648,
+            "cumulative_s": 8.673503598
+          },
+          {
+            "filename": "<suite-source>/argdigest/argdigest/core/decorator.py",
+            "line": 467,
+            "function": "wrapper",
+            "primitive_calls": 1,
+            "calls": 98,
+            "own_s": 0.004462034,
+            "cumulative_s": 8.673471905000001
+          },
+          {
+            "filename": "<suite-source>/argdigest/argdigest/core/decorator.py",
+            "line": 478,
+            "function": "_run_digestion",
+            "primitive_calls": 1,
+            "calls": 21,
+            "own_s": 0.0007566140000000001,
+            "cumulative_s": 8.673440412
+          },
+          {
+            "filename": "<suite-source>/argdigest/argdigest/core/decorator.py",
+            "line": 159,
+            "function": "_invoke",
+            "primitive_calls": 1,
+            "calls": 21,
+            "own_s": 0.000127646,
+            "cumulative_s": 8.670878258
+          },
+          {
+            "filename": "<installed-wheel>/elastnetmt/model/anisotropic_network_model.py",
+            "line": 55,
+            "function": "__init__",
+            "primitive_calls": 1,
+            "calls": 1,
+            "own_s": 5.347000000000001e-06,
+            "cumulative_s": 8.670874692
+          },
+          {
+            "filename": "<installed-wheel>/elastnetmt/model/elastic_network_model.py",
+            "line": 64,
+            "function": "__init__",
+            "primitive_calls": 1,
+            "calls": 1,
+            "own_s": 1.9424000000000002e-05,
+            "cumulative_s": 8.670361113
+          },
+          {
+            "filename": "<frozen importlib._bootstrap>",
+            "line": 1360,
+            "function": "_find_and_load",
+            "primitive_calls": 173,
+            "calls": 2818,
+            "own_s": 0.019712637,
+            "cumulative_s": 6.3556713700000005
+          },
+          {
+            "filename": "<frozen importlib._bootstrap>",
+            "line": 1308,
+            "function": "_find_and_load_unlocked",
+            "primitive_calls": 116,
+            "calls": 2751,
+            "own_s": 0.024188960000000002,
+            "cumulative_s": 6.349495944
+          },
+          {
+            "filename": "<frozen importlib._bootstrap>",
+            "line": 914,
+            "function": "_load_unlocked",
+            "primitive_calls": 118,
+            "calls": 2736,
+            "own_s": 0.012611443,
+            "cumulative_s": 6.3353261000000005
+          },
+          {
+            "filename": "<frozen importlib._bootstrap_external>",
+            "line": 753,
+            "function": "exec_module",
+            "primitive_calls": 115,
+            "calls": 2618,
+            "own_s": 0.008542504000000001,
+            "cumulative_s": 6.330199108
+          },
+          {
+            "filename": "<frozen importlib._bootstrap>",
+            "line": 483,
+            "function": "_call_with_frames_removed",
+            "primitive_calls": 236,
+            "calls": 7665,
+            "own_s": 0.008001611,
+            "cumulative_s": 6.317617940000001
+          },
+          {
+            "filename": "~",
+            "line": 0,
+            "function": "<built-in method builtins.exec>",
+            "primitive_calls": 115,
+            "calls": 5282,
+            "own_s": 0.55889615,
+            "cumulative_s": 6.314660632000001
+          },
+          {
+            "filename": "<environment>/lib/python3.14/importlib/__init__.py",
+            "line": 71,
+            "function": "import_module",
+            "primitive_calls": 152,
+            "calls": 627,
+            "own_s": 0.0010082560000000001,
+            "cumulative_s": 6.159038308
+          },
+          {
+            "filename": "<frozen importlib._bootstrap>",
+            "line": 1394,
+            "function": "_gcd_import",
+            "primitive_calls": 152,
+            "calls": 629,
+            "own_s": 0.0010571620000000002,
+            "cumulative_s": 6.158676383
+          },
+          {
+            "filename": "<frozen importlib._bootstrap>",
+            "line": 1409,
+            "function": "_handle_fromlist",
+            "primitive_calls": 2567,
+            "calls": 5040,
+            "own_s": 0.007915915,
+            "cumulative_s": 5.949401632000001
+          },
+          {
+            "filename": "<suite-source>/argdigest/argdigest/core/decorator.py",
+            "line": 537,
+            "function": "gut",
+            "primitive_calls": 179,
+            "calls": 190,
+            "own_s": 0.0012794750000000002,
+            "cumulative_s": 5.319316412
+          },
+          {
+            "filename": "~",
+            "line": 0,
+            "function": "<built-in method builtins.hasattr>",
+            "primitive_calls": 14220,
+            "calls": 44412,
+            "own_s": 0.016108325,
+            "cumulative_s": 5.293967328
+          },
+          {
+            "filename": "<suite-source>/molsysmt/molsysmt/_private/argdigest/argument/to_form.py",
+            "line": 15,
+            "function": "digest_to_form",
+            "primitive_calls": 1,
+            "calls": 1,
+            "own_s": 1.8928000000000002e-05,
+            "cumulative_s": 5.271676727
+          },
+          {
+            "filename": "<suite-source>/molsysmt/molsysmt/form/__init__.py",
+            "line": 14,
+            "function": "__getattr__",
+            "primitive_calls": 3,
+            "calls": 3,
+            "own_s": 8.9385e-05,
+            "cumulative_s": 5.271623739000001
+          },
+          {
+            "filename": "<suite-source>/depdigest/depdigest/core/loader.py",
+            "line": 51,
+            "function": "_ensure_initialized",
+            "primitive_calls": 56,
+            "calls": 56,
+            "own_s": 3.1167e-05,
+            "cumulative_s": 5.271504129
+          },
+          {
+            "filename": "<suite-source>/depdigest/depdigest/core/loader.py",
+            "line": 187,
+            "function": "keys",
+            "primitive_calls": 2,
+            "calls": 2,
+            "own_s": 9.036000000000001e-06,
+            "cumulative_s": 5.2714965970000005
+          },
+          {
+            "filename": "<suite-source>/depdigest/depdigest/core/loader.py",
+            "line": 78,
+            "function": "_scan_and_load",
+            "primitive_calls": 1,
+            "calls": 1,
+            "own_s": 0.001056286,
+            "cumulative_s": 5.271425906
+          },
+          {
+            "filename": "<suite-source>/argdigest/argdigest/core/decorator.py",
+            "line": 279,
+            "function": "deco",
+            "primitive_calls": 12848,
+            "calls": 12853,
+            "own_s": 0.10019828900000001,
+            "cumulative_s": 3.374870859
+          },
+          {
+            "filename": "<suite-source>/argdigest/argdigest/core/decorator.py",
+            "line": 317,
+            "function": "build",
+            "primitive_calls": 12848,
+            "calls": 12853,
+            "own_s": 0.632045284,
+            "cumulative_s": 3.234248762
+          },
+          {
+            "filename": "<suite-source>/molsysmt/molsysmt/basic/convert.py",
+            "line": 755,
+            "function": "convert",
+            "primitive_calls": 1,
+            "calls": 1,
+            "own_s": 6.2171e-05,
+            "cumulative_s": 2.3876204210000003
+          },
+          {
+            "filename": "<suite-source>/molsysmt/molsysmt/basic/convert.py",
+            "line": 15,
+            "function": "_convert_one_to_one",
+            "primitive_calls": 1,
+            "calls": 1,
+            "own_s": 7.6766e-05,
+            "cumulative_s": 2.2637449480000003
+          },
+          {
+            "filename": "<suite-source>/molsysmt/molsysmt/form/file_pdb/to_molsysmt_MolSys.py",
+            "line": 4,
+            "function": "to_molsysmt_MolSys",
+            "primitive_calls": 1,
+            "calls": 1,
+            "own_s": 2.1512e-05,
+            "cumulative_s": 2.20980157
+          },
+          {
+            "filename": "<suite-source>/molsysmt/molsysmt/form/molsysmt_PDBFileHandler/to_molsysmt_MolSys.py",
+            "line": 564,
+            "function": "to_molsysmt_MolSys",
+            "primitive_calls": 1,
+            "calls": 1,
+            "own_s": 2.2253000000000002e-05,
+            "cumulative_s": 2.100950407
+          },
+          {
+            "filename": "~",
+            "line": 0,
+            "function": "<built-in method builtins.__import__>",
+            "primitive_calls": 1177,
+            "calls": 2034,
+            "own_s": 0.005510802,
+            "cumulative_s": 2.062158052
+          },
+          {
+            "filename": "<suite-source>/molsysmt/molsysmt/form/molsysmt_PDBFileHandler/to_molsysmt_MolSys.py",
+            "line": 540,
+            "function": "_build_molsys_from_pdb_handler",
+            "primitive_calls": 1,
+            "calls": 1,
+            "own_s": 0.0034108890000000003,
+            "cumulative_s": 2.013017015
+          },
+          {
+            "filename": "<suite-source>/molsysmt/molsysmt/form/molsysmt_PDBFileHandler/to_molsysmt_MolSys.py",
+            "line": 217,
+            "function": "_build_topology_from_content",
+            "primitive_calls": 1,
+            "calls": 1,
+            "own_s": 0.0069906460000000005,
+            "cumulative_s": 1.9226484330000002
+          },
+          {
+            "filename": "<suite-source>/molsysmt/molsysmt/native/topology.py",
+            "line": 887,
+            "function": "_coerce_bond_table",
+            "primitive_calls": 5,
+            "calls": 5,
+            "own_s": 0.012779561,
+            "cumulative_s": 1.030548392
+          },
+          {
+            "filename": "<suite-source>/argdigest/argdigest/core/argument_loader.py",
+            "line": 128,
+            "function": "load_argument_digesters",
+            "primitive_calls": 12853,
+            "calls": 12853,
+            "own_s": 0.029150569,
+            "cumulative_s": 1.0216397130000001
+          },
+          {
+            "filename": "<environment>/lib/python3.14/inspect.py",
+            "line": 3329,
+            "function": "signature",
+            "primitive_calls": 16185,
+            "calls": 16185,
+            "own_s": 0.023442550000000003,
+            "cumulative_s": 1.021050765
+          },
+          {
+            "filename": "<suite-source>/molsysmt/molsysmt/native/topology.py",
+            "line": 1353,
+            "function": "_append_chemical_state_bonds",
+            "primitive_calls": 1,
+            "calls": 1,
+            "own_s": 0.000226333,
+            "cumulative_s": 1.0024427040000001
+          },
+          {
+            "filename": "<environment>/lib/python3.14/inspect.py",
+            "line": 3042,
+            "function": "from_callable",
+            "primitive_calls": 16185,
+            "calls": 16185,
+            "own_s": 0.023061425,
+            "cumulative_s": 0.9976082150000001
+          },
+          {
+            "filename": "<environment>/lib/python3.14/inspect.py",
+            "line": 2418,
+            "function": "_signature_from_callable",
+            "primitive_calls": 16185,
+            "calls": 16405,
+            "own_s": 0.15889899300000002,
+            "cumulative_s": 0.9745467900000001
+          }
+        ],
+        "profiled_first_initialization": true,
+        "preparation_parity_checked": true,
+        "repeated_file_initialization_s": [
+          0.9176520230030292,
+          1.4148261829977855,
+          1.6233865459944354
+        ],
+        "prepared_initialization_s": [
+          0.15467034799803514,
+          0.15168755600461736,
+          0.16203753800073173
+        ],
+        "numpy": "2.4.6",
+        "threadpools": [
+          {
+            "user_api": "openmp",
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libomp",
+            "filepath": "<environment>/lib/libomp.so",
+            "version": null
+          },
+          {
+            "user_api": "blas",
+            "internal_api": "mkl",
+            "num_threads": 1,
+            "prefix": "libmkl_rt",
+            "filepath": "<environment>/lib/libmkl_rt.so.2",
+            "version": "2025.3-Product",
+            "threading_layer": "intel"
+          }
+        ]
+      }
+    ]
+  },
+  "installed_wheel": {
+    "version": "0.1.0",
+    "wheel_sha256": "589a1a9841f490cb4f976b146d006eb68a3912293bf5154615744fdcb0ac8824",
+    "files": {
+      "elastnetmt/__init__.py": "2c779484b7ea536897550c11cfaca5d013891c775042df86b61347e635de916b",
+      "elastnetmt/_argdigest.py": "56c3b0589d7c4cba756ff5b3683b351387ff0d4ddc10f7d3f8537adfeb6c661f",
+      "elastnetmt/_depdigest.py": "bfd97a4dca3d386f186162a0d4b8b63303d178008524e8d6cce2c01855beee73",
+      "elastnetmt/_private/arguments.py": "8a091fdb72c33cd36ba673e27146593155ac5b16cfd98c6c974e12ddc7e7790a",
+      "elastnetmt/_private/b_factors.py": "dc9aa24477b43066bb38dc0080194939d4d4ae88e0599cecb6ec83804a807594",
+      "elastnetmt/_private/contacts.py": "2a728d998ecdce5087762d63002b369ef2fbf454443620e47b953469e8d1bab5",
+      "elastnetmt/_private/engines.py": "b0248a28cb7ce659080476c24c1cf5e80cb146506dd16f2974f791c575b3138d",
+      "elastnetmt/_private/matrix_kernels.py": "62560867421d899917223337d6c31db967af80119680485c85b63bfe0d2dd768",
+      "elastnetmt/_private/numba_kernels.py": "9c1de576d892c97f37e5be87dc6aea745c89b4f7861e24ed0cfa119ad2b0ac83",
+      "elastnetmt/_private/smonitor/__init__.py": "b3fd8a14c7827f123cece47492fba9c8547acbcbd2de06df90e7aa8a92f9f4c9",
+      "elastnetmt/_private/smonitor/catalog.py": "929a52ffae4df91351dc852af1a86e64c955a515d1199850662636f53ea6c429",
+      "elastnetmt/_private/smonitor/meta.py": "83d28bec4c553dcb6929335c1d9bcba6e2cddaef948b69e451576782f7f75866",
+      "elastnetmt/_private/spectral.py": "6a5b37a01615a9128cbcbe6d410112f61f16a1ae6e9feed9a378b3b2ed384bf6",
+      "elastnetmt/_private/variables.py": "7001269da4f75c23b1c5687c7da0353874ead39318b7fd3d156e49f3eae79f5e",
+      "elastnetmt/_private/warnings/__init__.py": "bff31e4d62085b4624b75b7c37fe99af1d77d89f7ebe1c2ed8a1093a34296ca4",
+      "elastnetmt/_private/warnings/elastnetmt_deprecation_warning.py": "8f54a8140a2efcce20f99aee511feee6f8ef7bf0266232aa33ac632aa7c57d03",
+      "elastnetmt/_private/warnings/no_experimental_b_factors_warning.py": "f8e7a37bdfc0109b2e86e399ab1f81350fc6557692a18a132e13eaaebb4ed2f2",
+      "elastnetmt/_private/warnings/user_elastnetmt_warning.py": "eb17e19db80dda037b77c1956ba0d265564ff2fa7c4844d0713ed9cc80c9cb20",
+      "elastnetmt/_pyunitwizard.py": "123b0ba809d615ecc26d013d8b46812473ce6299fee4330792911a550d8d8dd6",
+      "elastnetmt/_smonitor.py": "dcac495a8154e08af502f9534c8aaeb3134185b5db358c051038d2c9984ec1a1",
+      "elastnetmt/_version.py": "91447944015cec709e8aa7655f7e9d64e1e4508e7023a57fe3746911c0fc6fed",
+      "elastnetmt/config/__init__.py": "c6721102d13a1bd558c22da91dfb8e292d5922ecf6d6059a7b6edfd5b4b61b75",
+      "elastnetmt/config/logging_setup.py": "2ddf5b289dc9d3ba5e77e064e21be9b56ca2845a382e20f1d91a7d568c87d68d",
+      "elastnetmt/model/__init__.py": "7304433cc64c214208f8e0a17b3c1c04b1a49c8f8d0cbb2e7582bcf440d86a88",
+      "elastnetmt/model/anisotropic_network_model.py": "b66e05adf113869142110293c2b6add543a016518dbfc440001c97ba204970b6",
+      "elastnetmt/model/elastic_network_model.py": "eefddba0c591b97f3b8a76fdeef5bb1e21ebad2d90c9c5650816a9d0a5869558",
+      "elastnetmt/model/gaussian_network_model.py": "6ab1d465b381cde64ae01a922355ecf68b7c18d02bf8f4bd4497983a39a2659d",
+      "elastnetmt/model/old_anm.py": "89a6503cf59b211f80a7b039efa0e4cabb8d353d5078c40563c180a45d991376",
+      "elastnetmt/py.typed": "a3fb246183a006a6f032dfb9954643ba7c8cec271e987689b7693d32c48009e6",
+      "molsysviewer_elastnetmt/__init__.py": "feea7518f99b552bc22840df71559ab0ad4c835567be18ed88c742694a43280b",
+      "molsysviewer_elastnetmt/adapters/__init__.py": "00d68827876ad38b01e68e2e1cf66e7bdd81e19b7001410fcd77f53ff26b5fbd",
+      "molsysviewer_elastnetmt/adapters/anisotropy.py": "b61d68fb07842d408fca16b4e1139617893c34d0ab03c3c67ea2b8918368e6bc",
+      "molsysviewer_elastnetmt/adapters/contacts.py": "014d059dfd3d7a86ea93f8da46e3eaf2d48dcb72b5bac7957ebae8f80237a376",
+      "molsysviewer_elastnetmt/adapters/modes.py": "0e654e8cd4e326ef782084301559b4cb20ce96528971dbfb4538bf6f9c3ee539",
+      "molsysviewer_elastnetmt/demo.py": "59785e10f958f01b34c607ca2b7431afbca83ee7e412524873c10090e494b50a",
+      "molsysviewer_elastnetmt/export.py": "d64fa31110e661aa1a2d9c2597d158ece4e8fd625c573849bb132ec0c6391ad2",
+      "molsysviewer_elastnetmt/panels/__init__.py": "febdf084dcb9c89cf768489867fdd8f3cf046c1de7e5394be74901923804cb18",
+      "molsysviewer_elastnetmt/panels/figures.py": "9e51ba299dda90b69b9b0fe960152a01df294eb65810267ac04762ed762be525",
+      "molsysviewer_elastnetmt/panels/model.py": "e61997ae8ebbb203e5bd0d25797521d05192bf646509bbab7a0bb2a782486a3b",
+      "molsysviewer_elastnetmt/panels/modes.py": "23bedc4484e6881c41bb8c247c4ca40149f793c94a1ead1d71f7c46c73f0bce2",
+      "molsysviewer_elastnetmt/runtime.py": "6d949af4659cc95d781aeff9494346ee96993c2a519816079e427b884917703d",
+      "molsysviewer_elastnetmt/workbench.py": "c3763890f3ad27282bc680461fcbde0149821f5240fce4aa789213c231f3af8f",
+      "elastnetmt/_rust.abi3.so": "3f11d208cec8fd67f9826834f387547ed5e2ae519df16c83d01d4c3bacc451ad"
+    }
+  },
+  "structure_sha256": "6a67597ad4d07d36fad72c7059a80b2297dc1218291b06261cae1f072e3c204d",
+  "wheel_sha256": "589a1a9841f490cb4f976b146d006eb68a3912293bf5154615744fdcb0ac8824",
+  "provider_source_heads": {
+    "molsysmt": "8ae160fc93ed5bc815bcc24b37c2875ba735623d",
+    "depdigest": "0568f9aba397ed5495adb350ba0f90899d6bdb8b",
+    "argdigest": "5c6711ebfe23b9516ef0e8f830abee70589ec406"
+  },
+  "installed_distribution_versions": {
+    "molsysmt": "0.22.4+215.g5bd893c85",
+    "depdigest": "0.13.0+3.g0568f9a",
+    "argdigest": "0.15.0+1.g5c6711e",
+    "smonitor": "0.19.0",
+    "numpy": "2.4.6"
+  },
+  "provider_issue": "uibcdf/molsysmt#382"
+}

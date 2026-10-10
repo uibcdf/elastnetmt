@@ -36,6 +36,13 @@ Catch `DegenerateNetworkError` to revise the node selection or cutoff, or
 numerical decomposition that violates the model contract and is propagated
 by cutoff search. All scientific error types are exposed from `elastnetmt`.
 
+When creating several independent models of the same structure, pass a MolSys
+converted once with `molsysmt.convert` instead of reparsing the PDB for every
+model. For successive cutoffs on one model, use
+`gnm.calculate_contacts(cutoff="8 angstroms")`: it reuses the converted system
+and resets spectra and calibration. Refit B factors after changing contacts.
+`get_best_cutoff` already reuses the model's converted system during its search.
+
 ```{eval-rst}
 .. toctree::
    :maxdepth: 2
