@@ -1,0 +1,445 @@
+{
+  "schema": "elastnetmt.enm_benchmark@1",
+  "source_head": "03b81d056fff0e51850a0d2d2f57f9edee1b815a",
+  "source_dirty": false,
+  "python": "3.14.7 | packaged by conda-forge | (main, Sep  2 2026, 21:08:32) [GCC 15.3.0]",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "extension_sha256": null,
+  "cases": [
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.2,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": false,
+      "native_module": "_rust",
+      "workload": "public-model",
+      "structure": "<molsysmt-data>/pdb/1tcd.pdb",
+      "runtime_file": "<installed-wheel>/elastnetmt/__init__.py",
+      "engine_used": "vectorized",
+      "imports_s": 0.6725516049991711,
+      "initialization_s": 4.7896849700046005,
+      "first_query_s": 0.7566843019958469,
+      "initialization_plus_first_query_s": 5.546369272000447,
+      "cached_query_s": [
+        2.4670007405802608e-06,
+        2.896995283663273e-06,
+        3.4289987524971366e-06
+      ],
+      "eigh_s": 0.6937790750016575,
+      "peak_rss_after_query_bytes": 666599424,
+      "native_sha256": null,
+      "numpy": "2.4.6",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.2,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": false,
+      "native_module": "_rust",
+      "workload": "public-model",
+      "structure": "<molsysmt-data>/pdb/1tcd.pdb",
+      "runtime_file": "<installed-wheel>/elastnetmt/__init__.py",
+      "engine_used": "vectorized",
+      "imports_s": 0.6054718259983929,
+      "initialization_s": 4.9214712740067625,
+      "first_query_s": 0.7604948470034287,
+      "initialization_plus_first_query_s": 5.681966121010191,
+      "cached_query_s": [
+        2.4809996830299497e-06,
+        2.806002157740295e-06,
+        2.6389971026219428e-06
+      ],
+      "eigh_s": 0.6946272409986705,
+      "peak_rss_after_query_bytes": 666316800,
+      "native_sha256": null,
+      "numpy": "2.4.6",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.2,
+      "model": "ANM",
+      "engine": "numpy",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": false,
+      "native_module": "_rust",
+      "workload": "public-model",
+      "structure": "<molsysmt-data>/pdb/1tcd.pdb",
+      "runtime_file": "<installed-wheel>/elastnetmt/__init__.py",
+      "engine_used": "vectorized",
+      "imports_s": 0.5869627760039293,
+      "initialization_s": 4.898301275003178,
+      "first_query_s": 0.7568122009979561,
+      "initialization_plus_first_query_s": 5.655113476001134,
+      "cached_query_s": [
+        2.272994606755674e-06,
+        2.5509943952783942e-06,
+        2.1339947124943137e-06
+      ],
+      "eigh_s": 0.6915579350024927,
+      "peak_rss_after_query_bytes": 667312128,
+      "native_sha256": null,
+      "numpy": "2.4.6",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.2,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": false,
+      "native_module": "_rust",
+      "workload": "public-model",
+      "structure": "<molsysmt-data>/pdb/1tcd.pdb",
+      "runtime_file": "<installed-wheel>/elastnetmt/__init__.py",
+      "engine_used": "parallel",
+      "imports_s": 0.5836508380016312,
+      "initialization_s": 4.809093757001392,
+      "first_query_s": 2.393447356997058,
+      "initialization_plus_first_query_s": 7.20254111399845,
+      "cached_query_s": [
+        2.5839981390163302e-06,
+        2.239998138975352e-06,
+        2.1029991330578923e-06
+      ],
+      "eigh_s": 0.7003613120032242,
+      "peak_rss_after_query_bytes": 778280960,
+      "native_sha256": null,
+      "numpy": "2.4.6",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.2,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": false,
+      "native_module": "_rust",
+      "workload": "public-model",
+      "structure": "<molsysmt-data>/pdb/1tcd.pdb",
+      "runtime_file": "<installed-wheel>/elastnetmt/__init__.py",
+      "engine_used": "parallel",
+      "imports_s": 0.5877066709945211,
+      "initialization_s": 4.870591813996725,
+      "first_query_s": 2.4181189209994045,
+      "initialization_plus_first_query_s": 7.28871073499613,
+      "cached_query_s": [
+        2.7189962565898895e-06,
+        2.0269944798201323e-06,
+        2.125001628883183e-06
+      ],
+      "eigh_s": 0.7190101219966891,
+      "peak_rss_after_query_bytes": 778645504,
+      "native_sha256": null,
+      "numpy": "2.4.6",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.2,
+      "model": "ANM",
+      "engine": "numba",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": false,
+      "native_module": "_rust",
+      "workload": "public-model",
+      "structure": "<molsysmt-data>/pdb/1tcd.pdb",
+      "runtime_file": "<installed-wheel>/elastnetmt/__init__.py",
+      "engine_used": "parallel",
+      "imports_s": 0.6294744440019713,
+      "initialization_s": 4.84390125599748,
+      "first_query_s": 2.3966569420008454,
+      "initialization_plus_first_query_s": 7.240558197998325,
+      "cached_query_s": [
+        2.567998308222741e-06,
+        2.3550019250251353e-06,
+        2.1599989850074053e-06
+      ],
+      "eigh_s": 0.7056240919991978,
+      "peak_rss_after_query_bytes": 778158080,
+      "native_sha256": null,
+      "numpy": "2.4.6",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.2,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 0,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": false,
+      "native_module": "_rust",
+      "workload": "public-model",
+      "structure": "<molsysmt-data>/pdb/1tcd.pdb",
+      "runtime_file": "<installed-wheel>/elastnetmt/__init__.py",
+      "engine_used": "rust",
+      "imports_s": 0.5919947630027309,
+      "initialization_s": 4.942810656000802,
+      "first_query_s": 0.7046654380028485,
+      "initialization_plus_first_query_s": 5.64747609400365,
+      "cached_query_s": [
+        2.101005520671606e-06,
+        2.3710017558187246e-06,
+        1.9989965949207544e-06
+      ],
+      "eigh_s": 0.6893878580012824,
+      "peak_rss_after_query_bytes": 666144768,
+      "native_sha256": "3f11d208cec8fd67f9826834f387547ed5e2ae519df16c83d01d4c3bacc451ad",
+      "numpy": "2.4.6",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.2,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 1,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": false,
+      "native_module": "_rust",
+      "workload": "public-model",
+      "structure": "<molsysmt-data>/pdb/1tcd.pdb",
+      "runtime_file": "<installed-wheel>/elastnetmt/__init__.py",
+      "engine_used": "rust",
+      "imports_s": 0.600149648002116,
+      "initialization_s": 4.867048603999137,
+      "first_query_s": 0.7042542160052108,
+      "initialization_plus_first_query_s": 5.571302820004348,
+      "cached_query_s": [
+        2.362998202443123e-06,
+        3.7529971450567245e-06,
+        2.458997187204659e-06
+      ],
+      "eigh_s": 0.6894142330056638,
+      "peak_rss_after_query_bytes": 665800704,
+      "native_sha256": "3f11d208cec8fd67f9826834f387547ed5e2ae519df16c83d01d4c3bacc451ad",
+      "numpy": "2.4.6",
+      "threadpools": [
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        },
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        }
+      ]
+    },
+    {
+      "nodes": 497,
+      "cutoff_nm": 1.2,
+      "model": "ANM",
+      "engine": "rust",
+      "trial": 2,
+      "seed": 1729,
+      "threads": 1,
+      "repeats": 3,
+      "solve": false,
+      "native_module": "_rust",
+      "workload": "public-model",
+      "structure": "<molsysmt-data>/pdb/1tcd.pdb",
+      "runtime_file": "<installed-wheel>/elastnetmt/__init__.py",
+      "engine_used": "rust",
+      "imports_s": 0.5850600260018837,
+      "initialization_s": 4.801382069999818,
+      "first_query_s": 0.7029538630013121,
+      "initialization_plus_first_query_s": 5.50433593300113,
+      "cached_query_s": [
+        2.1279993234202266e-06,
+        2.6130001060664654e-06,
+        2.1899977582506835e-06
+      ],
+      "eigh_s": 0.6875015389960026,
+      "peak_rss_after_query_bytes": 666509312,
+      "native_sha256": "3f11d208cec8fd67f9826834f387547ed5e2ae519df16c83d01d4c3bacc451ad",
+      "numpy": "2.4.6",
+      "threadpools": [
+        {
+          "user_api": "openmp",
+          "internal_api": "openmp",
+          "num_threads": 1,
+          "prefix": "libomp",
+          "filepath": "libomp.so",
+          "version": null
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "mkl",
+          "num_threads": 1,
+          "prefix": "libmkl_rt",
+          "filepath": "libmkl_rt.so.2",
+          "version": "2025.3-Product",
+          "threading_layer": "intel"
+        }
+      ]
+    }
+  ],
+  "wheel_sha256": "589a1a9841f490cb4f976b146d006eb68a3912293bf5154615744fdcb0ac8824",
+  "structure_sha256": "6a67597ad4d07d36fad72c7059a80b2297dc1218291b06261cae1f072e3c204d",
+  "path_normalization": "Runtime/input paths use declared installation/data labels; threadpool library paths retain basenames."
+}

@@ -280,3 +280,17 @@ installation or the still-pending hosted eight-cell matrix.
 
 Final installed native SHA256: `3f11d208cec8fd67f9826834f387547ed5e2ae519df16c83d01d4c3bacc451ad`.
 Source archive SHA256: `e6177bcdb5cde0340e3d7fe13e7868727ce7d697d9ca36b8a079299aed7cf121`.
+
+## Installed public-model performance, 2026-10-10
+
+The clean orchestrator at 03b81d0 measures nine fresh processes through the
+installed public ANM API on TcTIM/1TCD (497 CA nodes, 1.2 nm cutoff). Median
+first `get_modes()` times are 0.757 s NumPy, 2.397 s Numba including JIT and
+0.704 s Rust. Initialization-plus-query medians are 5.655, 7.241 and 5.571 s
+respectively: about 23% shorter with Rust than Numba, 1.5% shorter than NumPy.
+The unchanged dense eigh takes 0.69–0.71 s; roughly 4.9 s preparation dominates
+this actual first-use cycle. Cached queries do not solve again. Full raw samples,
+limits, installed byte identity and the bounded interpretation are maintained in
+[the public-model record](../benchmarks/rust_public_anm_2026_10_10.md).
+This establishes local public-model evidence without claiming a universal gain,
+a repaired provider bottleneck or public/native platform admission.
