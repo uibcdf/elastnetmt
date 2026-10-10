@@ -358,3 +358,12 @@ on Linux/Python 3.14, with all 42 owned file hashes unchanged before/after.
 These consumer changes do not complete #26/#18/#19 public/native admission.
 Provider follow-ups #383/#384 belong to MolSysMT and were filed with consumer
 evidence and the component label.
+
+
+## Legacy-copy cleanup follow-up, 2026-10-10
+
+The maintainer selected Git history as the sole retention of the inactive Python
+2 implementation. Its repository copy in `devguide/legacy/old_anm.py.txt` is
+removed; a brief retirement note remains. Historical distribution fixtures use
+an explicitly synthetic resource placeholder. Runtime source and native artifact
+contracts are unchanged, including rejection of the retired module in wheels.

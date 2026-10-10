@@ -1,13 +1,9 @@
-# Historical ANM source
+# Retired ANM implementation
 
-`old_anm.py.txt` preserves the original inactive Python 2 implementation byte
-for byte, moved from `elastnetmt/model/old_anm.py` on 2026-10-10 under
-[ElastNetMT #14](https://github.com/uibcdf/elastnetmt/issues/14).
+The inactive Python 2 `old_anm.py` was retired on 2026-10-10 under
+[ElastNetMT #14](https://github.com/uibcdf/elastnetmt/issues/14). Its source remains
+in [Git history](https://github.com/uibcdf/elastnetmt/blob/c4a9fb71c553f52081ebee23301a505ba7cd0509/elastnetmt/model/old_anm.py);
+no implementation copy is maintained in the current tree.
 
-It remains repository history, outside the installed Python package. Its direct
-molecular manipulation and file writer are historical code, not supported tools.
-The maintained models delegate molecular operations to public MolSysMT APIs.
-
-The archived pure-Python distribution fixtures still describe their original
-payload; their tests reconstruct this old source only in a temporary historical
-fixture. Current native wheels reject the retired module.
+Historical distribution tests create a synthetic resource placeholder in their
+temporary fixtures. Current native wheels reject the retired module.

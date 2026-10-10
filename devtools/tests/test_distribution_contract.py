@@ -79,9 +79,9 @@ class TestDistributionContract(unittest.TestCase):
             ROOT / "devtools/conda-build/pyproject.noarch.toml",
             self.root / "pyproject.toml",
         )
-        shutil.copy2(
-            ROOT / "devguide/legacy/old_anm.py.txt",
-            self.root / "elastnetmt/model/old_anm.py",
+        # These guards validate historical resource paths, not legacy science.
+        (self.root / "elastnetmt/model/old_anm.py").write_text(
+            "# Synthetic historical resource; not the original ANM implementation.\n"
         )
         self.plan, self.inventory = self.noarch.inspect_recipe(
             self.root, PLAN, RESOURCES

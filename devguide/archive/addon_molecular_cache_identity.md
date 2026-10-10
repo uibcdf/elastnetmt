@@ -103,3 +103,12 @@ public support admission.
 Provider observations are separately owned by MolSysMT #383 (scalar atom IDs)
 and #384 (B-factor frame selection). This fix uses provider frame extraction
 instead of copying or privately slicing molecular storage.
+
+
+## Legacy retention follow-up — 2026-10-10
+
+The maintainer subsequently requested removal of the redundant repository copy
+of the retired ANM source. Git history retains the original bytes; the current
+tree keeps only a brief retirement note. Historical packaging tests use a
+synthetic resource placeholder. This does not change the molecular cache fix,
+its guard or the historical installed evidence recorded above.

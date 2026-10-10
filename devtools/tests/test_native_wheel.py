@@ -60,7 +60,6 @@ def test_current_inventory_covers_runtime_and_all_python_compiles():
     )
     assert set(inventory["required_paths"]) == owned
     assert "site-packages/elastnetmt/model/old_anm.py" not in owned
-    assert (root / "devguide/legacy/old_anm.py.txt").is_file()
 
 
 @pytest.mark.parametrize("tag", ["py3-none-any", "cp314-cp314-linux_x86_64"])

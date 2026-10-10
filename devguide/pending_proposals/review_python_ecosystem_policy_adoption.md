@@ -120,3 +120,13 @@ archive text and passes all 218 installed tests on Linux/Python 3.14. All 42
 owned Python/native hashes match before and after science. This closes the
 legacy cleanup identified in this review, without closing the remaining
 provider/ecosystem and public-delivery work in #14.
+
+
+## Remove the redundant legacy copy — 2026-10-10
+
+After maintainer review, the repository copy `devguide/legacy/old_anm.py.txt`
+is removed. Git history retains the original implementation; the short retirement
+note remains in `devguide/legacy/README.md`. Historical distribution tests now
+create a synthetic resource placeholder because their contract checks paths and
+metadata, not the old algorithm or original source bytes. The current inventory
+and negative wheel guard continue to exclude the retired runtime module.
