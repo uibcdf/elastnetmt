@@ -2,16 +2,56 @@
 
 This roadmap outlines the evolution of **ElastNetMT** from its current state to a high-performance, AI-ready dynamics engine for the **MolSysSuite**.
 
+## Modernization priority, reviewed 2026-10-08
+
+Complete the following maintenance sequence before the exploratory features
+below. Source implementation, hosted qualification and public delivery are
+separate milestones.
+
+1. **Establish a measured baseline.** Inspect current suite policy, exact CI
+   jobs and scientific assertions. The baseline is structurally conformant,
+   but four Python 3.11/3.12 cells fail in LinDelINT's automatic fallback.
+   TcTIM reference inputs must come from installed local data in tests.
+2. **Repair core numerical and value contracts.** Stabilize GNM calibration,
+   plot and cutoff state (#21); preserve application unit policy; activate
+   ArgDigest value contracts and lazy DepDigest engine boundaries (#14).
+   Protect symmetry, zero modes, rotation/translation invariance and physical
+   trajectory amplitude. PR #22 at 6a3598a passed the eight-cell source matrix,
+   viewer contract, suite policy and distribution governance on 2026-10-09.
+3. **Qualify the consuming routes.** Use one published Pytest Receptor pin in
+   full scientific CI and independent governance, exercise Numba parity with
+   Numba installed, and inspect all eight source cells plus viewer contract.
+   Track the vectorized interpolation default as a consumer workaround for
+   lindelint#8, rather than claiming the provider automatic route is repaired.
+4. **Complete scientific edge-case contracts.** Specify disconnected or
+   underconstrained networks, duplicate/empty selections, absent or constant
+   experimental B factors, and unavailable physical stiffness. Add mechanism
+   tests and convergence/performance measurements before expanding solvers.
+   The correction for #23 implements node/spectrum/profile contracts, explicit
+   failures, candidate filtering and state preservation. Its complete hosted
+   qualification is recorded in PR #22 after execution. Performance and larger
+   solver work remain separate follow-up work.
+5. **Refresh the complete documentation and add-on review.** The core GNM/ANM
+   examples and units are updated in the first implementation. Remaining work
+   includes obsolete notebooks/imports, copied API pages, complete public
+   docstrings (#8), published documentation (#13), and viewer/export contracts.
+6. **Qualify installed delivery.** Resolve compatible public sibling routes,
+   commit a real release plan, qualify the exact candidate bytes outside the
+   checkout across Python 3.11–3.14 on Linux/macOS arm64, and verify public
+   installation before advertising support (#18/#19). Source CI alone does
+   not complete this milestone.
+
 ## Phase 1: Structural Foundations & Suite Alignment
-*Status: COMPLETED*
+*Status: IMPLEMENTED IN PART; qualification and contract review remain open.*
 
 - [x] **Inheritance Refactoring:** `ElasticNetworkModel` base class unifies `GNM` and `ANM`.
 - [x] **Contact Map Centralization:** Moved to `_private/contacts.py` with unit-aware normalization.
 - [x] **Suite Integration:** 
-    - Full `@arg_digest()` and `@dep_digest()` coverage.
+    - ArgDigest value registry and optional-engine DepDigest boundaries.
     - Integrated `lindelint` for full-atom trajectory generation.
 - [x] **SMonitor Diagnostics:** Deep instrumentation for network integrity and spectral health.
-- [x] **Tiered Testing:** Basic `smoke` and `integration` tests implemented and passing.
+- [x] **Tiered Testing:** Basic `smoke`, `physical` and `integration` tests implemented.
+- [ ] **Complete Qualification:** All required source and installed routes reviewed.
 
 ## Phase 2: Performance & Physics Refinement
 *Status: IN PROGRESS*
@@ -19,7 +59,7 @@ This roadmap outlines the evolution of **ElastNetMT** from its current state to 
 - [x] **Hessian Vectorization:** Implemented Level 1 (NumPy) and Level 2 (Numba).
 - [x] **GPU Acceleration:** Level 3 (CuPy) implemented for spectral decomposition.
 - [ ] **Lazy Evaluation Engine:** Refine dormant state triggers (Mostly done in Phase 1).
-- [ ] **B-Factor Engine:** Vectorize scaling factor calculations in GNM.
+- [x] **B-Factor Engine:** Separate raw predictions and fitted scale; protect repeated fitting and final cutoff state (#21).
 
 ## Phase 3: Drug Discovery & Pocket Dynamics
 *Focus: Integration with TopoMT and PharmacophoreMT.*

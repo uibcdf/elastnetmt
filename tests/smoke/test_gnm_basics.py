@@ -6,12 +6,12 @@ from elastnetmt import pyunitwizard as puw
 
 
 @pytest.mark.smoke
-def test_gnm_initialization():
+def test_gnm_initialization(reference_pdb):
     """
     Smoke test to verify GNM can be initialized from a PDB structure
     using the new architecture and MolSysMT.
     """
-    pdb_id = "pdb_id:1tcd"
+    pdb_id = reference_pdb
 
     gnm = GaussianNetworkModel(
         pdb_id, selection='atom_name=="CA"', cutoff="7 angstroms"
@@ -39,11 +39,11 @@ def test_gnm_initialization():
 
 
 @pytest.mark.smoke
-def test_gnm_parameter_reset():
+def test_gnm_parameter_reset(reference_pdb):
     """
     Verify that changing parameters resets spectral results (Lazy Evaluation).
     """
-    pdb_id = "pdb_id:1tcd"
+    pdb_id = reference_pdb
     gnm = GaussianNetworkModel(pdb_id, cutoff="7 angstroms")
 
     # Trigger calculation

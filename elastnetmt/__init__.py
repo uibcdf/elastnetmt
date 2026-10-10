@@ -35,6 +35,12 @@ from ._private.smonitor import (
     ArgumentError as ArgumentError,
 )
 from ._private.smonitor import (
+    CutoffOptimizationError as CutoffOptimizationError,
+)
+from ._private.smonitor import (
+    DegenerateNetworkError as DegenerateNetworkError,
+)
+from ._private.smonitor import (
     ElastNetMTError as ElastNetMTError,
 )
 from ._private.smonitor import (
@@ -44,7 +50,13 @@ from ._private.smonitor import (
     InternalAlgorithmError as InternalAlgorithmError,
 )
 from ._private.smonitor import (
+    InvalidSpectrumError as InvalidSpectrumError,
+)
+from ._private.smonitor import (
     LibraryNotFoundError as LibraryNotFoundError,
+)
+from ._private.smonitor import (
+    UndefinedCorrelationError as UndefinedCorrelationError,
 )
 from ._private.smonitor import (
     warn as warn,
@@ -65,4 +77,10 @@ __all__ = [
     "ElasticNetworkModel",
     "arg_digest",
     "dep_digest",
+    "ArgumentError",
+    "InternalAlgorithmError",
+    "CutoffOptimizationError",
+    "DegenerateNetworkError",
+    "InvalidSpectrumError",
+    "UndefinedCorrelationError",
 ]

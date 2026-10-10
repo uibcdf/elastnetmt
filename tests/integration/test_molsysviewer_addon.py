@@ -44,7 +44,9 @@ def test_molsysviewer_elastnetmt_module_exposes_valid_addon_contract():
     }
 
 
-def test_molsysviewer_elastnetmt_lifecycle_initializes_runtime_and_tracks_actions():
+def test_molsysviewer_elastnetmt_lifecycle_initializes_runtime_and_tracks_actions(
+    reference_pdb,
+):
     molsysviewer = pytest.importorskip("molsysviewer")
     module = importlib.import_module("molsysviewer_elastnetmt")
     view = molsysviewer.MolSysView(debug_js=True)
@@ -57,7 +59,7 @@ def test_molsysviewer_elastnetmt_lifecycle_initializes_runtime_and_tracks_action
     assert runtime.visible_overlays == []
     assert runtime.event_log[-1]["event"] == "enable"
 
-    view.load("pdb_id:1tcd")
+    view.load(reference_pdb)
     module.on_context_action(
         view,
         "show-contact-network",
@@ -86,14 +88,16 @@ def test_molsysviewer_elastnetmt_lifecycle_initializes_runtime_and_tracks_action
     assert runtime.event_log[-1]["event"] == "disable"
 
 
-def test_molsysviewer_elastnetmt_contact_adapter_builds_atom_pairs_and_renders_links():
+def test_molsysviewer_elastnetmt_contact_adapter_builds_atom_pairs_and_renders_links(
+    reference_pdb,
+):
     pytest.importorskip("molsysviewer")
     adapter_module = importlib.import_module(
         "molsysviewer_elastnetmt.adapters.contacts"
     )
     molsysviewer_module = importlib.import_module("molsysviewer")
 
-    molecular_system = msm.convert("pdb_id:1tcd", to_form="molsysmt.MolSys")
+    molecular_system = msm.convert(reference_pdb, to_form="molsysmt.MolSys")
     view = molsysviewer_module.MolSysView(debug_js=True)
     view.load(molecular_system)
 
@@ -111,12 +115,14 @@ def test_molsysviewer_elastnetmt_contact_adapter_builds_atom_pairs_and_renders_l
     assert len(view._shape_history[-1]["options"]["atom_pairs"]) == len(atom_pairs)
 
 
-def test_molsysviewer_elastnetmt_mode_adapter_builds_vectors_and_renders_displacements():
+def test_molsysviewer_elastnetmt_mode_adapter_builds_vectors_and_renders_displacements(
+    reference_pdb,
+):
     pytest.importorskip("molsysviewer")
     adapter_module = importlib.import_module("molsysviewer_elastnetmt.adapters.modes")
     molsysviewer_module = importlib.import_module("molsysviewer")
 
-    molecular_system = msm.convert("pdb_id:1tcd", to_form="molsysmt.MolSys")
+    molecular_system = msm.convert(reference_pdb, to_form="molsysmt.MolSys")
     view = molsysviewer_module.MolSysView(debug_js=True)
     view.load(molecular_system)
 
@@ -133,13 +139,15 @@ def test_molsysviewer_elastnetmt_mode_adapter_builds_vectors_and_renders_displac
     assert len(view._shape_history[-1]["options"]["vectors"]) == model.n_nodes
 
 
-def test_molsysviewer_elastnetmt_mode_adapter_respects_active_mode_and_reuses_cached_model():
+def test_molsysviewer_elastnetmt_mode_adapter_respects_active_mode_and_reuses_cached_model(
+    reference_pdb,
+):
     pytest.importorskip("molsysviewer")
     module = importlib.import_module("molsysviewer_elastnetmt")
     adapter_module = importlib.import_module("molsysviewer_elastnetmt.adapters.modes")
     molsysviewer_module = importlib.import_module("molsysviewer")
 
-    molecular_system = msm.convert("pdb_id:1tcd", to_form="molsysmt.MolSys")
+    molecular_system = msm.convert(reference_pdb, to_form="molsysmt.MolSys")
     view = molsysviewer_module.MolSysView(debug_js=True)
     view.load(molecular_system)
     module.on_enable(view)
@@ -162,14 +170,14 @@ def test_molsysviewer_elastnetmt_mode_adapter_respects_active_mode_and_reuses_ca
     assert np.any(np.not_equal(vectors1, vectors2))
 
 
-def test_molsysviewer_elastnetmt_anisotropy_adapter_builds_ellipsoids():
+def test_molsysviewer_elastnetmt_anisotropy_adapter_builds_ellipsoids(reference_pdb):
     pytest.importorskip("molsysviewer")
     adapter_module = importlib.import_module(
         "molsysviewer_elastnetmt.adapters.anisotropy"
     )
     molsysviewer_module = importlib.import_module("molsysviewer")
 
-    molecular_system = msm.convert("pdb_id:1tcd", to_form="molsysmt.MolSys")
+    molecular_system = msm.convert(reference_pdb, to_form="molsysmt.MolSys")
     view = molsysviewer_module.MolSysView(debug_js=True)
     view.load(molecular_system)
 
@@ -193,14 +201,16 @@ def test_molsysviewer_elastnetmt_anisotropy_adapter_builds_ellipsoids():
     assert len(view._shape_history[-1]["options"]["eigenvalues"]) == model.n_nodes
 
 
-def test_molsysviewer_elastnetmt_workbench_and_export_helpers_report_reproducible_state():
+def test_molsysviewer_elastnetmt_workbench_and_export_helpers_report_reproducible_state(
+    reference_pdb,
+):
     pytest.importorskip("molsysviewer")
     module = importlib.import_module("molsysviewer_elastnetmt")
     export_module = importlib.import_module("molsysviewer_elastnetmt.export")
     workbench_module = importlib.import_module("molsysviewer_elastnetmt.workbench")
     molsysviewer_module = importlib.import_module("molsysviewer")
 
-    molecular_system = msm.convert("pdb_id:1tcd", to_form="molsysmt.MolSys")
+    molecular_system = msm.convert(reference_pdb, to_form="molsysmt.MolSys")
     view = molsysviewer_module.MolSysView(debug_js=True)
     view.load(molecular_system)
     module.on_enable(view)
@@ -241,12 +251,12 @@ def test_molsysviewer_elastnetmt_workbench_and_export_helpers_report_reproducibl
     )
 
 
-def test_molsysviewer_elastnetmt_demo_bundle_builds_complete_mvp_state():
+def test_molsysviewer_elastnetmt_demo_bundle_builds_complete_mvp_state(reference_pdb):
     pytest.importorskip("molsysviewer")
     demo_module = importlib.import_module("molsysviewer_elastnetmt.demo")
 
     bundle = demo_module.build_demo_bundle(
-        "pdb_id:1tcd",
+        reference_pdb,
         mode_index=1,
         show_contact_network=True,
         show_mode_vectors=True,
@@ -342,11 +352,13 @@ def test_elastnetmt_model_panel_set_model_kind_action_updates_runtime_and_pushes
     assert any(e["event"] == "panel_set_model_kind" for e in runtime.event_log)
 
 
-def test_elastnetmt_model_panel_compute_action_builds_model_and_reports_n_nodes():
+def test_elastnetmt_model_panel_compute_action_builds_model_and_reports_n_nodes(
+    reference_pdb,
+):
     molsysviewer = pytest.importorskip("molsysviewer")
     module = importlib.import_module("molsysviewer_elastnetmt")
 
-    molecular_system = msm.convert("pdb_id:1tcd", to_form="molsysmt.MolSys")
+    molecular_system = msm.convert(reference_pdb, to_form="molsysmt.MolSys")
 
     molsysviewer.addons.clear()
     molsysviewer.addons.register(module.get_addon())
@@ -425,11 +437,13 @@ def test_elastnetmt_modes_panel_set_mode_index_action():
     assert any(e["event"] == "panel_set_mode_index" for e in runtime.event_log)
 
 
-def test_elastnetmt_modes_panel_show_vectors_action_renders_and_reports_n_vectors():
+def test_elastnetmt_modes_panel_show_vectors_action_renders_and_reports_n_vectors(
+    reference_pdb,
+):
     molsysviewer = pytest.importorskip("molsysviewer")
     module = importlib.import_module("molsysviewer_elastnetmt")
 
-    molecular_system = msm.convert("pdb_id:1tcd", to_form="molsysmt.MolSys")
+    molecular_system = msm.convert(reference_pdb, to_form="molsysmt.MolSys")
 
     molsysviewer.addons.clear()
     molsysviewer.addons.register(module.get_addon())
@@ -490,11 +504,11 @@ def test_elastnetmt_figures_panel_on_mount_pushes_initial_state():
     assert state["status"] == "idle"
 
 
-def test_elastnetmt_figures_panel_set_preset_and_export_actions():
+def test_elastnetmt_figures_panel_set_preset_and_export_actions(reference_pdb):
     molsysviewer = pytest.importorskip("molsysviewer")
     module = importlib.import_module("molsysviewer_elastnetmt")
 
-    molecular_system = msm.convert("pdb_id:1tcd", to_form="molsysmt.MolSys")
+    molecular_system = msm.convert(reference_pdb, to_form="molsysmt.MolSys")
 
     molsysviewer.addons.clear()
     molsysviewer.addons.register(module.get_addon())

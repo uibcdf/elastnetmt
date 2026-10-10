@@ -21,6 +21,8 @@ class TestReportingProtocol(unittest.TestCase):
             {report.fields["issue"] for report in reports},
             {
                 "uibcdf/elastnetmt#19",
+                "uibcdf/elastnetmt#21",
+                "uibcdf/elastnetmt#23",
                 "uibcdf/elastnetmt#18",
                 "uibcdf/elastnetmt#14",
                 "uibcdf/elastnetmt#16",

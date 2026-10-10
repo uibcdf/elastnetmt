@@ -41,7 +41,8 @@ dependencies:
 - traitlets >=5
 - nglview
 - pytest
-- pytest-receptor=1.1.0
+- pytest-receptor=1.2.1
+- numba
 - pytest-cov
 - codecov
 - pytest-xdist

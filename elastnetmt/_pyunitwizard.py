@@ -1,24 +1,24 @@
-# Configure PyUnitWizard for ElastNetMT
+"""Declare the shared MolSysSuite baseline without replacing an active policy."""
 
 import pyunitwizard as puw
 
-# Following MolSysSuite standard units
-puw.configure.set_default_form("pint")
-puw.configure.set_default_parser("pint")
-puw.configure.set_standard_units(
-    [
-        "nm",
-        "ps",
-        "K",
-        "mole",
-        "dalton",
-        "e",
-        "kcal/mol",
-        "kcal/(mol*nm)",
-        "kcal/(mol*nm**2)",
-        "radians",
-    ]
-)
+STANDARD_UNITS = [
+    "nm",
+    "ps",
+    "K",
+    "mole",
+    "dalton",
+    "e",
+    "kJ/mol",
+    "kJ/(mol*nm)",
+    "kJ/(mol*nm**2)",
+    "radians",
+]
+
+if not puw.configure.has_active_policy():
+    puw.configure.set_default_form("pint")
+    puw.configure.set_default_parser("pint")
+    puw.configure.set_standard_units(STANDARD_UNITS, provenance="elastnetmt")
 
 # Standard fast-tracks for ElastNetMT
 puw.register_fast_track("angstroms", puw.unit("angstrom"))

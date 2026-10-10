@@ -273,7 +273,7 @@ channel_reason = "Preserve existing AmberTools scientific bootstrap"
 
 [[workflows]]
 path = ".github/workflows/CI.yaml"
-sha256 = "f635d412f09b3febb56f419d376676ba83d8ced3f45b4ef279456ec088a6c823"
+sha256 = "89e8ab60f5952eb5d79318b9e307e2375724492d11b3cbc4cea8f34410273636"
 reason = "Independent governance plus original complete eight-cell science; existing fixed source inputs now checked before tests without modifying their pins"
 
 [[workflows]]
@@ -293,7 +293,7 @@ reason = "Policy, producer, promotion or exact installed-artifact reader; separa
 
 [[workflows]]
 path = ".github/workflows/molsysviewer_contract.yaml"
-sha256 = "caa2940208ce18fd5997ffbba1e5613cc120c40baf91c5ffc600a7b4383099e7"
+sha256 = "c24bb33f7b0f00954f24eb0440976ceec70a8234653fc009690f2746425192c7"
 reason = "Existing moving-current Viewer development probe, preserved byte-for-byte; explicitly not immutable release or installed-artifact provenance"
 
 [[workflows]]

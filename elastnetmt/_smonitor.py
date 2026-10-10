@@ -1,5 +1,8 @@
 # ElastNetMT SMonitor Configuration
 
+from elastnetmt._private.smonitor.catalog import CODES as CODES
+from elastnetmt._private.smonitor.catalog import SIGNALS as SIGNALS
+
 PROFILE = "user"
 
 SMONITOR = {

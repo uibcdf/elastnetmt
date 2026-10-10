@@ -42,7 +42,7 @@ jobs:
         python devtools/devguide_index.py --check
         python -m unittest discover -s tests -p test_reporting_protocol.py
     - name: Install CI-governance test tools
-      run: python -m pip install "pytest>=8" "pytest-receptor==1.2.0" "PyYAML>=6" "Jinja2>=3,<4" "packaging>=24"
+      run: python -m pip install "pytest>=8" "pytest-receptor==1.2.1" "PyYAML>=6" "Jinja2>=3,<4" "packaging>=24"
     - name: Test CI recovery and contributor routes
       run: python -m pytest --receptor=ci tests/test_ci_backlog.py devtools/tests/test_ci_routes.py
     - name: Review declared dependency routes
@@ -200,8 +200,7 @@ jobs:
       shell: bash -l {0}
       run: |
         export PYTHONPATH=$PYTHONPATH:$(pwd)
-        # pytest -n logical -v --cov-config=.coveragerc --cov=elastnetmt --cov-report=xml --junitxml=junit.xml --color=yes
-        pytest -v --cov-config=.coveragerc --cov=elastnetmt --cov-report=xml --junitxml=junit.xml --color=yes
+        python -m pytest --receptor=ci -v --cov-config=.coveragerc --cov=elastnetmt --cov-report=xml --junitxml=junit.xml --color=yes
 
     - name: Check coverage
       shell: bash -l {0}
